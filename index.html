@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    <link rel="stylesheet" href="./aether-theme.css" />
+    <style>
+      @keyframes drop {
+        0% { transform: translateY(-20vh); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateY(100vh); opacity: 0; }
+      }
+      @keyframes beamMove {
+        0% { background-position: 0% 50%; opacity: 0.25; }
+        45% { opacity: 0.9; }
+        100% { background-position: 220% 50%; opacity: 0.25; }
+      }
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+      .delay-100 { animation-delay: 0.1s; }
+      .delay-200 { animation-delay: 0.2s; }
+      .delay-300 { animation-delay: 0.3s; }
+      .beam-line { background-size: 220% 100%; animation: beamMove 3.6s ease-in-out infinite; filter: drop-shadow(0 0 14px rgba(99,102,241,0.12)); }
+      .font-bricolage { font-family: "Bricolage Grotesque", sans-serif !important; }
+      .tool-card { transform: translateZ(0); transition: transform 0.3s ease; }
+      .tool-card:hover { transform: scale(1.03); }
+      .tool-img-a { opacity: 1; }
+      .tool-img-b { opacity: 0; }
+      .tool-card:hover .tool-img-a { opacity: 0; transform: scale(1.05) rotate(-0.25deg); }
+      .tool-card:hover .tool-img-b { opacity: 1; transform: scale(1.05) rotate(0.25deg); }
+      .tool-img-layer { transition: opacity 260ms ease, transform 420ms ease; }
+      .section-wide {
+        width: 100%;
+        max-width: min(88rem, calc(100vw - 2rem));
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .news-masonry {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 0.75rem;
+        grid-auto-rows: minmax(120px, auto);
+        grid-auto-flow: dense;
+      }
+      @media (min-width: 768px) {
+        .news-masonry { gap: 1rem; }
+      }
+      .news-card-img {
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+      }
+      /* AI panel & FAB */
+      @keyframes ai-bubble-in {
+        from { opacity: 0; transform: translateY(10px) scale(0.98); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      @keyframes ai-dots {
+        0%, 80%, 100% { opacity: 0.35; transform: scale(0.85); }
+        40% { opacity: 1; transform: scale(1); }
+      }
+      .ai-chat-bubble-in { animation: ai-bubble-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both; }
+      .ai-typing-dot { animation: ai-dots 1s ease-in-out infinite; }
+      .ai-typing-dot:nth-child(2) { animation-delay: 0.15s; }
+      .ai-typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+      /* Coze-style FAB */
+      @keyframes ai-fab-ring {
+        0% { transform: scale(1); opacity: 0.55; }
+        70% { transform: scale(1.85); opacity: 0; }
+        100% { transform: scale(1.85); opacity: 0; }
+      }
+      @keyframes ai-fab-ring2 {
+        0% { transform: scale(1); opacity: 0.35; }
+        70% { transform: scale(2.4); opacity: 0; }
+        100% { transform: scale(2.4); opacity: 0; }
+      }
+      @keyframes ai-orb-shimmer {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+      .ai-fab-orb {
+        background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4, #6366f1);
+        background-size: 300% 300%;
+        animation: ai-orb-shimmer 4s ease-in-out infinite;
+      }
+      .ai-fab-ring {
+        animation: ai-fab-ring 2.4s ease-out infinite;
+        border-radius: 50%;
+        background: rgba(99,102,241,0.45);
+      }
+      .ai-fab-ring2 {
+        animation: ai-fab-ring2 2.4s ease-out 0.6s infinite;
+        border-radius: 50%;
+        background: rgba(139,92,246,0.3);
+      }
+
+      /* AI side panel slide */
+      #aiPanel {
+        transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s;
+      }
+      #aiPanel.ai-panel-hidden {
+        transform: translateX(calc(100% + 20px));
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.32s cubic-bezier(0.4, 0, 1, 1), opacity 0.28s ease, visibility 0s linear 0.32s;
+      }
+      #aiAttachmentList:empty {
+        display: none;
+      }
+
+      /* ── Section ambient blobs ─────────────────────────────── */
+      @keyframes floatBlob {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(22px, -16px) scale(1.06); }
+        66% { transform: translate(-16px, 12px) scale(0.96); }
+      }
+      .anim-blob { animation: floatBlob 15s ease-in-out infinite; }
+
+      /* ── Tool card enhanced hover ──────────────────────────── */
+      .tool-card-link {
+        transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
+      }
+      .tool-card-link:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 24px 52px -12px rgba(99,102,241,0.18), 0 8px 18px -8px rgba(0,0,0,0.1);
+      }
+      .tool-card-link img.tc-img {
+        transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .tool-card-link:hover img.tc-img { transform: scale(1.06); }
+
+      /* ── News card hover lift ──────────────────────────────── */
+      .news-card-link {
+        transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.3s ease;
+        cursor: pointer;
+      }
+      .news-card-link:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 32px -8px rgba(0,0,0,0.12);
+        border-color: rgba(99,102,241,0.4) !important;
+      }
+      .news-card-link img {
+        transition: transform 0.45s ease;
+      }
+      .news-card-link:hover img { transform: scale(1.04); }
+
+      /* ── Forum panel hover ─────────────────────────────────── */
+      .forum-panel {
+        transition: box-shadow 0.3s ease;
+      }
+      .forum-panel:hover {
+        box-shadow: 0 12px 40px -10px rgba(99,102,241,0.12);
+      }
+
+      /* ── Decorative section number label ───────────────────── */
+      .section-eyebrow {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 0.625rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        opacity: 0.45;
+      }
+
+      /* ── Card staggered scroll-reveal ──────────────────────── */
+      .reveal-item {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.55s ease, transform 0.55s ease;
+      }
+      .reveal-item.reveal-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── Expanding accent line on tool cards ───────────────── */
+      .duration-400 { transition-duration: 400ms; }
+    </style>
+    <title>Aether · AIGC Tools</title>
+  </head>
+  <body class="dark:bg-neutral-950 dark:text-neutral-50 font-nunito antialiased selection:bg-neutral-200 dark:selection:bg-neutral-800 relative min-h-screen overflow-x-hidden bg-white text-neutral-900">
+    <!-- 主视觉区（保持不变） -->
+    <div class="aura-background-component top-0 w-full h-screen -z-10 fixed" data-alpha-mask="80" style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent);">
+      <div class="absolute w-full h-full left-0 top-0 -z-10" data-us-project="aH0ZsntZ1TcKHIyweEA8"></div>
+      <script type="text/javascript">
+        !function(){var u=window.UnicornStudio;if(u&&u.init){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){u.init()})}else{u.init()}}else{window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.1.1/dist/unicornStudio.umd.js",i.onload=function(){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){UnicornStudio.init()})}else{UnicornStudio.init()}},(document.head||document.body).appendChild(i)}}();
+      </script>
+    </div>
+
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-[radial-gradient(circle_at_top_center,rgba(0,0,0,0.03)_0%,transparent_60%)] dark:bg-[radial-gradient(circle_at_top_center,rgba(255,255,255,0.03)_0%,transparent_60%)] pointer-events-none z-0"></div>
+
+    <!-- Navigation -->
+    <header class="relative z-10 section-wide px-4 sm:px-6 lg:px-8 py-8 flex items-center justify-between">
+      <div class="text-base font-semibold tracking-tighter dark:text-white uppercase font-bricolage text-black">Aether</div>
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+        <a href="#tools" class="dark:hover:text-white transition-colors hover:text-black inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">apps</span>Tools
+        </a>
+        <a href="workspace.html" class="dark:hover:text-white transition-colors hover:text-black inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">dashboard</span>Workspace
+        </a>
+        <a href="learn.html" class="dark:hover:text-white transition-colors hover:text-black inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">school</span>Learn
+        </a>
+        <a href="resources.html" class="dark:hover:text-white transition-colors hover:text-black inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">library_books</span>Resources
+        </a>
+        <a href="midjourney-guide.html" class="dark:hover:text-white transition-colors hover:text-black inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">image</span>Midjourney Guide
+        </a>
+        <a href="#ai-news" class="dark:hover:text-white transition-colors hover:text-black inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">newspaper</span>AI News
+        </a>
+        <a href="#forum" class="dark:hover:text-white transition-colors hover:text-black inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">forum</span>Forum
+        </a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button type="button" id="authOpenBtn" class="rounded-full px-5 py-2 text-sm font-medium border border-neutral-200/80 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">login</span>Sign in
+        </button>
+        <div id="authUserWrap" class="hidden items-center gap-2">
+          <span id="authUserLabel" class="text-xs max-w-[160px] truncate text-neutral-600 dark:text-neutral-300"></span>
+          <button type="button" id="authSignOutBtn" class="rounded-full px-3 py-1.5 text-xs font-medium border border-neutral-200/80 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900">Sign out</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <main class="flex flex-col min-h-[80vh] text-center z-10 mt-4 px-4 relative items-center justify-center">
+      <!-- Badge -->
+      <a href="#tools" class="relative inline-flex overflow-hidden rounded-full p-[1px] group dark:bg-neutral-800 mb-8 bg-neutral-200 animate-fade-in-up">
+        <span class="absolute top-1/2 left-1/2 w-[300%] h-[300%] -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-[spin_3s_linear_infinite] z-0 bg-[conic-gradient(from_0deg,transparent_70%,#000_100%)] dark:bg-[conic-gradient(from_0deg,transparent_70%,#fff_100%)]"></span>
+        <span class="relative z-10 dark:bg-neutral-950 px-4 py-1.5 text-xs font-medium dark:text-neutral-300 rounded-full flex items-center gap-2 bg-white text-neutral-600">
+          <span class="flex h-1.5 w-1.5 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]"></span>
+          Aether Engine v2.4 is live
+          <span class="material-symbols-outlined text-base text-neutral-400 dark:text-neutral-500 group-hover:translate-x-0.5 transition-transform" aria-hidden="true">arrow_forward</span>
+        </span>
+      </a>
+
+      <!-- Headline -->
+      <h1 class="text-5xl sm:text-6xl md:text-[5.25rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-neutral-900 to-neutral-500 dark:from-white dark:to-neutral-500 max-w-5xl mx-auto leading-[1.05] pb-3 font-bricolage font-semibold animate-fade-in-up delay-100">
+        The Ultimate AI Tool Hub<br class="hidden sm:block" /> for Creators &amp; Builders
+      </h1>
+
+      <!-- Sub -->
+      <p class="mt-6 text-base sm:text-lg font-medium text-neutral-500 dark:text-neutral-400 max-w-xl mx-auto leading-relaxed font-sans animate-fade-in-up delay-200">
+        Discover, compare, and master the best AI tools — curated for every workflow.
+      </p>
+
+      <!-- CTA row -->
+      <div class="mt-10 flex flex-col sm:flex-row gap-3 items-center justify-center animate-fade-in-up delay-300">
+        <a href="#tools" class="relative inline-flex overflow-hidden rounded-full p-[1px] group dark:bg-neutral-800 bg-neutral-200">
+          <span class="absolute top-1/2 left-1/2 w-[300%] h-[300%] -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-[spin_2s_linear_infinite] z-0 bg-[conic-gradient(from_0deg,transparent_70%,#000_100%)] dark:bg-[conic-gradient(from_0deg,transparent_70%,#fff_100%)]"></span>
+          <span class="relative z-10 dark:bg-neutral-950 px-7 py-3 text-sm font-semibold dark:text-white rounded-full flex items-center gap-2 bg-white text-neutral-900">
+            Explore Tools
+            <span class="material-symbols-outlined text-lg text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors" aria-hidden="true">rocket_launch</span>
+          </span>
+        </a>
+        <a href="workspace.html" class="px-7 py-3 rounded-full border dark:border-neutral-700 dark:text-neutral-200 text-sm font-semibold dark:hover:bg-neutral-900 transition-colors flex items-center gap-2 border-neutral-300 text-neutral-700 hover:bg-neutral-50 bg-white/60 dark:bg-neutral-950/40 backdrop-blur-sm shadow-sm">
+          <span class="material-symbols-outlined text-lg text-indigo-500" aria-hidden="true">dashboard</span>
+          Open Workspace
+        </a>
+        <a href="learn.html" class="px-7 py-3 rounded-full border dark:border-neutral-800 dark:text-neutral-400 text-sm font-medium dark:hover:bg-neutral-900 transition-colors flex items-center gap-2 border-neutral-200 text-neutral-500 hover:bg-neutral-50">
+          <span class="material-symbols-outlined text-lg text-neutral-400 dark:text-neutral-500" aria-hidden="true">menu_book</span>
+          Tutorials
+        </a>
+      </div>
+
+    </main>
+
+
+    <!-- Stats 统计行 -->
+    <div class="relative z-10 section-wide px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+        <div class="reveal-item text-center" data-reveal-idx="0">
+          <div class="text-3xl sm:text-4xl font-bold font-bricolage text-transparent bg-clip-text bg-gradient-to-b from-neutral-900 to-neutral-500 dark:from-white dark:to-neutral-400">500+</div>
+          <div class="mt-1.5 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-medium">AI Tools Curated</div>
+        </div>
+        <div class="reveal-item text-center" data-reveal-idx="1">
+          <div class="text-3xl sm:text-4xl font-bold font-bricolage text-transparent bg-clip-text bg-gradient-to-b from-neutral-900 to-neutral-500 dark:from-white dark:to-neutral-400">20+</div>
+          <div class="mt-1.5 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-medium">Categories</div>
+        </div>
+        <div class="reveal-item text-center" data-reveal-idx="2">
+          <div class="text-3xl sm:text-4xl font-bold font-bricolage text-transparent bg-clip-text bg-gradient-to-b from-neutral-900 to-neutral-500 dark:from-white dark:to-neutral-400">100+</div>
+          <div class="mt-1.5 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-medium">Tutorials & Guides</div>
+        </div>
+        <div class="reveal-item text-center" data-reveal-idx="3">
+          <div class="text-3xl sm:text-4xl font-bold font-bricolage text-transparent bg-clip-text bg-gradient-to-b from-neutral-900 to-neutral-500 dark:from-white dark:to-neutral-400">Daily</div>
+          <div class="mt-1.5 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-medium">AI News Updates</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features 价值主张 -->
+    <section class="relative z-10 overflow-hidden">
+      <div class="section-wide px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative">
+        <div class="text-center mb-14">
+          <p class="section-eyebrow text-indigo-500 dark:text-indigo-400 mb-3">why aether</p>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-bricolage text-transparent bg-clip-text bg-gradient-to-b from-neutral-900 to-neutral-500 dark:from-white dark:to-neutral-400 leading-tight">
+            Everything you need to master AI
+          </h2>
+          <p class="mt-4 text-sm text-neutral-500 dark:text-neutral-400 max-w-lg mx-auto leading-relaxed">One platform for tools, tutorials, news, and community — built for creators and builders.</p>
+        </div>
+
+        <!-- Top row: 2 large cards -->
+        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+          <!-- Card 1: Tool Library -->
+          <div class="reveal-item group relative rounded-xl overflow-hidden border border-neutral-200/60 dark:border-neutral-800 bg-white dark:bg-neutral-950/60 transition-all duration-300 hover:shadow-[0_20px_60px_-12px_rgba(99,102,241,0.18)] hover:-translate-y-1" data-reveal-idx="0">
+            <div class="h-1 w-full bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-500"></div>
+            <div class="p-7">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500/15 to-violet-500/10 dark:from-indigo-400/20 dark:to-violet-400/10 flex items-center justify-center mb-5 ring-1 ring-inset ring-indigo-500/20">
+                <span class="material-symbols-outlined text-indigo-600 dark:text-indigo-400 text-2xl" aria-hidden="true">apps</span>
+              </div>
+              <h3 class="text-lg font-semibold font-bricolage text-neutral-900 dark:text-white">Curated Tool Library</h3>
+              <p class="mt-2.5 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">Hand-picked AI tools across image, video, audio, code, and writing — updated weekly with the latest releases.</p>
+              <a href="#tools" class="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:gap-2.5 transition-all duration-200">
+                Browse tools <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2: Tutorials -->
+          <div class="reveal-item group relative rounded-xl overflow-hidden border border-neutral-200/60 dark:border-neutral-800 bg-white dark:bg-neutral-950/60 transition-all duration-300 hover:shadow-[0_20px_60px_-12px_rgba(34,197,94,0.15)] hover:-translate-y-1" data-reveal-idx="1">
+            <div class="h-1 w-full bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500"></div>
+            <div class="p-7">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500/15 to-teal-500/10 dark:from-emerald-400/20 dark:to-teal-400/10 flex items-center justify-center mb-5 ring-1 ring-inset ring-emerald-500/20">
+                <span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-2xl" aria-hidden="true">school</span>
+              </div>
+              <h3 class="text-lg font-semibold font-bricolage text-neutral-900 dark:text-white">Step-by-Step Tutorials</h3>
+              <p class="mt-2.5 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">From beginner prompts to advanced workflows — practical guides you can follow right now, no experience needed.</p>
+              <a href="learn.html" class="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:gap-2.5 transition-all duration-200">
+                Start learning <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom row: 4 smaller cards -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- Card 3: Workspace -->
+          <div class="reveal-item group relative rounded-xl overflow-hidden border border-neutral-200/60 dark:border-neutral-800 bg-white dark:bg-neutral-950/60 transition-all duration-300 hover:shadow-[0_16px_48px_-10px_rgba(56,189,248,0.18)] hover:-translate-y-1" data-reveal-idx="2">
+            <div class="h-1 w-full bg-gradient-to-r from-sky-400 to-blue-500"></div>
+            <div class="p-6">
+              <div class="w-10 h-10 rounded-lg bg-sky-500/10 dark:bg-sky-400/15 flex items-center justify-center mb-4 ring-1 ring-inset ring-sky-500/20">
+                <span class="material-symbols-outlined text-sky-600 dark:text-sky-400 text-xl" aria-hidden="true">dashboard</span>
+              </div>
+              <h3 class="text-sm font-semibold font-bricolage text-neutral-900 dark:text-white">AI Workspace</h3>
+              <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">Chat, get recommendations, and analyze prompts — all in one place.</p>
+            </div>
+          </div>
+
+          <!-- Card 4: Daily News -->
+          <div class="reveal-item group relative rounded-xl overflow-hidden border border-neutral-200/60 dark:border-neutral-800 bg-white dark:bg-neutral-950/60 transition-all duration-300 hover:shadow-[0_16px_48px_-10px_rgba(139,92,246,0.18)] hover:-translate-y-1" data-reveal-idx="3">
+            <div class="h-1 w-full bg-gradient-to-r from-violet-400 to-purple-500"></div>
+            <div class="p-6">
+              <div class="w-10 h-10 rounded-lg bg-violet-500/10 dark:bg-violet-400/15 flex items-center justify-center mb-4 ring-1 ring-inset ring-violet-500/20">
+                <span class="material-symbols-outlined text-violet-600 dark:text-violet-400 text-xl" aria-hidden="true">newspaper</span>
+              </div>
+              <h3 class="text-sm font-semibold font-bricolage text-neutral-900 dark:text-white">Daily AI News</h3>
+              <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">Curated AI industry news, model releases, and research highlights.</p>
+            </div>
+          </div>
+
+          <!-- Card 5: Community -->
+          <div class="reveal-item group relative rounded-xl overflow-hidden border border-neutral-200/60 dark:border-neutral-800 bg-white dark:bg-neutral-950/60 transition-all duration-300 hover:shadow-[0_16px_48px_-10px_rgba(245,158,11,0.15)] hover:-translate-y-1" data-reveal-idx="4">
+            <div class="h-1 w-full bg-gradient-to-r from-amber-400 to-orange-500"></div>
+            <div class="p-6">
+              <div class="w-10 h-10 rounded-lg bg-amber-500/10 dark:bg-amber-400/15 flex items-center justify-center mb-4 ring-1 ring-inset ring-amber-500/20">
+                <span class="material-symbols-outlined text-amber-600 dark:text-amber-400 text-xl" aria-hidden="true">forum</span>
+              </div>
+              <h3 class="text-sm font-semibold font-bricolage text-neutral-900 dark:text-white">Community Forum</h3>
+              <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">Share workflows and connect with creators exploring AI.</p>
+            </div>
+          </div>
+
+          <!-- Card 6: Midjourney Guide -->
+          <div class="reveal-item group relative rounded-xl overflow-hidden border border-neutral-200/60 dark:border-neutral-800 bg-white dark:bg-neutral-950/60 transition-all duration-300 hover:shadow-[0_16px_48px_-10px_rgba(244,63,94,0.15)] hover:-translate-y-1" data-reveal-idx="5">
+            <div class="h-1 w-full bg-gradient-to-r from-rose-400 to-pink-500"></div>
+            <div class="p-6">
+              <div class="w-10 h-10 rounded-lg bg-rose-500/10 dark:bg-rose-400/15 flex items-center justify-center mb-4 ring-1 ring-inset ring-rose-500/20">
+                <span class="material-symbols-outlined text-rose-600 dark:text-rose-400 text-xl" aria-hidden="true">image</span>
+              </div>
+              <h3 class="text-sm font-semibold font-bricolage text-neutral-900 dark:text-white">Midjourney Guide</h3>
+              <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">The most comprehensive MJ prompt guide with real examples.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools：Featured Tools -->
+    <section id="tools" class="relative z-10 overflow-hidden">
+      <!-- Beam-line dividers (top) -->
+      <div class="pointer-events-none absolute left-1/2 -translate-x-1/2 top-0 w-full section-wide px-4 sm:px-6 lg:px-8">
+        <div class="relative h-16">
+          <div class="absolute left-0 top-8 w-full h-px beam-line" style="background-image: linear-gradient(90deg, transparent, rgba(99,102,241,0.55), rgba(34,197,94,0.38), transparent)"></div>
+          <div class="absolute left-0 top-12 w-[80%] h-px beam-line" style="animation-delay: .9s; background-image: linear-gradient(90deg, transparent, rgba(56,189,248,0.55), rgba(167,139,250,0.42), transparent)"></div>
+        </div>
+      </div>
+      <!-- Ambient glow blobs -->
+      <div class="pointer-events-none absolute -top-20 -left-24 w-[480px] h-[340px] rounded-full bg-indigo-500/[0.06] dark:bg-indigo-500/[0.1] blur-[80px] anim-blob" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute -bottom-16 right-0 w-[380px] h-[280px] rounded-full bg-violet-500/[0.05] dark:bg-violet-500/[0.09] blur-[70px] anim-blob" style="animation-delay:5s" aria-hidden="true"></div>
+
+      <div class="section-wide px-4 sm:px-6 lg:px-8 pt-16 pb-12 sm:pb-16 relative">
+        <!-- Section header -->
+        <div class="flex items-end justify-between mb-10">
+          <div>
+            <p class="section-eyebrow text-indigo-500 dark:text-indigo-400 mb-2">curated tools</p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl aether-heading aether-heading-gradient inline-flex flex-wrap items-center gap-2">
+              <span class="material-symbols-outlined text-3xl text-indigo-500 dark:text-indigo-400" aria-hidden="true">apps</span>
+              Featured AI Tools
+            </h2>
+          </div>
+          <a href="tools-all.html" class="rounded-full px-5 py-2.5 bg-black text-white dark:bg-white dark:text-black text-sm font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-1.5 shadow-md shrink-0">
+            Browse All Tools
+            <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_forward</span>
+          </a>
+        </div>
+
+        <!-- Tool cards grid -->
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <!-- Midjourney -->
+          <a href="tool.html?id=midjourney"
+             class="tool-card-link group flex flex-col rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 overflow-hidden backdrop-blur-sm hover:border-indigo-400/60 dark:hover:border-indigo-500/50">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1686191128892-c0557e5a4ce8?w=600&h=300&fit=crop" alt="Midjourney" class="tc-img w-full h-44 object-cover" />
+              <!-- gradient overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none"></div>
+              <!-- floating category chip on image -->
+              <span class="absolute bottom-3 left-4 text-[10px] px-2.5 py-1 rounded-full font-semibold bg-indigo-600 text-white shadow-sm">Image</span>
+            </div>
+            <div class="p-5 flex flex-col flex-1">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-lg font-semibold font-bricolage text-black dark:text-white leading-tight">Midjourney</h3>
+                <span class="material-symbols-outlined text-base text-neutral-400 dark:text-neutral-600 group-hover:text-indigo-500 transition-colors mt-0.5 shrink-0" aria-hidden="true">arrow_outward</span>
+              </div>
+              <p class="mt-2 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed flex-1">AI image generation with painterly, cinematic artistic quality.</p>
+              <!-- decorative accent line -->
+              <div class="mt-4 h-[2px] w-8 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 opacity-60 group-hover:w-16 group-hover:opacity-100 transition-all duration-400"></div>
+            </div>
+          </a>
+
+          <!-- ChatGPT -->
+          <a href="tool.html?id=chatgpt"
+             class="tool-card-link group flex flex-col rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 overflow-hidden backdrop-blur-sm hover:border-emerald-400/60 dark:hover:border-emerald-500/50">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=300&fit=crop" alt="ChatGPT" class="tc-img w-full h-44 object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none"></div>
+              <span class="absolute bottom-3 left-4 text-[10px] px-2.5 py-1 rounded-full font-semibold bg-emerald-600 text-white shadow-sm">Chat</span>
+            </div>
+            <div class="p-5 flex flex-col flex-1">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-lg font-semibold font-bricolage text-black dark:text-white leading-tight">ChatGPT</h3>
+                <span class="material-symbols-outlined text-base text-neutral-400 dark:text-neutral-600 group-hover:text-emerald-500 transition-colors mt-0.5 shrink-0" aria-hidden="true">arrow_outward</span>
+              </div>
+              <p class="mt-2 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed flex-1">Conversational AI assistant for writing, coding, and reasoning at scale.</p>
+              <div class="mt-4 h-[2px] w-8 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 opacity-60 group-hover:w-16 group-hover:opacity-100 transition-all duration-400"></div>
+            </div>
+          </a>
+
+          <!-- Runway -->
+          <a href="tool.html?id=runway"
+             class="tool-card-link group flex flex-col rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 overflow-hidden backdrop-blur-sm hover:border-purple-400/60 dark:hover:border-purple-500/50">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=300&fit=crop" alt="Runway" class="tc-img w-full h-44 object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none"></div>
+              <span class="absolute bottom-3 left-4 text-[10px] px-2.5 py-1 rounded-full font-semibold bg-purple-600 text-white shadow-sm">Video</span>
+            </div>
+            <div class="p-5 flex flex-col flex-1">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-lg font-semibold font-bricolage text-black dark:text-white leading-tight">Runway</h3>
+                <span class="material-symbols-outlined text-base text-neutral-400 dark:text-neutral-600 group-hover:text-purple-500 transition-colors mt-0.5 shrink-0" aria-hidden="true">arrow_outward</span>
+              </div>
+              <p class="mt-2 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed flex-1">AI-powered video generation, editing, and creative production workflows.</p>
+              <div class="mt-4 h-[2px] w-8 rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 opacity-60 group-hover:w-16 group-hover:opacity-100 transition-all duration-400"></div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- AI 新闻 -->
+    <section id="ai-news" class="relative z-10 overflow-hidden">
+      <div class="pointer-events-none absolute left-1/2 -translate-x-1/2 top-0 w-full section-wide px-4 sm:px-6 lg:px-8">
+        <div class="relative h-16">
+          <div class="absolute left-0 top-8 w-full h-px beam-line" style="background-image: linear-gradient(90deg, transparent, rgba(56,189,248,0.5), rgba(99,102,241,0.45), transparent)"></div>
+        </div>
+      </div>
+
+      <div class="section-wide px-4 sm:px-6 lg:px-8 pt-16 pb-14 relative">
+        <div class="flex items-end justify-between mb-10">
+          <div>
+            <p class="section-eyebrow text-sky-500 dark:text-sky-400 mb-2">daily updates</p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-bricolage text-neutral-900 dark:text-white">AI News</h2>
+          </div>
+          <a href="#ai-news" class="text-xs font-medium text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors inline-flex items-center gap-1">
+            View all <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+          </a>
+        </div>
+
+        <!-- Featured + sidebar layout — populated by aether-app.js loadNews() -->
+        <div id="newsMount">
+          <!-- Static fallback (replaced by JS when Supabase data loads) -->
+          <div class="grid lg:grid-cols-5 gap-6">
+            <article class="news-card-link lg:col-span-3 flex flex-col border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 overflow-hidden rounded-xl">
+              <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=900&h=480&fit=crop&auto=format" alt="" class="w-full h-56 sm:h-72 object-cover" loading="lazy" width="900" height="480" />
+              <div class="p-6 flex flex-col flex-1">
+                <span class="inline-block text-[10px] font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2">Funding</span>
+                <h3 class="text-xl font-semibold font-bricolage text-neutral-900 dark:text-white leading-snug"><a href="https://techcrunch.com" target="_blank" rel="noopener noreferrer" class="hover:underline">OpenAI raises $40B at $300B post-money valuation</a></h3>
+                <p class="mt-3 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed flex-1">SoftBank-led round; part of the capital targets U.S. Stargate data-center build-out.</p>
+                <p class="mt-4 text-xs text-neutral-400 dark:text-neutral-500">TechCrunch · Mar 2025</p>
+              </div>
+            </article>
+            <div class="lg:col-span-2 flex flex-col gap-px border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+              <article class="news-card-link flex gap-4 bg-white dark:bg-neutral-900 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800/80 transition-colors">
+                <img src="https://images.unsplash.com/photo-1485827404703-e89b11e8d0f0?w=160&h=120&fit=crop&auto=format" alt="" class="w-20 h-16 object-cover rounded shrink-0" loading="lazy" />
+                <div class="min-w-0">
+                  <span class="text-[10px] font-semibold uppercase tracking-widest text-sky-600 dark:text-sky-400">Models</span>
+                  <h3 class="mt-1 text-sm font-semibold font-bricolage text-neutral-900 dark:text-white leading-snug line-clamp-2"><a href="https://techcrunch.com" target="_blank" rel="noopener noreferrer" class="hover:underline">Google unveils Gemini 2.5 "thinking" model family</a></h3>
+                  <p class="mt-1 text-[11px] text-neutral-400 dark:text-neutral-500">TechCrunch · Mar 2025</p>
+                </div>
+              </article>
+              <article class="news-card-link flex gap-4 bg-white dark:bg-neutral-900 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800/80 transition-colors">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=160&h=120&fit=crop&auto=format" alt="" class="w-20 h-16 object-cover rounded shrink-0" loading="lazy" />
+                <div class="min-w-0">
+                  <span class="text-[10px] font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">API</span>
+                  <h3 class="mt-1 text-sm font-semibold font-bricolage text-neutral-900 dark:text-white leading-snug line-clamp-2"><a href="https://techcrunch.com" target="_blank" rel="noopener noreferrer" class="hover:underline">OpenAI ships Responses API tools for enterprise agents</a></h3>
+                  <p class="mt-1 text-[11px] text-neutral-400 dark:text-neutral-500">TechCrunch · Mar 2025</p>
+                </div>
+              </article>
+              <article class="news-card-link flex gap-4 bg-white dark:bg-neutral-900 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800/80 transition-colors">
+                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=160&h=120&fit=crop&auto=format" alt="" class="w-20 h-16 object-cover rounded shrink-0" loading="lazy" />
+                <div class="min-w-0">
+                  <span class="text-[10px] font-semibold uppercase tracking-widest text-violet-600 dark:text-violet-400">Image AI</span>
+                  <h3 class="mt-1 text-sm font-semibold font-bricolage text-neutral-900 dark:text-white leading-snug line-clamp-2"><a href="https://www.businessinsider.com" target="_blank" rel="noopener noreferrer" class="hover:underline">ChatGPT native image generation sees massive demand</a></h3>
+                  <p class="mt-1 text-[11px] text-neutral-400 dark:text-neutral-500">Business Insider · 2025</p>
+                </div>
+              </article>
+              <article class="news-card-link flex gap-4 bg-white dark:bg-neutral-900 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800/80 transition-colors">
+                <img src="https://images.unsplash.com/photo-1531746797555-798f2d0d6f53?w=160&h=120&fit=crop&auto=format" alt="" class="w-20 h-16 object-cover rounded shrink-0" loading="lazy" />
+                <div class="min-w-0">
+                  <span class="text-[10px] font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400">Agents</span>
+                  <h3 class="mt-1 text-sm font-semibold font-bricolage text-neutral-900 dark:text-white leading-snug line-clamp-2"><a href="https://techcrunch.com" target="_blank" rel="noopener noreferrer" class="hover:underline">AI agents move from demos to production roadmaps</a></h3>
+                  <p class="mt-1 text-[11px] text-neutral-400 dark:text-neutral-500">Industry · 2025</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-6 mt-6">
+            <article class="news-card-link border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 rounded-xl overflow-hidden flex flex-col">
+              <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=300&fit=crop&auto=format" alt="" class="w-full h-36 object-cover" loading="lazy" />
+              <div class="p-4 flex flex-col flex-1">
+                <span class="text-[10px] font-semibold uppercase tracking-widest text-rose-600 dark:text-rose-400">Investment</span>
+                <h3 class="mt-1.5 text-sm font-semibold font-bricolage text-neutral-900 dark:text-white leading-snug flex-1"><a href="https://techcrunch.com" target="_blank" rel="noopener noreferrer" class="hover:underline">Google's Anthropic stake in filings draws attention</a></h3>
+                <p class="mt-3 text-[11px] text-neutral-400 dark:text-neutral-500">TechCrunch · Mar 2025</p>
+              </div>
+            </article>
+            <article class="news-card-link border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 rounded-xl overflow-hidden flex flex-col">
+              <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=300&fit=crop&auto=format" alt="" class="w-full h-36 object-cover" loading="lazy" />
+              <div class="p-4 flex flex-col flex-1">
+                <span class="text-[10px] font-semibold uppercase tracking-widest text-sky-600 dark:text-sky-400">Policy</span>
+                <h3 class="mt-1.5 text-sm font-semibold font-bricolage text-neutral-900 dark:text-white leading-snug flex-1"><a href="https://techcrunch.com" target="_blank" rel="noopener noreferrer" class="hover:underline">Regulators eye AI watermarking &amp; metadata standards</a></h3>
+                <p class="mt-3 text-[11px] text-neutral-400 dark:text-neutral-500">Industry · 2025</p>
+              </div>
+            </article>
+            <article class="news-card-link border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 rounded-xl overflow-hidden flex flex-col">
+              <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=300&fit=crop&auto=format" alt="" class="w-full h-36 object-cover" loading="lazy" />
+              <div class="p-4 flex flex-col flex-1">
+                <span class="text-[10px] font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">Open Source</span>
+                <h3 class="mt-1.5 text-sm font-semibold font-bricolage text-neutral-900 dark:text-white leading-snug flex-1"><a href="https://huggingface.co" target="_blank" rel="noopener noreferrer" class="hover:underline">Open-weight models keep downloads climbing on Hugging Face</a></h3>
+                <p class="mt-3 text-[11px] text-neutral-400 dark:text-neutral-500">Industry trend · 2025</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA 横幅 -->
+    <section class="relative z-10 overflow-hidden">
+      <div class="section-wide px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+        <div class="relative rounded-3xl overflow-hidden border border-neutral-200/60 dark:border-neutral-800 bg-gradient-to-br from-indigo-950/[0.07] via-violet-950/[0.04] to-transparent dark:from-indigo-950/40 dark:via-violet-950/20 p-8 sm:p-12 flex flex-col sm:flex-row sm:items-center gap-8">
+          <!-- bg blobs -->
+          <div class="pointer-events-none absolute -top-16 -right-16 w-[320px] h-[320px] rounded-full bg-indigo-500/[0.08] dark:bg-indigo-500/[0.14] blur-[80px]"></div>
+          <div class="pointer-events-none absolute -bottom-12 left-1/3 w-[240px] h-[240px] rounded-full bg-violet-500/[0.06] dark:bg-violet-500/[0.12] blur-[70px]"></div>
+          <div class="relative flex-1 min-w-0">
+            <p class="section-eyebrow text-indigo-500 dark:text-indigo-400 mb-3">get started free</p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-bricolage text-neutral-900 dark:text-white leading-tight">
+              Ready to supercharge<br class="hidden sm:block" /> your AI workflow?
+            </h2>
+            <p class="mt-3 text-sm sm:text-base text-neutral-500 dark:text-neutral-400 max-w-lg leading-relaxed">
+              Open the workspace, configure your AI model, and start getting personalized tool recommendations in seconds.
+            </p>
+          </div>
+          <div class="relative flex flex-col sm:flex-row gap-3 shrink-0">
+            <a href="workspace.html" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-black dark:bg-white text-white dark:text-black text-sm font-semibold font-bricolage hover:opacity-90 transition-opacity shadow-lg shadow-black/10 dark:shadow-white/5">
+              <span class="material-symbols-outlined text-lg" aria-hidden="true">dashboard</span>
+              Open Workspace
+            </a>
+            <a href="learn.html" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-200 text-sm font-medium hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors bg-white/80 dark:bg-neutral-950/40 backdrop-blur-sm">
+              <span class="material-symbols-outlined text-lg text-neutral-400" aria-hidden="true">menu_book</span>
+              Browse Tutorials
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Forum -->
+    <section id="forum" class="relative z-10 overflow-hidden">
+      <!-- Beam-line dividers (top) -->
+      <div class="pointer-events-none absolute left-1/2 -translate-x-1/2 top-0 w-full section-wide px-4 sm:px-6 lg:px-8">
+        <div class="relative h-16">
+          <div class="absolute left-0 top-8 w-full h-px beam-line" style="background-image: linear-gradient(90deg, transparent, rgba(167,139,250,0.5), rgba(99,102,241,0.45), transparent)"></div>
+          <div class="absolute left-0 top-12 w-[60%] h-px beam-line" style="animation-delay:0.7s; background-image: linear-gradient(90deg, transparent, rgba(34,197,94,0.4), rgba(56,189,248,0.35), transparent)"></div>
+        </div>
+      </div>
+      <!-- Ambient glow blobs -->
+      <div class="pointer-events-none absolute top-0 left-0 w-[500px] h-[360px] rounded-full bg-violet-500/[0.05] dark:bg-violet-500/[0.09] blur-[90px] anim-blob" style="animation-delay:2s" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute bottom-0 right-0 w-[380px] h-[280px] rounded-full bg-indigo-500/[0.04] dark:bg-indigo-500/[0.08] blur-[70px] anim-blob" style="animation-delay:7s" aria-hidden="true"></div>
+
+      <div class="section-wide px-4 sm:px-6 lg:px-8 pt-16 pb-20 relative">
+        <!-- Section header -->
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-8 border-b border-neutral-200/70 dark:border-neutral-800">
+          <div>
+            <p class="section-eyebrow text-violet-500 dark:text-violet-400 mb-2">community</p>
+            <h3 class="text-xl sm:text-2xl md:text-3xl aether-heading aether-heading-gradient inline-flex flex-wrap items-center gap-2">
+              <span class="material-symbols-outlined text-2xl sm:text-3xl text-indigo-500 dark:text-indigo-400" aria-hidden="true">forum</span>
+              Forum
+            </h3>
+          </div>
+          <button id="forumReset" type="button" class="rounded-full px-5 py-2.5 border border-neutral-200/80 dark:border-neutral-800 text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors self-start sm:self-auto bg-white/70 dark:bg-neutral-950/30 inline-flex items-center gap-1.5 shadow-sm">
+            <span class="material-symbols-outlined text-base" aria-hidden="true">delete_sweep</span>Clear
+          </button>
+        </div>
+
+        <div class="mt-8 grid lg:grid-cols-12 gap-6 lg:gap-8">
+          <!-- Post form -->
+          <div class="lg:col-span-4 order-2 lg:order-1">
+            <div class="forum-panel rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 backdrop-blur-sm p-6 h-full">
+              <div class="text-sm font-semibold font-bricolage text-black dark:text-white tracking-tight inline-flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-base" aria-hidden="true">edit_square</span>Post
+              </div>
+              <form id="forumForm" class="mt-5 grid gap-3">
+                <input id="forumTitle" placeholder="Title" class="px-4 py-2.5 rounded-full text-sm border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 outline-none focus:ring-2 focus:ring-indigo-500/30" required />
+                <input id="forumTags" placeholder="Tags (comma separated)" class="px-4 py-2.5 rounded-full text-sm border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 outline-none focus:ring-2 focus:ring-indigo-500/30" />
+                <textarea id="forumBody" rows="5" placeholder="Share your thoughts..." class="px-4 py-3 rounded-2xl text-sm border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 outline-none focus:ring-2 focus:ring-indigo-500/30 resize-y min-h-[120px]" required></textarea>
+                <button type="submit" class="rounded-full px-5 py-2.5 bg-black text-white dark:bg-white dark:text-black text-sm font-semibold font-bricolage hover:opacity-90 transition-opacity w-full sm:w-auto inline-flex items-center justify-center gap-1 shadow-sm">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">send</span>Publish
+                </button>
+              </form>
+            </div>
+          </div>
+          <!-- Posts list + detail -->
+          <div class="lg:col-span-8 order-1 lg:order-2">
+            <div class="forum-panel rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 backdrop-blur-sm overflow-hidden flex flex-col min-h-[420px] lg:min-h-[520px]">
+              <div class="px-4 sm:px-5 py-4 border-b border-neutral-200/70 dark:border-neutral-800 flex flex-col sm:flex-row sm:items-center gap-3 sm:justify-between">
+                <div class="text-sm font-semibold font-bricolage text-black dark:text-white inline-flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">list</span>Posts
+                </div>
+                <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto sm:items-center">
+          <input id="forumSearch" placeholder="Search posts…" class="w-full sm:w-[220px] px-4 py-2 rounded-full text-sm border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 outline-none focus:ring-2 focus:ring-indigo-500/30" />
+                  <select id="forumSort" class="px-4 py-2 rounded-full text-sm border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 outline-none focus:ring-2 focus:ring-indigo-500/30">
+                    <option value="new">Latest</option>
+                    <option value="hot">Hot</option>
+                  </select>
+                </div>
+              </div>
+              <div class="grid md:grid-cols-5 flex-1 min-h-0">
+                <div class="md:col-span-2 border-b md:border-b-0 md:border-r border-neutral-200/70 dark:border-neutral-800 flex flex-col min-h-[280px] md:min-h-0">
+                  <div id="forumList" class="flex-1 overflow-y-auto min-h-0"></div>
+                </div>
+                <div class="md:col-span-3 flex flex-col min-h-0">
+                  <div id="forumDetail" class="flex-1 overflow-y-auto p-5 sm:p-6"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="relative z-10 border-t border-neutral-200/60 dark:border-neutral-800">
+      <div class="section-wide px-4 sm:px-6 lg:px-8 pt-12 pb-10">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-10">
+          <!-- Brand -->
+          <div class="col-span-2 sm:col-span-1">
+            <div class="text-base font-bold font-bricolage tracking-tighter text-black dark:text-white uppercase mb-3">Aether</div>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-[180px]">The ultimate AI tool hub for creators, developers &amp; innovators.</p>
+          </div>
+          <!-- Explore -->
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-3">Explore</div>
+            <ul class="space-y-2">
+              <li><a href="#tools" class="text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors">AI Tools</a></li>
+              <li><a href="learn.html" class="text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors">Tutorials</a></li>
+              <li><a href="midjourney-guide.html" class="text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors">Midjourney Guide</a></li>
+              <li><a href="resources.html" class="text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors">Resources</a></li>
+            </ul>
+          </div>
+          <!-- Tools -->
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-3">Tools</div>
+            <ul class="space-y-2">
+              <li><a href="workspace.html" class="text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors">Workspace</a></li>
+              <li><a href="#ai-news" class="text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors">AI News</a></li>
+              <li><a href="#forum" class="text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors">Forum</a></li>
+            </ul>
+          </div>
+          <!-- Built with -->
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-3">Built with</div>
+            <ul class="space-y-2">
+              <li><span class="text-xs text-neutral-500 dark:text-neutral-500">Tailwind CSS</span></li>
+              <li><span class="text-xs text-neutral-500 dark:text-neutral-500">Supabase</span></li>
+              <li><span class="text-xs text-neutral-500 dark:text-neutral-500">UnicornStudio</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="pt-6 border-t border-neutral-200/60 dark:border-neutral-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div class="text-xs text-neutral-400 dark:text-neutral-600">© <span id="year"></span> Aether. All rights reserved.</div>
+          <div class="flex items-center gap-4">
+            <a href="#tools" class="text-xs text-neutral-400 dark:text-neutral-600 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors">Tools</a>
+            <a href="learn.html" class="text-xs text-neutral-400 dark:text-neutral-600 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors">Learn</a>
+            <a href="#forum" class="text-xs text-neutral-400 dark:text-neutral-600 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors">Community</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- AI 侧边栏 -->
+    <div
+      id="aiBackdrop"
+      class="fixed inset-0 z-[45] hidden bg-neutral-950/30 dark:bg-black/50 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 ease-out"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Coze-style FAB -->
+    <div class="fixed right-5 bottom-6 z-[55]">
+      <button
+        id="aiFab"
+        type="button"
+        aria-label="Open AI chat"
+        aria-expanded="false"
+        aria-controls="aiPanel"
+        class="relative w-14 h-14 rounded-full flex items-center justify-center focus:outline-none group"
+      >
+        <!-- pulsing rings -->
+        <span class="ai-fab-ring absolute inset-0 rounded-full pointer-events-none"></span>
+        <span class="ai-fab-ring2 absolute inset-0 rounded-full pointer-events-none"></span>
+        <!-- orb -->
+        <span class="ai-fab-orb relative z-10 w-14 h-14 rounded-full flex items-center justify-center shadow-[0_8px_32px_-8px_rgba(99,102,241,0.7)] group-hover:scale-[1.07] group-active:scale-[0.95] transition-transform duration-200">
+          <span class="material-symbols-outlined text-white text-[22px]" aria-hidden="true">smart_toy</span>
+        </span>
+      </button>
+    </div>
+
+    <!-- AI 右侧栏面板 -->
+    <div
+      id="aiPanel"
+      class="fixed top-4 bottom-4 right-4 z-50 w-[min(100vw-2rem,400px)] ai-panel-hidden flex flex-col"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="aiPanelTitle"
+    >
+      <div
+        class="flex flex-col h-full rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/97 dark:bg-neutral-950/95 backdrop-blur-xl shadow-[0_24px_80px_-12px_rgba(0,0,0,0.22)] dark:shadow-[0_24px_80px_-12px_rgba(0,0,0,0.65)] overflow-hidden"
+      >
+        <div
+          class="shrink-0 px-4 py-3 flex items-center justify-between gap-3 border-b border-neutral-200/50 dark:border-neutral-800/90 bg-white/85 dark:bg-neutral-950/80 backdrop-blur-md"
+        >
+          <div class="min-w-0 flex items-center gap-2.5">
+            <span
+              class="w-9 h-9 rounded-xl bg-indigo-500/[0.12] dark:bg-indigo-400/[0.14] flex items-center justify-center shrink-0 ring-1 ring-inset ring-indigo-500/15 dark:ring-indigo-400/20"
+            >
+              <span class="material-symbols-outlined text-indigo-600 dark:text-indigo-300 text-[20px]" aria-hidden="true">smart_toy</span>
+            </span>
+            <div class="min-w-0">
+              <div id="aiPanelTitle" class="text-sm font-semibold font-bricolage text-neutral-900 dark:text-neutral-100 leading-tight">
+                Aether AI
+              </div>
+              <p class="text-[10px] text-neutral-500 dark:text-neutral-500 truncate mt-0.5">Tool recommendations · attach images or text</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1 shrink-0">
+            <button
+              id="aiSettingsBtn"
+              type="button"
+              class="rounded-lg px-2.5 py-1.5 text-xs font-medium text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100/90 dark:hover:bg-neutral-800/80 transition-colors duration-200"
+              aria-expanded="false"
+              aria-controls="aiSettings"
+            >
+              Settings
+            </button>
+            <button
+              id="aiClose"
+              type="button"
+              class="h-8 w-8 rounded-lg text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-800 dark:hover:text-neutral-100 transition-all duration-200 flex items-center justify-center"
+              aria-label="Close chat"
+            >
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">close</span>
+            </button>
+          </div>
+        </div>
+        <div
+          id="aiSettings"
+          class="shrink-0 overflow-hidden transition-[max-height,opacity] duration-300 ease-out max-h-0 opacity-0 border-b border-transparent"
+        >
+          <div class="p-4 grid gap-3 max-h-[55vh] overflow-y-auto overscroll-contain">
+            <label class="grid gap-1">
+              <span class="text-xs text-neutral-500 dark:text-neutral-400">API Type</span>
+              <select
+                id="aiApiMode"
+                class="px-3 py-2.5 rounded-xl text-sm border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/35"
+              >
+                <option value="openai">OpenAI Compatible (…/v1/chat/completions)</option>
+                <option value="anthropic">MiniMax / Anthropic Compatible (…/v1/messages)</option>
+              </select>
+            </label>
+            <p class="text-[11px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              MiniMax: set Base URL to
+              <code class="text-[10px] bg-neutral-100 dark:bg-neutral-900 px-1 rounded">https://api.minimaxi.com/anthropic</code>, model
+              <code class="text-[10px] bg-neutral-100 dark:bg-neutral-900 px-1 rounded">MiniMax-M2.7</code>. For CORS issues run
+              <code class="text-[10px] bg-neutral-100 dark:bg-neutral-900 px-1 rounded">node minimax-proxy.mjs</code> and change Base URL to
+              <code class="text-[10px] bg-neutral-100 dark:bg-neutral-900 px-1 rounded">http://127.0.0.1:8788/anthropic</code>.
+            </p>
+            <p class="text-[11px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              Attachments: images (≤4 MB) and text files like txt/md/json (≤256 KB). Images require a vision-capable model.
+            </p>
+            <button
+              type="button"
+              id="aiPresetMiniMax"
+              class="rounded-full px-4 py-2 text-xs font-medium border border-indigo-200 dark:border-indigo-900/50 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 w-fit transition-colors"
+            >
+              Fill MiniMax defaults
+            </button>
+            <label class="grid gap-1"
+              ><span class="text-xs text-neutral-500 dark:text-neutral-400">Base URL</span
+              ><input
+                id="aiBaseUrl"
+                class="px-3 py-2.5 rounded-xl text-sm border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/35"
+                autocomplete="off"
+                placeholder="OpenAI: …/v1　MiniMax: https://api.minimaxi.com/anthropic"
+            /></label>
+            <label class="grid gap-1"
+              ><span class="text-xs text-neutral-500 dark:text-neutral-400">Model</span
+              ><input
+                id="aiModel"
+                class="px-3 py-2.5 rounded-xl text-sm border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/35"
+                autocomplete="off"
+                placeholder="e.g. gpt-4o-mini or MiniMax-M2.7"
+            /></label>
+            <label class="grid gap-1"
+              ><span class="text-xs text-neutral-500 dark:text-neutral-400">Key</span
+              ><input
+                id="aiKey"
+                type="password"
+                class="px-3 py-2.5 rounded-xl text-sm border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/35"
+                autocomplete="off"
+                placeholder="Paste API Key here"
+            /></label>
+            <div class="flex items-center gap-2 flex-wrap pt-1">
+              <button id="aiSave" type="button" class="rounded-full px-5 py-2 bg-black text-white dark:bg-white dark:text-black text-sm font-semibold hover:opacity-90 transition-opacity">Save</button>
+              <button id="aiClear" type="button" class="rounded-full px-5 py-2 border border-neutral-200 dark:border-neutral-800 text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">Clear</button>
+              <button id="aiSettingsDone" type="button" class="rounded-full px-4 py-2 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline">Collapse</button>
+            </div>
+          </div>
+        </div>
+        <div
+          id="aiMessages"
+          class="flex-1 overflow-y-auto p-4 space-y-3 bg-gradient-to-b from-neutral-50/90 to-white/80 dark:from-neutral-900/50 dark:to-neutral-950/40 overscroll-contain"
+        ></div>
+        <form id="aiForm" class="shrink-0 p-3 border-t border-neutral-200/60 dark:border-neutral-800/90 bg-white/92 dark:bg-neutral-950/92 backdrop-blur-sm flex flex-col gap-2">
+          <div id="aiAttachmentList" class="flex flex-wrap gap-1.5" aria-live="polite"></div>
+          <div class="flex gap-2 items-end">
+            <input
+              type="file"
+              id="aiFileInput"
+              class="hidden"
+              multiple
+              accept="image/*,text/plain,text/markdown,text/csv,application/json,.md,.txt,.json,.csv,.yaml,.yml"
+            />
+            <button
+              type="button"
+              id="aiAttachBtn"
+              class="shrink-0 h-10 w-10 rounded-xl border border-neutral-200/90 dark:border-neutral-700 bg-white dark:bg-neutral-900/70 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:border-indigo-300/50 dark:hover:border-indigo-600/40 transition-all flex items-center justify-center"
+              aria-label="Add attachment"
+              title="Image or text file"
+            >
+              <span class="material-symbols-outlined text-[22px]" aria-hidden="true">attach_file</span>
+            </button>
+            <input
+              id="aiInput"
+              class="flex-1 min-w-0 px-4 py-2.5 rounded-xl text-sm border border-neutral-200/90 dark:border-neutral-700 bg-white dark:bg-neutral-900/60 outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400/40 dark:focus:border-indigo-500/40 transition-shadow"
+              autocomplete="off"
+              placeholder="Ask a question or attach a file…"
+              enterkeyhint="send"
+            />
+            <button
+              id="aiSend"
+              type="submit"
+              class="shrink-0 h-10 min-w-[4.5rem] rounded-xl px-3 bg-indigo-600 hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white text-sm font-semibold font-bricolage transition-colors duration-200 inline-flex items-center justify-center gap-1 shadow-sm shadow-indigo-500/20 disabled:opacity-45 disabled:pointer-events-none"
+            >
+              <span class="material-symbols-outlined text-base" aria-hidden="true">send</span>Send
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Auth modal（Supabase） -->
+    <div id="authModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="relative w-full max-w-md rounded-2xl border border-neutral-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-950 shadow-2xl p-6">
+        <button type="button" id="authCloseBtn" class="absolute top-4 right-4 h-9 w-9 rounded-full border border-neutral-200 dark:border-neutral-800 text-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-900" aria-label="Close">✕</button>
+        <h2 class="text-lg font-semibold text-black dark:text-white font-bricolage">Account</h2>
+        <div class="mt-4 flex gap-2 border-b border-neutral-200/70 dark:border-neutral-800 pb-2">
+          <button type="button" id="authTabSignIn" class="flex-1 py-2 text-sm font-medium border-b-2 border-black dark:border-white">Sign in</button>
+          <button type="button" id="authTabSignUp" class="flex-1 py-2 text-sm font-medium border-b-2 border-transparent text-neutral-500">Sign up</button>
+        </div>
+        <p id="authError" class="mt-3 text-sm text-red-600 min-h-[1.25rem]"></p>
+        <div id="authPanelSignIn" class="mt-2">
+          <form id="authFormSignIn" class="grid gap-3">
+            <label class="grid gap-1 text-sm"><span class="text-neutral-500">Email</span><input name="email" type="email" required class="px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/30" autocomplete="email" /></label>
+            <label class="grid gap-1 text-sm"><span class="text-neutral-500">Password</span><input name="password" type="password" required minlength="6" class="px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/30" autocomplete="current-password" /></label>
+            <button type="submit" class="rounded-full py-2.5 bg-black text-white dark:bg-white dark:text-black text-sm font-semibold">Sign in</button>
+          </form>
+        </div>
+        <div id="authPanelSignUp" class="mt-2 hidden">
+          <form id="authFormSignUp" class="grid gap-3">
+            <label class="grid gap-1 text-sm"><span class="text-neutral-500">Display name</span><input name="display_name" type="text" class="px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/30" autocomplete="nickname" /></label>
+            <label class="grid gap-1 text-sm"><span class="text-neutral-500">Email</span><input name="email" type="email" required class="px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/30" autocomplete="email" /></label>
+            <label class="grid gap-1 text-sm"><span class="text-neutral-500">Password</span><input name="password" type="password" required minlength="6" class="px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/30" autocomplete="new-password" /></label>
+            <button type="submit" class="rounded-full py-2.5 bg-black text-white dark:bg-white dark:text-black text-sm font-semibold">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>
+    <script src="./aether-supabase.js"></script>
+    <script src="./tools.js"></script>
+    <script src="./tool-click.js"></script>
+    <script src="./recommend.js"></script>
+    <script src="./site.js"></script>
+    <script src="./aether-app.js"></script>
+    <script>
+      // ── Scroll animation observers ──────────────────────────────────────────
+
+      // Section-level fade-in
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in-up');
+            sectionObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px -80px 0px' });
+
+      // Card-level staggered reveal
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const idx = parseInt(el.dataset.revealIdx || '0', 10);
+            el.style.transitionDelay = `${idx * 80}ms`;
+            el.classList.add('reveal-visible');
+            cardObserver.unobserve(el);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Section-level
+        document.querySelectorAll('#tools, #ai-news, #forum').forEach(el => {
+          el.classList.add('opacity-0');
+          sectionObserver.observe(el);
+        });
+
+        // Tool cards staggered
+        document.querySelectorAll('#tools .tool-card-link').forEach((el, i) => {
+          el.dataset.revealIdx = i;
+          el.classList.add('reveal-item');
+          cardObserver.observe(el);
+        });
+
+        // News articles staggered
+        document.querySelectorAll('#newsMount article').forEach((el, i) => {
+          el.dataset.revealIdx = i;
+          el.classList.add('reveal-item');
+          cardObserver.observe(el);
+        });
+
+        // All other reveal-items (stats, features, etc.)
+        document.querySelectorAll('.reveal-item').forEach((el) => {
+          if (!el.dataset.revealIdx) el.dataset.revealIdx = 0;
+          cardObserver.observe(el);
+        });
+      });
+    </script>
+
+    <!-- Language Toggle — fixed bottom-left, opposite the AI FAB -->
+    <div id="langToggle" class="fixed left-5 bottom-6 z-[55]">
+      <button
+        id="langBtn"
+        type="button"
+        aria-label="Switch language"
+        class="flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold shadow-lg border transition-all duration-200
+               bg-white/90 dark:bg-neutral-900/90 border-neutral-200 dark:border-neutral-700
+               text-neutral-800 dark:text-neutral-100 hover:scale-105 active:scale-95 backdrop-blur-sm"
+      >
+        <span id="langIcon" style="font-size:16px">🌐</span>
+        <span id="langLabel">中文</span>
+      </button>
+    </div>
+
+    <script>
+      // ── Language Toggle ──────────────────────────────────────────────────
+      (function () {
+        const LANG_KEY = 'aether_lang';
+        const btn = document.getElementById('langBtn');
+        const label = document.getElementById('langLabel');
+
+        // Each translatable node pair: [selector, en text, zh text]
+        // We use data attributes set on first run, so values survive toggles.
+        const TRANSLATIONS = [
+          // Nav links
+          ['header nav a[href="#tools"]',            'Tools',                    '工具库'],
+          ['a[href="./workspace.html"]',              'Workspace',                '创作台'],
+          ['a[href="./midjourney-guide.html"]',       'Midjourney Guide',         'MJ 指南'],
+          ['a[href="./resources.html"]',              'Resources',                '资源'],
+
+          // Hero
+          ['#hero-badge',                             'Tutorials & Cases',        '教程与案例'],
+
+          // Section headings
+          ['#ai-news-heading',                        'AI News',                  'AI 新闻'],
+          ['#forum-heading',                          'Forum',                    '论坛'],
+
+          // Forum UI
+          ['#forumReset',                             'Clear',                    '清空'],
+          ['label[for="forumTitle"]',                 'Post',                     '发布帖子'],
+          ['#forumSubmitBtn',                         'Publish',                  '发布'],
+          ['#forum-posts-label',                      'Posts',                    '帖子列表'],
+          ['option[value="new"]',                     'Latest',                   '最新'],
+          ['option[value="hot"]',                     'Hot',                      '最热'],
+
+          // Auth
+          ['#authSignOutBtn',                         'Sign out',                 '退出'],
+          ['#authModalClose',                         'Close',                    '关闭'],
+          ['#authTabSignin',                          'Sign in',                  '登录'],
+          ['#authTabSignup',                          'Sign up',                  '注册'],
+          ['#authSubmitBtn',                          'Sign in',                  '登录'],
+
+          // AI panel
+          ['#aiSettings span.settings-label',        'Settings',                 '设置'],
+          ['#aiSettingsDone',                         'Collapse',                 '收起设置'],
+          ['#aiSave',                                 'Save',                     '保存'],
+          ['#aiClear',                                'Clear',                    '清空'],
+          ['#aiSendLabel',                            'Send',                     '发送'],
+        ];
+
+        function currentLang() {
+          return localStorage.getItem(LANG_KEY) || 'en';
+        }
+
+        function applyLang(lang) {
+          const isZh = lang === 'zh';
+          label.textContent = isZh ? 'EN' : '中文';
+
+          TRANSLATIONS.forEach(([sel, en, zh]) => {
+            document.querySelectorAll(sel).forEach(el => {
+              // Only update text nodes, leave child elements alone
+              const target = el.childNodes.length === 1 && el.childNodes[0].nodeType === 3
+                ? el
+                : null;
+              if (target) {
+                target.textContent = isZh ? zh : en;
+              } else {
+                // Try to find direct text node
+                for (const node of el.childNodes) {
+                  if (node.nodeType === 3 && node.textContent.trim()) {
+                    node.textContent = (isZh ? zh : en);
+                    break;
+                  }
+                }
+              }
+            });
+          });
+
+          // Placeholders
+          const placeholders = {
+            '#forumTitle':  { en: 'Title',                    zh: '标题' },
+            '#forumTags':   { en: 'Tags (comma separated)',   zh: '标签（逗号分隔）' },
+            '#forumBody':   { en: 'Share your thoughts...',   zh: '分享你的想法…' },
+            '#forumSearch': { en: 'Search posts…',            zh: '搜索帖子…' },
+            '#aiInput':     { en: 'Ask a question or attach a file…', zh: '输入问题，或只发附件…' },
+            '#aiKey':       { en: 'Paste API Key here',       zh: '在此粘贴 API Key' },
+            '#aiModel':     { en: 'e.g. gpt-4o-mini or MiniMax-M2.7', zh: '如 gpt-4o-mini 或 MiniMax-M2.7' },
+          };
+          Object.entries(placeholders).forEach(([sel, vals]) => {
+            const el = document.querySelector(sel);
+            if (el) el.placeholder = isZh ? vals.zh : vals.en;
+          });
+
+          document.documentElement.lang = isZh ? 'zh-CN' : 'en';
+        }
+
+        btn.addEventListener('click', () => {
+          const next = currentLang() === 'en' ? 'zh' : 'en';
+          localStorage.setItem(LANG_KEY, next);
+          applyLang(next);
+        });
+
+        // Apply on page load
+        applyLang(currentLang());
+      })();
+    </script>
+  </body>
+</html>
+

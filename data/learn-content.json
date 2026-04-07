@@ -1,0 +1,640 @@
+{
+  "articles": [
+    {
+      "slug": "pipeline-high-quality-aigc",
+      "type": "tutorial",
+      "title": "高质量 AIGC 产出：从需求到成品的通用流程",
+      "summary": "用「需求 → 参考 → 生成 → 审阅 → 后期」五段式控制随机性，适用于图像、视频与文案类项目。",
+      "cover": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=640&fit=crop&auto=format",
+      "tags": ["工作流", "方法论"],
+      "steps": [
+        {
+          "title": "第1步：明确需求与约束条件",
+          "body": "在开始任何AIGC项目前，必须建立清晰的需求文档。这是控制AI随机性的第一道防线。\n\n核心要素：\n• 目标受众：年龄段、职业、文化背景\n• 使用场景：社交媒体、印刷品、视频平台\n• 技术规格：分辨率(1920×1080)、时长(15-30秒)、文件格式\n• 风格禁区：明确不要的元素（如：不要卡通风格、避免特定颜色）\n• 必含元素：品牌Logo位置、特定文案、关键视觉元素\n\n实例模板：\n项目：产品宣传海报\n受众：25-35岁都市白领\n尺寸：1080×1350 (Instagram)\n风格：现代简约、科技感\n禁止：过于花哨、暗色调\n必含：产品图、品牌名、Slogan\n\n技巧：约束越具体，生成结果越可控。用检查清单确保每次生成都符合标准。"
+        },
+        {
+          "title": "第2步：收集参考素材与负面提示",
+          "body": "参考素材能大幅提升生成质量和一致性。同时，负面提示词能有效避免常见问题。\n\n图像项目参考：\n• 风格参考图：2-3张目标风格的图片\n• 配色方案：具体色值 (#FF6B6B, #4ECDC4)\n• 构图参考：三分法、中心构图等示意\n• 材质纹理：金属、木质、布料等细节图\n\n文本项目参考：\n• 结构大纲：章节标题、段落逻辑\n• 语气样本：类似风格的文章片段\n• 术语表：行业专用词汇列表\n\n负面提示词（Negative Prompt）：\n图像常用：blurry, low quality, distorted, deformed hands, watermark, text, signature\n视频常用：flickering, jittery motion, morphing, inconsistent style\n文本常用：避免：重复内容、事实错误、过度夸张\n\n实战技巧：\n1. 建立项目素材库，分类保存参考图\n2. 为每个项目类型准备标准负面词模板\n3. 使用Moodboard工具整理视觉参考"
+        },
+        {
+          "title": "第3步：小步迭代验证方向",
+          "body": "一次性生成完美结果几乎不可能。采用渐进式迭代策略，每轮只调整1-2个变量。\n\n迭代策略：\n\n第1轮 - 概念验证（快速低成本）：\n• 图像：512×512低分辨率\n• 视频：4秒短片段\n• 文本：大纲或摘要\n目标：验证整体方向、构图、叙事逻辑\n\n第2轮 - 细节优化：\n• 锁定构图，调整配色\n• 固定叙事，优化节奏\n• 保持结构，润色文字\n目标：在正确方向上精修细节\n\n第3轮 - 高质量输出：\n• 提升分辨率到最终规格\n• 延长视频到目标时长\n• 扩展文本到完整篇幅\n目标：生成交付级别的成品\n\n变量控制原则：\n✓ 每轮只改1-2个参数\n✓ 记录每次修改和结果\n✓ 保存中间版本便于回溯\n✗ 避免同时改动多个要素\n✗ 不要跳过验证直接高清\n\n工具推荐：\n• 版本管理：用文件夹按日期命名 (2026-04-01-v1)\n• 参数记录：Excel表格记录每版参数\n• A/B测试：生成多个变体对比选择"
+        },
+        {
+          "title": "第4步：人工审核与质量把关",
+          "body": "AI生成内容必须经过人工审核，这是质量保证的关键环节。\n\n图像审核清单：\n□ 手指数量正确（AI常见问题）\n□ 文字清晰可读，无乱码\n□ 面部特征自然，无畸形\n□ 边缘无明显瑕疵或锯齿\n□ 光影逻辑合理\n□ 品牌元素位置准确\n□ 色彩符合品牌规范\n\n视频审核清单：\n□ 无闪烁或抖动\n□ 运动流畅，无突变\n□ 音画同步\n□ 转场自然\n□ 时长符合要求\n□ 关键信息清晰展示\n\n文本审核清单：\n□ 事实准确性核查（数据、日期、人名）\n□ 逻辑连贯性\n□ 语法和拼写\n□ 语气一致性\n□ 敏感词检查\n□ 原创性检测（避免抄袭）\n\n审核流程：\n1. 自查：创作者初步检查\n2. 同行评审：团队成员交叉检查\n3. 客户确认：关键节点征求反馈\n4. 最终审批：负责人签字放行\n\n常见问题修复：\n• 图像瑕疵 → Photoshop修补\n• 视频卡顿 → 剪辑软件重新渲染\n• 文本错误 → 人工编辑修正"
+        },
+        {
+          "title": "第5步：专业工具后期处理",
+          "body": "AI生成是起点，专业后期是终点。结合传统工具打磨细节。\n\n图像后期工具链：\n\n基础修图：\n• Photoshop：修复瑕疵、调色、合成\n• Lightroom：批量调色、统一风格\n• Figma：添加文字、图标、排版\n\n高级处理：\n• Topaz Gigapixel：AI超分辨率放大\n• Remove.bg：背景移除\n• ClipDrop：物体替换、重光照\n\n视频后期工具链：\n\n剪辑合成：\n• Premiere Pro：专业剪辑\n• Final Cut Pro：Mac平台首选\n• DaVinci Resolve：调色神器\n\n特效增强：\n• After Effects：动画特效\n• CapCut：快速社交媒体剪辑\n• Descript：文本驱动剪辑\n\n文本后期优化：\n\n校对工具：\n• Grammarly：语法检查\n• Hemingway：可读性优化\n• Copyscape：原创性检测\n\n排版工具：\n• Notion：文档整理\n• Canva：图文排版\n• InDesign：专业出版\n\n后期处理原则：\n1. 保留AI生成的核心优势\n2. 用人工修正AI的弱点\n3. 统一整体风格和质量\n4. 优化用户体验细节\n\n交付前最终检查：\n□ 所有文件按规范命名\n□ 导出格式正确\n□ 文件大小符合要求\n□ 备份源文件和项目文件\n□ 准备多个版本（横竖屏等）"
+        }
+      ],
+      "relatedToolIds": ["chatgpt", "midjourney", "runway"]
+    },
+    {
+      "slug": "image-prompt-basics",
+      "type": "tutorial",
+      "title": "文生图提示词：结构、光影与风格",
+      "summary": "把提示拆成主体、环境、镜头、光影、风格五块，并控制信息优先级，避免关键词堆叠互相打架。",
+      "cover": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&h=640&fit=crop&auto=format",
+      "tags": ["图像", "Prompt"],
+      "steps": [
+        {
+          "title": "第1步：主体先行——定义画面核心",
+          "body": "提示词的第一句永远是「画面里最重要的是什么」。主体描述越具体，模型越不会乱发挥。\n\n主体描述公式：\n[数量] + [材质/质感] + [主体名称] + [姿态/动作] + [关键细节]\n\n示例对比：\n❌ 弱：\"a woman\"\n✓ 强：\"a young woman in a white linen dress, sitting cross-legged on a wooden floor, holding a ceramic mug with both hands\"\n\n常见主体类型写法：\n• 人物：年龄段 + 服装 + 姿势 + 表情\n• 产品：材质 + 颜色 + 形状 + 摆放方式\n• 建筑：风格 + 时代 + 材料 + 视角\n• 动物：品种 + 毛色 + 动作 + 情绪\n• 抽象概念：用具体意象替代（\"孤独\" → \"empty park bench in rain\"）\n\n注意：一张图只放1-2个主体，超过3个主体模型会混乱。"
+        },
+        {
+          "title": "第2步：环境与镜头——建立空间感",
+          "body": "主体确定后，告诉模型「在哪里」和「怎么看」。\n\n环境描述要素：\n• 室内/室外：indoor studio / outdoor forest / urban street\n• 时间段：golden hour / blue hour / midday / midnight\n• 天气：overcast / sunny / foggy / rainy\n• 季节：autumn leaves / winter snow / spring blossoms\n\n镜头景别（从近到远）：\n• extreme close-up：极特写，毛孔/纹理级别\n• close-up：特写，面部/手部\n• medium shot：半身，腰部以上\n• full shot：全身\n• wide shot：人物+环境\n• aerial/drone shot：俯瞰视角\n\n镜头角度：\n• eye level：平视，自然亲切\n• low angle：仰视，强调力量感\n• high angle：俯视，弱化主体\n• dutch angle：斜角，制造紧张感\n\n实战示例：\n\"medium shot, eye level, young woman in cafe, warm afternoon light streaming through window, shallow depth of field\""
+        },
+        {
+          "title": "第3步：光影——决定画面情绪",
+          "body": "光影是图像情绪的核心。同一个场景，不同光线会产生截然不同的感受。\n\n光线类型词汇：\n\n自然光：\n• golden hour light：温暖橙黄，浪漫感\n• blue hour：蓝紫调，神秘忧郁\n• overcast diffused light：柔和均匀，适合人像\n• harsh midday sun：强对比，戏剧感\n• moonlight：冷蓝调，静谧\n\n人工光：\n• studio lighting：专业均匀，商业感\n• rim lighting：轮廓光，分离主体\n• neon lights：霓虹，赛博朋克\n• candlelight：暖黄，温馨私密\n• volumetric light：丁达尔光束，神圣感\n\n光影风格词：\n• chiaroscuro：强烈明暗对比（卡拉瓦乔风格）\n• high key：高调，明亮，少阴影\n• low key：低调，暗沉，多阴影\n• backlit：逆光，轮廓发光\n\n实战示例：\n\"portrait, rim lighting, dark background, dramatic shadows, cinematic lighting, film noir style\""
+        },
+        {
+          "title": "第4步：风格词——锁定视觉语言",
+          "body": "风格词是提示词的「调味料」，用可识别的参照物而非模糊形容词。\n\n艺术风格参照：\n• 摄影风格：Ansel Adams, Annie Leibovitz, street photography\n• 绘画风格：impressionist, watercolor, oil painting, ukiyo-e\n• 设计风格：bauhaus, art deco, brutalist, swiss design\n• 流行风格：vaporwave, cottagecore, dark academia, solarpunk\n\n渲染/技术风格：\n• 写实：photorealistic, hyperrealistic, 8K, RAW photo\n• 电影感：cinematic, anamorphic lens, film grain, 35mm\n• 插画：vector illustration, flat design, isometric\n• 3D：octane render, unreal engine, ray tracing\n• 动漫：studio ghibli, anime, cel shading, manga\n\n避免矛盾词组合：\n❌ \"minimalist and maximalist\"\n❌ \"photorealistic cartoon\"\n❌ \"dark and bright simultaneously\"\n\n信息优先级原则：\n提示词越靠前权重越高。把最重要的描述放在最前面，风格词放最后。\n\n完整示例：\n\"close-up portrait of an elderly fisherman, weathered face, deep wrinkles, piercing blue eyes, golden hour backlight, rim lighting, film grain, Ansel Adams style, black and white photography --ar 4:5 --style raw\""
+        },
+        {
+          "title": "第5步：文字与Logo——精准排版",
+          "body": "需要在图像中嵌入可读文字时，需要特别处理，因为大多数图像模型对文字渲染较弱。\n\n工具选择：\n• Ideogram：目前文字渲染最强，适合海报标题\n• DALL-E 3：通过ChatGPT访问，文字理解好\n• Adobe Firefly：商用安全，文字效果稳定\n• Midjourney：文字能力较弱，建议后期叠加\n\n提示词写法：\n明确写出文字内容：\n\"poster with bold text 'SUMMER SALE', sans-serif font, large centered title\"\n\n字体气质描述：\n• 力量感：bold, heavy, condensed, impact\n• 优雅感：serif, elegant, thin, refined\n• 科技感：monospace, geometric, futuristic\n• 手写感：handwritten, brush lettering, casual\n\n后期叠加文字（推荐）：\n1. 用AI生成无文字背景图\n2. 在Figma/Canva/PS中叠加文字\n3. 优点：字体可精确控制，随时修改\n\nLogo处理：\n• AI生成Logo草稿 → Illustrator矢量化\n• 使用Ideogram生成 → 导出SVG\n• 保持简洁：细节越少，缩小后越清晰"
+        },
+        {
+          "title": "第6步：负面提示词——排除干扰",
+          "body": "负面提示词（Negative Prompt）告诉模型「不要什么」，是提升质量的重要手段。\n\n通用负面词（几乎所有场景适用）：\nblurry, low quality, low resolution, pixelated, jpeg artifacts, watermark, signature, text, username, cropped, out of frame, duplicate, error\n\n人像专用负面词：\ndeformed, ugly, bad anatomy, bad hands, extra fingers, missing fingers, fused fingers, too many fingers, long neck, mutation, disfigured, poorly drawn face\n\n风景/建筑负面词：\ndistorted perspective, impossible architecture, floating objects, inconsistent lighting\n\n产品摄影负面词：\nshadow on product, reflection glare, uneven lighting, background clutter\n\n使用技巧：\n• 先生成一版，观察问题，针对性添加负面词\n• 不要堆砌过多负面词（超过20个效果递减）\n• 权重语法（部分工具支持）：(bad hands:1.5) 加强排除力度\n\n完整工作流总结：\n1. 写主体（最重要的放最前）\n2. 加环境和镜头\n3. 指定光影\n4. 添加风格词\n5. 写负面提示词\n6. 设置参数（比例、风格化程度）\n7. 生成 → 观察 → 针对性修改"
+        }
+      ],
+      "relatedToolIds": ["midjourney", "ideogram", "leonardo"]
+    },
+    {
+      "slug": "longform-writing-llm",
+      "type": "tutorial",
+      "title": "用对话模型写长文：提纲、分段与事实核对",
+      "summary": "长文不要一次生成全文；用提纲 → 分章节 → 合并润色，并对关键事实单独检索核对。",
+      "cover": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1200&h=640&fit=crop&auto=format",
+      "tags": ["写作", "LLM"],
+      "steps": [
+        {
+          "title": "第1步：定义文章目标与受众",
+          "body": "在开始写作前，先用一段话回答三个问题：\n\n1. 这篇文章要让读者「做什么」或「相信什么」？\n2. 读者是谁？他们已经知道什么，不知道什么？\n3. 发布在哪里？（公众号/博客/报告/学术论文）\n\n把这段话作为系统提示或第一条消息发给模型：\n\n示例：\n\"我要写一篇面向创业者的文章，主题是'如何用AI工具提升团队效率'。读者是10-50人规模的创业公司CEO，有一定技术背景但不是工程师。文章发布在微信公众号，约3000字，语气专业但不学术，要有实操建议。\"\n\n这一步决定了后续所有内容的基调，不要跳过。"
+        },
+        {
+          "title": "第2步：生成并确认大纲",
+          "body": "让模型先出大纲，你确认后再扩写。这是避免跑题的关键。\n\n提示词：\n\"基于以上目标，请生成文章大纲。要求：\n- 5-7个章节标题\n- 每个标题下列出2-3个核心论点\n- 标注哪些部分需要数据支撑\n- 预估每节字数\"\n\n审核大纲时检查：\n□ 逻辑是否递进（从问题→分析→解决方案）\n□ 是否覆盖读者最关心的问题\n□ 有没有重复或跑题的章节\n□ 开头是否有足够的钩子\n\n修改大纲比修改全文容易10倍，在这一步多花时间值得。\n\n技巧：要求模型同时提供「另一种结构方案」，对比选择更好的。"
+        },
+        {
+          "title": "第3步：逐节生成，保留衔接",
+          "body": "大纲确认后，按节生成，不要一次性要求全文。\n\n每节的提示词模板：\n\"现在写第[X]节：[章节标题]\n\n上一节结尾是：[粘贴上节最后一段]\n\n本节要覆盖的论点：\n- [论点1]\n- [论点2]\n\n要求：\n- 约[X]字\n- 开头与上节自然衔接\n- 结尾为下节做铺垫\n- 包含1个具体案例或数据\"\n\n为什么要粘贴上节结尾？\n模型没有跨对话记忆，粘贴上下文能保证风格和逻辑连贯。\n\n生成后立即检查：\n• 是否偏离了大纲的论点\n• 语气是否与前文一致\n• 有没有重复前面说过的内容"
+        },
+        {
+          "title": "第4步：事实核查与引用",
+          "body": "AI会自信地给出错误数据。所有关键事实必须人工核查。\n\n高风险内容类型：\n• 具体数字（市场规模、增长率、用户数）\n• 研究结论（\"研究表明...\"）\n• 历史事件日期\n• 人物言论和引用\n• 法律法规条文\n• 医学健康建议\n\n核查流程：\n1. 让模型标注所有需要引用的陈述\n2. 用Perplexity或Google Scholar搜索原始来源\n3. 找到原始来源后，让模型根据真实数据重写该段\n4. 在文章中添加来源链接或脚注\n\n实用提示词：\n\"请检查以下段落中所有需要数据支撑的陈述，并标注[需核查]：\n[粘贴段落]\"\n\n然后逐一核查标注的内容。"
+        },
+        {
+          "title": "第5步：合并润色与风格统一",
+          "body": "所有章节生成完毕后，做整体润色。\n\n合并检查清单：\n□ 各节之间的过渡是否自然\n□ 同一概念是否用了不同名称（需统一）\n□ 语气是否前后一致\n□ 有没有重复的句式或词汇\n□ 开头是否足够吸引人\n□ 结尾是否有明确的行动号召\n\n润色提示词：\n\"以下是文章全文，请：\n1. 优化开头，让前100字更有吸引力\n2. 检查并改善各节之间的过渡句\n3. 删除重复内容\n4. 统一语气（专业但不学术）\n5. 优化结尾，加入明确的行动号召\n\n[粘贴全文]\"\n\n标题优化：\n\"为这篇文章生成10个标题选项，要求：\n- 包含数字的版本（如'5个方法'）\n- 包含疑问句的版本\n- 包含对比的版本（如'X vs Y'）\n- 适合微信公众号的版本\""
+        },
+        {
+          "title": "第6步：SEO与多平台适配",
+          "body": "一篇好文章可以适配多个平台，最大化传播价值。\n\nSEO优化（博客/网站）：\n\"基于这篇文章，请：\n1. 提取5个核心关键词\n2. 写一段150字的Meta描述\n3. 建议文章内部链接的锚文本\n4. 生成FAQ部分（5个常见问题）\"\n\n多平台改写：\n\"将这篇3000字文章改写为：\n1. 微博/Twitter：5条推文串（每条140字）\n2. LinkedIn：800字专业版本\n3. 小红书：500字+emoji版本，分点列举\n4. 邮件摘要：200字，突出3个核心观点\"\n\n配图提示词生成：\n\"为这篇文章的每个章节生成一个Midjourney提示词，用于配图。风格：[你的风格要求]\"\n\n发布后追踪：\n• 记录哪些标题点击率高\n• 哪些段落读者停留时间长\n• 用数据指导下一篇文章的写法"
+        }
+      ],
+      "relatedToolIds": ["claude", "chatgpt", "perplexity"]
+    },
+    {
+      "slug": "video-storyboard-short",
+      "type": "tutorial",
+      "title": "短视频：分镜 → 关键帧 → 生成与剪辑",
+      "summary": "15～60 秒内容建议先纸面或表格分镜，再决定哪些镜头用生成、哪些用素材库。",
+      "cover": "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=1200&h=640&fit=crop&auto=format",
+      "tags": ["视频", "分镜"],
+      "steps": [
+        {
+          "title": "第1步：确定视频结构与节奏",
+          "body": "短视频的核心是节奏，在生成任何画面之前先确定时间结构。\n\n常见短视频结构：\n\n15秒（社交媒体广告）：\n• 0-3秒：钩子（抓住注意力）\n• 3-10秒：核心信息\n• 10-15秒：行动号召\n\n30秒（产品介绍）：\n• 0-5秒：痛点展示\n• 5-20秒：解决方案演示\n• 20-30秒：品牌+CTA\n\n60秒（教程/故事）：\n• 0-5秒：悬念/钩子\n• 5-45秒：主体内容（3-4个场景）\n• 45-60秒：总结+行动号召\n\n节奏原则：\n• 每个镜头不超过5秒（社交媒体）\n• 前3秒决定是否被划走\n• 音乐节拍与画面切换对齐"
+        },
+        {
+          "title": "第2步：制作分镜表",
+          "body": "用表格形式规划每个镜头，这是整个流程的蓝图。\n\n分镜表格式：\n| 镜号 | 时长 | 画面描述 | 镜头类型 | 台词/字幕 | 音效 | 生成方式 |\n|------|------|----------|----------|-----------|------|----------|\n| 01   | 3s   | 产品特写  | 极特写   | 无        | 无   | AI生成   |\n| 02   | 5s   | 使用场景  | 中景     | \"改变你的...\" | 背景音乐 | 素材库 |\n\n生成方式决策：\n• AI生成：概念性画面、风格化场景、无法实拍的内容\n• 素材库：真实人物、特定产品、新闻类内容\n• 实拍：品牌专属内容、需要真实感的场景\n\n用ChatGPT生成分镜表：\n\"为一个[产品/主题]的[时长]短视频生成分镜表，目标平台[抖音/Instagram]，风格[现代/温暖/科技感]，包含[X]个场景。输出为Markdown表格格式。\""
+        },
+        {
+          "title": "第3步：生成关键帧图像",
+          "body": "先生成首尾和转折镜头（关键帧），确认风格一致后再生成其余镜头。\n\n关键帧选择原则：\n• 第一帧：决定整体视觉风格\n• 最后一帧：品牌/产品展示\n• 转折帧：情绪变化的节点\n\nMidjourney关键帧提示词结构：\n\"[场景描述], [镜头类型], [光线], [风格], [色调] --ar 9:16\"\n\n示例：\n场景1（钩子）：\"close-up of tired office worker staring at screen, blue monitor light, dark office, cinematic --ar 9:16\"\n场景2（解决方案）：\"same person smiling at laptop, bright modern office, warm light, energetic --ar 9:16\"\n场景3（产品）：\"minimalist app interface on phone screen, clean white background, product photography --ar 9:16\"\n\n风格一致性技巧：\n• 所有帧使用相同的 --sref 风格参考\n• 保持相同的色调描述词\n• 使用相同的 --stylize 值"
+        },
+        {
+          "title": "第4步：图转视频",
+          "body": "将静态关键帧转换为动态视频片段。\n\nRunway Gen-3 工作流：\n1. 上传关键帧图片\n2. 选择 Image to Video\n3. 添加运动描述：\"slow zoom in\", \"camera pan left\", \"subtle movement\"\n4. 设置时长：4-8秒\n5. 运动强度：3-5（避免过度变形）\n\n不同场景的运动建议：\n• 产品展示：slow rotation, subtle float\n• 人物场景：gentle breathing, eye blink, hair movement\n• 风景场景：slow pan, cloud movement, water ripple\n• 科技感：particle effects, data flow, light streak\n\nPika 适合的场景：\n• 卡通/动漫风格动画\n• 简单的物体运动\n• 快速原型验证\n\n批量生成技巧：\n• 同时提交多个镜头任务\n• 生成2-3个版本，选最佳\n• 保存所有版本，剪辑时可能用到"
+        },
+        {
+          "title": "第5步：配音与音乐",
+          "body": "音频占视频体验的50%，不要忽视。\n\n配音流程（ElevenLabs）：\n1. 用ChatGPT优化台词（口语化、节奏感）\n2. 选择匹配视频风格的声音\n3. 调整语速（视频节奏快则语速稍快）\n4. 导出MP3，与视频时长对齐\n\n背景音乐选择：\n• 免版权来源：Pixabay, Freesound, YouTube音频库\n• AI生成：Suno（生成专属配乐）\n• 商用授权：Epidemic Sound, Artlist\n\n音乐选择原则：\n• 节拍与画面切换对齐\n• 情绪与视频内容匹配\n• 音量低于人声（-10dB左右）\n• 避免有歌词的音乐（分散注意力）\n\n音效增强：\n• 转场音效：whoosh, click\n• 产品音效：按键声、提示音\n• 环境音：咖啡厅背景、自然声"
+        },
+        {
+          "title": "第6步：剪辑合成与导出",
+          "body": "将所有素材组合成最终成品。\n\n推荐剪辑工具：\n• CapCut（免费，适合社交媒体）\n• DaVinci Resolve（专业，免费）\n• Premiere Pro（行业标准）\n• Descript（文本驱动剪辑）\n\n剪辑流程：\n1. 导入所有视频片段和音频\n2. 按分镜表顺序排列\n3. 精剪：删除多余帧，对齐音乐节拍\n4. 添加字幕（自动生成后手动校对）\n5. 调色：统一色调，增强视觉一致性\n6. 添加转场（简单为主，避免花哨）\n7. 添加Logo和品牌元素\n\n字幕最佳实践：\n• 字体大小：屏幕高度的5-8%\n• 位置：画面下方1/3处\n• 每行不超过15个字\n• 与语音完全同步\n\n导出规格：\n• 抖音/TikTok：1080×1920, 30fps, MP4\n• Instagram Reels：1080×1920, 30fps\n• YouTube Shorts：1080×1920, 60fps\n• 横屏通用：1920×1080, 30fps"
+        }
+      ],
+      "relatedToolIds": ["runway", "pika", "elevenlabs"]
+    },
+    {
+      "slug": "case-poster-ideogram",
+      "type": "case",
+      "title": "案例：活动主视觉海报（含大标题字）",
+      "summary": "目标是在印刷与社媒双场景可用的横版海报，标题八字以内、高对比、品牌色点缀。",
+      "cover": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=640&fit=crop&auto=format",
+      "tags": ["案例", "海报", "排版"],
+      "steps": [
+        {
+          "title": "项目背景与需求分析",
+          "body": "本案例：为一场科技创业峰会制作主视觉海报。\n\n需求清单：\n• 用途：会场背景板(3×6m) + 社交媒体(1080×1350)\n• 标题：「未来已来·2026创业峰会」\n• 品牌色：深蓝 #1A237E + 金色 #FFD700\n• 风格：科技感、未来感、高端\n• 禁止：卡通、过于花哨、暗色调\n• 必含：主标题、日期、地点、主办方Logo位置\n\n工具选择理由：\n选Ideogram而非Midjourney，因为本案例需要中文标题清晰可读。Ideogram对中文字符的渲染明显优于其他工具。"
+        },
+        {
+          "title": "第1轮：构图与层级验证",
+          "body": "第一轮只验证构图，不纠结细节。\n\n提示词 v1：\n\"tech conference poster, bold Chinese title text '未来已来 2026创业峰会', futuristic cityscape background, deep blue and gold color scheme, modern sans-serif typography, large centered title, professional event poster --ar 3:4\"\n\n生成4个版本，评估标准：\n□ 标题是否清晰可读\n□ 视觉层级是否清晰（标题>副标题>背景）\n□ 构图是否平衡\n□ 整体气质是否符合科技峰会定位\n\n第1轮结果：选择了构图B（标题居中，背景城市轮廓）\n问题：金色不够突出，背景太复杂"
+        },
+        {
+          "title": "第2轮：配色与细节优化",
+          "body": "锁定构图，只调整配色和细节。\n\n提示词 v2（在v1基础上修改）：\n\"tech conference poster, bold text '未来已来 2026创业峰会', abstract geometric background with light rays, deep navy blue #1A237E background, gold #FFD700 accent lines and title highlight, minimalist futuristic style, clean layout, high contrast --ar 3:4\"\n\n关键改动：\n• 背景从城市轮廓改为几何抽象（减少复杂度）\n• 明确指定色值\n• 添加 high contrast 强调对比度\n• 添加 light rays 增加科技感\n\n第2轮结果：配色满意，但标题字体偏细\n调整：添加 \"bold heavy weight typography\""
+        },
+        {
+          "title": "第3轮：文字精修与最终版",
+          "body": "提示词 v3（最终版）：\n\"professional tech summit poster, large bold Chinese title '未来已来' with subtitle '2026创业峰会', deep navy blue background, gold metallic accent elements, geometric light beam effects, futuristic minimalist design, high contrast typography, space for logo at bottom, print quality --ar 3:4\"\n\n新增要素：\n• space for logo at bottom：预留Logo位置\n• print quality：提示高清输出\n• metallic：金属质感的金色\n\n最终选择版本后，在Figma中：\n1. 叠加实际中文字体（思源黑体Bold）\n2. 添加主办方Logo\n3. 添加日期、地点等信息\n4. 调整字号和间距\n5. 导出印刷版（300dpi CMYK）和社媒版（72dpi RGB）"
+        },
+        {
+          "title": "交付与多尺寸适配",
+          "body": "一套素材适配多个场景：\n\n印刷物料：\n• 主背景板：3000×6000px, 300dpi, CMYK, PDF\n• 易拉宝：800×2000px, 300dpi\n• A4传单：2480×3508px, 300dpi\n\n数字物料：\n• 微信公众号封面：900×500px\n• 朋友圈分享图：1080×1080px\n• Instagram：1080×1350px\n• 微博横图：1200×675px\n\n适配技巧：\n• 用Figma建立主文件，所有尺寸共用同一设计系统\n• 核心元素（标题、Logo）保持不变，调整背景裁切\n• 小尺寸版本简化细节，保留核心信息\n\n质量检查清单：\n□ 放大到100%检查文字清晰度\n□ 打印A4小样检查色彩\n□ 在手机屏幕上预览社媒版本\n□ 确认所有文字无错别字\n□ Logo清晰度和位置正确"
+        }
+      ],
+      "relatedToolIds": ["ideogram", "midjourney", "clipdrop"]
+    },
+    {
+      "slug": "case-podcast-descript",
+      "type": "case",
+      "title": "案例：播客粗剪 + 口误修复工作流",
+      "summary": "以「转写 → 删停顿 → 改口误 → 导出」为主线，减少重复听全片时间。",
+      "cover": "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1200&h=640&fit=crop&auto=format",
+      "tags": ["案例", "音频", "播客"],
+      "steps": [
+        {
+          "title": "录音规范与素材准备",
+          "body": "好的录音是后期效率的基础。录制前做好这些准备：\n\n硬件建议：\n• 麦克风：动圈麦（如SM7B）适合嘈杂环境，电容麦（如Blue Yeti）适合安静房间\n• 录音位置：离麦克风15-20cm，避免爆破音\n• 环境：关闭空调、风扇，挂上厚窗帘减少混响\n\n录音设置：\n• 采样率：44100Hz（标准）或48000Hz（视频配套）\n• 位深：24bit（后期空间更大）\n• 格式：WAV（无损，后期用）\n• 响度目标：说话时峰值在-12dB左右\n\n多人录制：\n• 每人单独轨道录制\n• 统一采样率和格式\n• 录制前说「测试1、2、3」便于后期对齐\n• 保留片头片尾各5秒静音"
+        },
+        {
+          "title": "导入Descript与自动转写",
+          "body": "Descript的核心功能是将音频转为可编辑文本。\n\n导入步骤：\n1. 新建Project\n2. 拖入音频/视频文件\n3. 选择转写语言（中文/英文）\n4. 等待转写完成（通常1分钟音频需30秒处理）\n\n转写质量优化：\n• 上传前用Adobe Podcast增强音质\n• 专业术语可在设置中添加自定义词汇\n• 多人对话时标注说话人\n\n转写后检查：\n• 快速浏览，标注明显错误\n• 专有名词（人名、品牌名）重点检查\n• 不需要100%准确，后期会再校对"
+        },
+        {
+          "title": "文本驱动粗剪",
+          "body": "Descript最强大的功能：像编辑文档一样剪辑音频。\n\n删除口头禅和停顿：\n1. Edit → Remove Filler Words\n2. 勾选：嗯、啊、那个、就是（中文）/ um, uh, like（英文）\n3. 预览效果，调整激进程度\n4. 应用到全片\n\n删除重复内容：\n• 选中重复的文字段落\n• 直接按Delete键\n• 对应音频自动删除\n\n删除长停顿：\n• Edit → Remove Silence\n• 设置阈值：超过0.8秒的停顿自动删除\n• 保留0.3-0.5秒的自然停顿\n\n结构调整：\n• 选中段落拖拽重新排序\n• 比在时间轴上操作快10倍"
+        },
+        {
+          "title": "口误修复与内容替换",
+          "body": "Descript的Overdub功能可以用AI声音修复口误。\n\n修复流程：\n1. 找到口误位置（文本中标注）\n2. 选中错误文字\n3. 输入正确内容\n4. Overdub自动生成匹配的语音\n5. 与原始录音无缝衔接\n\n使用前提：\n• 需要先录制10-30分钟语音训练个人声音模型\n• 训练完成后可无限次使用\n\n适用场景：\n• 说错数字（\"2023年\" → \"2024年\"）\n• 说错人名或品牌名\n• 需要更新的时效性内容\n\n不适用场景：\n• 大段内容重录（效果不自然）\n• 情绪化表达（AI声音较平）\n• 建议：超过3句话的修改直接重录"
+        },
+        {
+          "title": "音质增强与响度标准化",
+          "body": "发布前的音质处理，让听众体验更好。\n\nAdobe Podcast增强（免费）：\n1. 上传音频到 podcast.adobe.com\n2. 自动降噪、去混响、增强清晰度\n3. 下载处理后的文件\n4. 效果显著，尤其是嘈杂环境录制的音频\n\nDescript内置处理：\n• Studio Sound：一键增强音质\n• EQ：调整音色（低频/高频）\n• Compression：均衡音量动态\n\n响度标准化（重要）：\n不同平台的响度标准：\n• Spotify：-14 LUFS\n• Apple Podcasts：-16 LUFS\n• YouTube：-14 LUFS\n• 微信：-16 LUFS\n\n在Descript中：\nPublish → 选择目标平台 → 自动匹配响度标准"
+        },
+        {
+          "title": "导出与多平台发布",
+          "body": "最终导出和发布流程。\n\n导出设置：\n• 格式：MP3（通用）或 WAV（高质量存档）\n• MP3比特率：192kbps（平衡质量和文件大小）\n• 采样率：44100Hz\n\n章节标记（提升听众体验）：\n1. 在Descript中标注章节时间点\n2. 导出时包含章节信息\n3. 在播客平台显示为可跳转章节\n\n配套内容生成（用AI）：\n\"基于以下播客转写稿，生成：\n1. 节目简介（150字）\n2. 5个关键要点\n3. 10个社交媒体推广文案\n4. SEO关键词列表\n[粘贴转写稿]\"\n\n发布平台：\n• 小宇宙：中文播客首选\n• Spotify：国际受众\n• Apple Podcasts：iOS用户\n• 喜马拉雅：大众市场\n\n发布后追踪：\n• 完播率（目标>60%）\n• 跳出点（找到无聊段落）\n• 订阅转化率"
+        }
+      ],
+      "relatedToolIds": ["descript", "elevenlabs", "adobe-podcast"]
+    },
+    {
+      "slug": "chatgpt-prompt-engineering",
+      "type": "tutorial",
+      "title": "ChatGPT 提示词工程：PCRF框架实战",
+      "summary": "掌握2026年最新的提示词工程技巧，使用PCRF框架提升AI对话质量",
+      "cover": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop",
+      "tags": ["ChatGPT", "提示词", "写作", "中级"],
+      "relatedToolIds": ["chatgpt", "claude", "gemini"],
+      "steps": [
+        {
+          "title": "PCRF框架基础",
+          "body": "P - Persona (角色): 定义AI的身份，如\"你是一位资深产品经理\"\nC - Context (背景): 提供项目背景和约束条件\nR - Request (请求): 明确具体的任务目标\nF - Format (格式): 指定输出结构，如Markdown表格、JSON等"
+        },
+        {
+          "title": "Few-Shot示例法",
+          "body": "提供2-3个期望输出的具体示例，比描述性形容词更有效。\n\n示例：\n\"请按以下格式写产品描述：\n示例1: [产品A] - 简洁、专业、突出核心价值\n示例2: [产品B] - 技术细节、使用场景\n现在请为[你的产品]写描述\""
+        },
+        {
+          "title": "Chain-of-Thought思维链",
+          "body": "对于复杂逻辑、分析或编码任务，明确要求AI\"逐步思考\"或\"展示推理过程\"。\n\n示例：\"请逐步分析这个商业模式的可行性，包括：1)市场需求 2)竞争分析 3)盈利模式 4)风险评估\""
+        },
+        {
+          "title": "迭代优化技巧",
+          "body": "不要期待第一次就完美。使用首次输出来：\n- 要求AI自我批评和改进\n- 询问\"你需要什么信息来优化这个回答？\"\n- 针对性调整提示词的某一部分\n\n建立个人提示词库，保存常用的高质量提示模板。"
+        }
+      ]
+    },
+    {
+      "slug": "runway-video-creation",
+      "type": "tutorial",
+      "title": "Runway视频生成：从文本到成片",
+      "summary": "使用Runway Gen-3创建专业级AI视频，掌握文生视频和图生视频技巧",
+      "cover": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=500&fit=crop",
+      "tags": ["Runway", "视频生成", "AI视频", "中级"],
+      "relatedToolIds": ["runway", "pika", "luma"],
+      "steps": [
+        {
+          "title": "选择生成模式",
+          "body": "Text-to-Video: 纯文本描述生成视频，适合概念验证\nImage-to-Video: 从静态图片生成动态视频，更易控制\n\n建议：先用Midjourney生成关键帧图片，再用Runway转视频，效果更稳定。"
+        },
+        {
+          "title": "视频提示词结构",
+          "body": "有效的视频提示词包含：\n1. 场景描述：环境、时间、天气\n2. 主体动作：具体的运动方式\n3. 镜头运动：推拉摇移、景别变化\n4. 氛围风格：电影感、纪录片、动画等\n\n示例：\"A drone shot slowly rising over a misty forest at dawn, cinematic lighting, smooth camera movement\""
+        },
+        {
+          "title": "参数调整",
+          "body": "时长：4-10秒（更长需分段生成）\n运动强度：低(1-3)适合静态场景，高(7-10)适合动作场景\n种子值：固定种子可保持风格一致性\n\n技巧：生成多个版本，选择最佳结果"
+        },
+        {
+          "title": "后期编辑与合成",
+          "body": "使用Runway内置编辑器：\n- 剪辑：删除不需要的片段\n- 转场：添加淡入淡出\n- 特效：绿幕抠像、模糊、调色\n\n导出前检查：帧率一致性、无闪烁、运动流畅"
+        }
+      ]
+    },
+    {
+      "slug": "suno-music-generation",
+      "type": "tutorial",
+      "title": "Suno AI 音乐创作完全指南",
+      "summary": "掌握Suno v5.5的高级功能，创作专业级AI音乐作品",
+      "cover": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=500&fit=crop",
+      "tags": ["Suno", "音乐生成", "AI音乐", "中级"],
+      "relatedToolIds": ["suno", "elevenlabs", "descript"],
+      "steps": [
+        {
+          "title": "使用Custom模式",
+          "body": "始终使用Custom模式而非Simple模式，可以分离歌词和风格提示，完全控制歌曲结构。\n\n在Custom模式中，你可以单独编辑歌词、定义音乐风格、设置歌曲结构。"
+        },
+        {
+          "title": "定义歌曲结构",
+          "body": "使用元标签明确定义结构：\n[Intro] - 前奏\n[Verse] - 主歌\n[Chorus] - 副歌\n[Bridge] - 桥段\n[Outro] - 尾奏\n[Instrumental Break] - 间奏\n\n示例：\n[Intro]\n[Verse 1]\n歌词内容...\n[Chorus]\n副歌歌词...\n[Verse 2]\n[Chorus]\n[Outro]"
+        },
+        {
+          "title": "风格提示技巧",
+          "body": "描述目的和情感，而非仅仅列举风格：\n\n❌ 错误：\"sad song\"\n✓ 正确：\"melancholic piano ballad, slow tempo, emotional vocal tone, minimal instrumentation, reflective mood\"\n\n可以混合风格创造独特声音：\"Jazz + Death Metal\" 或 \"Country Trap\""
+        },
+        {
+          "title": "人声清晰度优化",
+          "body": "使用\"spacious mix\"、\"minimal instrumentation\"或\"vocal-forward\"让人声更突出。\n\n避免过度复杂的编曲，给人声留出频率空间。"
+        },
+        {
+          "title": "迭代与扩展",
+          "body": "最佳作品很少一次生成。生成多个版本，找到好的片段后使用Continue功能扩展，保持相同风格和旋律。\n\n可以添加音效：[laughter]、[screaming]、[rain sounds]"
+        }
+      ]
+    },
+    {
+      "slug": "elevenlabs-voice-cloning",
+      "type": "tutorial",
+      "title": "ElevenLabs 语音克隆与配音",
+      "summary": "使用ElevenLabs创建逼真的AI配音和语音克隆",
+      "cover": "https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=800&h=500&fit=crop",
+      "tags": ["ElevenLabs", "语音合成", "配音", "初级"],
+      "relatedToolIds": ["elevenlabs", "descript", "murf"],
+      "steps": [
+        {
+          "title": "选择或创建语音",
+          "body": "使用预设语音库或上传1-5分钟的清晰语音样本进行克隆。\n\n语音样本要求：\n- 无背景噪音\n- 清晰的发音\n- 多种情绪和语调\n- 单一说话人"
+        },
+        {
+          "title": "调整语音参数",
+          "body": "Stability (稳定性): 0-100，越高越一致\nClarity (清晰度): 控制语音的清晰程度\nStyle Exaggeration: 增强情感表达\n\n建议从中等值开始测试"
+        },
+        {
+          "title": "文本优化技巧",
+          "body": "使用标点控制节奏：\n- 逗号：短暂停顿\n- 句号：较长停顿\n- 省略号：犹豫感\n- 感叹号：强调\n\n使用SSML标签精确控制：\n<break time=\"1s\"/> - 停顿\n<emphasis level=\"strong\">重点</emphasis>"
+        },
+        {
+          "title": "批量生成与导出",
+          "body": "使用Projects功能批量处理多段文本，保持语音一致性。\n\n导出格式：MP3 (通用)、WAV (高质量)、PCM (专业后期)"
+        }
+      ]
+    },
+    {
+      "slug": "case-social-media-content",
+      "type": "case",
+      "title": "案例：社交媒体短视频完整制作流程",
+      "summary": "从脚本到成片，使用多个AI工具协作完成15秒产品宣传视频",
+      "cover": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=500&fit=crop",
+      "tags": ["案例", "短视频", "社交媒体", "综合"],
+      "relatedToolIds": ["chatgpt", "midjourney", "runway", "elevenlabs"],
+      "steps": [
+        {
+          "title": "步骤1：用ChatGPT生成脚本",
+          "body": "提示词：\"为一款智能手表创作15秒社交媒体视频脚本，包含3个场景，突出健康监测功能，目标受众是25-35岁职场人士\"\n\n输出：场景分镜表，每个场景5秒，包含画面描述和文案"
+        },
+        {
+          "title": "步骤2：用Midjourney生成关键帧",
+          "body": "根据脚本为每个场景生成静态图片：\n场景1: \"person checking smartwatch during morning jog, fitness tracking, bright daylight --ar 9:16\"\n场景2: \"close-up of smartwatch displaying heart rate data, modern UI --ar 9:16\"\n场景3: \"professional using smartwatch in office, productivity --ar 9:16\""
+        },
+        {
+          "title": "步骤3：用Runway转换为视频",
+          "body": "将Midjourney生成的图片导入Runway，使用Image-to-Video功能：\n- 设置运动强度：中等(5)\n- 添加镜头运动：缓慢推进\n- 每个场景生成5秒视频"
+        },
+        {
+          "title": "步骤4：用ElevenLabs生成配音",
+          "body": "将文案输入ElevenLabs：\n- 选择专业、充满活力的语音\n- 调整语速：稍快(1.1x)\n- 添加背景音乐(可选)"
+        },
+        {
+          "title": "步骤5：剪辑合成",
+          "body": "使用视频编辑工具(如CapCut)：\n- 按顺序排列3个场景\n- 添加转场效果\n- 同步配音和字幕\n- 添加品牌Logo\n- 导出9:16竖屏格式"
+        }
+      ]
+    },
+    {
+      "slug": "midjourney-advanced-techniques",
+      "type": "tutorial",
+      "title": "Midjourney 高级技巧：参数与风格控制",
+      "summary": "深入掌握Midjourney v6的高级参数，创作风格一致的专业图像",
+      "cover": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=500&fit=crop",
+      "tags": ["Midjourney", "图像生成", "高级", "参数"],
+      "relatedToolIds": ["midjourney", "leonardo", "ideogram"],
+      "steps": [
+        {
+          "title": "核心参数详解",
+          "body": "--ar 比例：16:9 (横屏), 9:16 (竖屏), 1:1 (方形)\n--style raw：减少美化，更真实\n--stylize 0-1000：数值越高越艺术化，默认100\n--chaos 0-100：增加变化性和意外效果\n--weird 0-3000：创造超现实效果\n\n实战示例：\n\"product photography, minimalist --ar 16:9 --style raw --stylize 50\""
+        },
+        {
+          "title": "风格参考 (Style Reference)",
+          "body": "使用 --sref 参数引用风格图片URL，保持视觉一致性：\n\n\"modern office interior --sref https://example.com/style.jpg --sw 100\"\n\n--sw (style weight) 0-1000：控制风格强度\n- 0-50: 轻微影响\n- 50-100: 平衡\n- 100+: 强烈风格化\n\n技巧：为项目创建风格库，重复使用相同sref"
+        },
+        {
+          "title": "角色一致性 (Character Reference)",
+          "body": "使用 --cref 保持角色外观一致：\n\n\"woman in different poses --cref https://example.com/character.jpg --cw 100\"\n\n适用场景：\n- 品牌吉祥物设计\n- 故事板角色\n- 产品代言人形象\n\n注意：角色参考在不同场景下可能有轻微变化"
+        },
+        {
+          "title": "Permutation 批量生成",
+          "body": "使用 {} 语法一次生成多个变体：\n\n\"a {red, blue, green} sports car in {urban, desert, mountain} setting\"\n\n这会生成 3×3=9 张图片，组合所有可能性。\n\n实用案例：\n- 产品配色方案测试\n- 场景氛围对比\n- A/B测试素材准备"
+        },
+        {
+          "title": "Remix模式与迭代",
+          "body": "启用Remix模式后，可以在变体时修改提示词：\n\n1. 输入 /settings 启用Remix Mode\n2. 生成初始图像\n3. 点击V1-V4变体时，修改提示词\n4. 保持构图，改变细节\n\n适合：渐进式调整，而非推倒重来"
+        },
+        {
+          "title": "Describe反向工程",
+          "body": "上传图片使用 /describe 命令，Midjourney会生成4个提示词描述。\n\n用途：\n- 学习如何描述特定风格\n- 重现类似图像\n- 理解AI如何\"看\"图片\n\n技巧：结合多个describe结果，提取共同关键词"
+        }
+      ]
+    },
+    {
+      "slug": "claude-coding-assistant",
+      "type": "tutorial",
+      "title": "Claude 编程助手：代码生成与调试",
+      "summary": "利用Claude进行高效编程，从代码生成到bug修复的完整工作流",
+      "cover": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop",
+      "tags": ["Claude", "编程", "代码", "中级"],
+      "relatedToolIds": ["claude", "cursor", "github-copilot"],
+      "steps": [
+        {
+          "title": "结构化代码请求",
+          "body": "清晰描述需求，包含：\n1. 编程语言和框架\n2. 功能描述\n3. 输入输出示例\n4. 约束条件（性能、兼容性）\n\n示例：\n\"用Python写一个函数，输入CSV文件路径，输出按销售额排序的前10个产品。使用pandas，处理缺失值，返回DataFrame。\""
+        },
+        {
+          "title": "代码审查与优化",
+          "body": "让Claude审查现有代码：\n\n\"审查以下代码，关注：\n1. 性能瓶颈\n2. 安全漏洞\n3. 代码可读性\n4. 最佳实践\n\n[粘贴代码]\n\n请提供具体改进建议和重构代码。\""
+        },
+        {
+          "title": "Bug调试助手",
+          "body": "提供完整上下文帮助调试：\n\n\"遇到以下错误：\n[错误信息]\n\n相关代码：\n[代码片段]\n\n环境：Python 3.11, Django 4.2\n\n请分析可能原因并提供解决方案。\"\n\n技巧：包含完整错误堆栈和相关配置"
+        },
+        {
+          "title": "测试用例生成",
+          "body": "自动生成单元测试：\n\n\"为以下函数生成pytest测试用例，包括：\n- 正常情况\n- 边界条件\n- 异常处理\n- Mock外部依赖\n\n[函数代码]\"\n\n可以要求特定测试框架：pytest, Jest, JUnit等"
+        },
+        {
+          "title": "文档自动生成",
+          "body": "生成代码文档和注释：\n\n\"为以下代码添加：\n1. Docstring (Google风格)\n2. 类型注解\n3. 行内注释（仅复杂逻辑）\n4. README使用说明\n\n[代码]\"\n\n保持文档简洁，避免过度注释"
+        },
+        {
+          "title": "算法解释与学习",
+          "body": "理解复杂算法：\n\n\"解释以下算法的工作原理：\n[算法代码]\n\n请用简单语言说明：\n1. 核心思想\n2. 时间/空间复杂度\n3. 适用场景\n4. 可视化示例\"\n\n适合学习开源项目或面试准备"
+        }
+      ]
+    },
+    {
+      "slug": "stable-diffusion-local-setup",
+      "type": "tutorial",
+      "title": "Stable Diffusion 本地部署完全指南",
+      "summary": "在本地搭建Stable Diffusion，掌握LoRA、ControlNet等高级功能",
+      "cover": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=500&fit=crop",
+      "tags": ["Stable Diffusion", "本地部署", "高级", "LoRA"],
+      "relatedToolIds": ["stable-diffusion", "comfyui", "automatic1111"],
+      "steps": [
+        {
+          "title": "环境准备与安装",
+          "body": "硬件要求：\n- GPU: NVIDIA RTX 3060+ (12GB+ VRAM推荐)\n- RAM: 16GB+\n- 存储: 50GB+ SSD\n\n安装步骤：\n1. 安装Python 3.10\n2. 安装CUDA Toolkit\n3. 下载Automatic1111 WebUI\n4. 运行 webui-user.bat\n\n首次启动会自动下载依赖，需10-30分钟"
+        },
+        {
+          "title": "模型选择与下载",
+          "body": "基础模型类型：\n- SD 1.5: 轻量，速度快，社区资源多\n- SDXL: 高质量，需更多VRAM\n- SD 3: 最新，文字渲染强\n\n推荐模型：\n- 写实: Realistic Vision, DreamShaper\n- 动漫: Anything V5, CounterfeitXL\n- 艺术: Deliberate, MeinaMix\n\n下载地址: Civitai.com, HuggingFace"
+        },
+        {
+          "title": "LoRA微调模型使用",
+          "body": "LoRA是轻量级风格/角色模型，文件小(10-200MB)。\n\n使用方法：\n1. 下载LoRA文件到 models/Lora/\n2. 在提示词中添加: <lora:文件名:权重>\n\n示例：\n\"portrait of a woman <lora:korean_doll:0.8>, professional photography\"\n\n权重0.5-1.0通常效果最好，过高会过拟合"
+        },
+        {
+          "title": "ControlNet精确控制",
+          "body": "ControlNet通过参考图控制构图、姿势、深度等。\n\n常用类型：\n- Canny: 边缘检测，保持轮廓\n- Depth: 深度图，控制空间关系\n- OpenPose: 人体姿势控制\n- Lineart: 线稿上色\n\n工作流：\n1. 上传参考图\n2. 选择ControlNet类型\n3. 调整权重(0.5-1.5)\n4. 生成图像"
+        },
+        {
+          "title": "采样器与参数优化",
+          "body": "采样器选择：\n- DPM++ 2M Karras: 平衡质量和速度(推荐)\n- Euler a: 创意性强，结果多变\n- DDIM: 稳定，适合批量\n\n关键参数：\n- Steps: 20-30 (更高不一定更好)\n- CFG Scale: 7-11 (过高会过饱和)\n- Denoising: 0.5-0.7 (img2img)\n\n技巧：先用低分辨率测试，满意后高清重绘"
+        },
+        {
+          "title": "批量生成与自动化",
+          "body": "X/Y/Z Plot功能测试参数组合：\n- X轴: CFG Scale (7,9,11)\n- Y轴: 不同采样器\n- Z轴: Steps (20,25,30)\n\n自动生成对比图，快速找到最佳参数。\n\nScripts功能：\n- Prompt Matrix: 测试关键词影响\n- X/Y/Z Plot: 参数网格搜索\n- Ultimate SD Upscale: 超大图放大"
+        }
+      ]
+    },
+    {
+      "slug": "perplexity-research-workflow",
+      "type": "tutorial",
+      "title": "Perplexity 深度研究工作流",
+      "summary": "使用Perplexity进行专业研究，获取可靠来源和实时信息",
+      "cover": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop",
+      "tags": ["Perplexity", "研究", "搜索", "初级"],
+      "relatedToolIds": ["perplexity", "chatgpt", "claude"],
+      "steps": [
+        {
+          "title": "Focus模式选择",
+          "body": "根据需求选择搜索模式：\n\n- All: 综合搜索，平衡广度和深度\n- Academic: 学术论文，引用可靠\n- Writing: 创作辅助，提供灵感\n- Wolfram: 数学计算和数据分析\n- YouTube: 视频内容搜索\n- Reddit: 社区讨论和真实体验\n\n技巧：学术研究用Academic，产品评测用Reddit"
+        },
+        {
+          "title": "高级搜索技巧",
+          "body": "提升搜索精度的方法：\n\n1. 时间限定: \"2024年AI发展趋势\"\n2. 来源指定: \"site:nature.com 气候变化研究\"\n3. 对比分析: \"比较React vs Vue性能差异\"\n4. 数据请求: \"列出2023年全球GDP前10国家\"\n\n使用引号精确匹配: \"machine learning\""
+        },
+        {
+          "title": "Collections组织研究",
+          "body": "创建Collections整理相关查询：\n\n1. 新建Collection (如\"AI工具研究\")\n2. 添加相关搜索到Collection\n3. 在Collection内继续深入提问\n4. 导出或分享研究成果\n\n适合：文献综述、市场调研、竞品分析"
+        },
+        {
+          "title": "验证信息可靠性",
+          "body": "检查来源质量：\n\n✓ 优质来源：\n- 学术期刊 (.edu, nature.com)\n- 官方文档\n- 知名媒体\n- 政府网站 (.gov)\n\n✗ 谨慎对待：\n- 个人博客（除非专家）\n- 无来源声明\n- 过时信息\n\n始终点击查看原始来源，交叉验证关键信息"
+        },
+        {
+          "title": "Pro功能深度使用",
+          "body": "Perplexity Pro高级功能：\n\n- GPT-4/Claude 3.5: 更强推理能力\n- 无限文件上传: 分析PDF、图片\n- API访问: 集成到工作流\n- 更多搜索次数\n\n实用场景：\n- 上传论文PDF，要求总结关键发现\n- 分析图表数据\n- 生成研究报告"
+        }
+      ]
+    },
+    {
+      "slug": "case-brand-identity-ai",
+      "type": "case",
+      "title": "案例：用AI工具打造完整品牌视觉",
+      "summary": "从Logo到配色方案，30分钟完成品牌视觉系统设计",
+      "cover": "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=500&fit=crop",
+      "tags": ["案例", "品牌设计", "Logo", "综合"],
+      "relatedToolIds": ["midjourney", "ideogram", "chatgpt"],
+      "steps": [
+        {
+          "title": "第1步：品牌定位 (5分钟)",
+          "body": "使用ChatGPT明确品牌方向：\n\n提示词：\"我要为[咖啡店]创建品牌，目标客户是[年轻专业人士]，品牌调性[现代、温暖、专业]。请提供：1)品牌关键词 2)配色建议 3)视觉风格方向\"\n\n输出示例：\n- 关键词：精品、手工、社区\n- 配色：深棕#3E2723 + 暖橙#FF6F00 + 米白#FFF8E1\n- 风格：极简线条 + 温暖质感"
+        },
+        {
+          "title": "第2步：Logo设计 (10分钟)",
+          "body": "使用Ideogram生成Logo（擅长文字）：\n\n提示词：\"minimalist coffee shop logo, text 'BREW & CO', modern sans-serif, coffee bean icon, warm brown and orange, clean lines, white background --ar 1:1\"\n\n生成4个版本，选择最佳。\n\n技巧：\n- 保持简洁，避免过多细节\n- 确保黑白版本也清晰\n- 测试小尺寸显示效果"
+        },
+        {
+          "title": "第3步：辅助图形 (8分钟)",
+          "body": "用Midjourney创建品牌图案：\n\n\"seamless pattern, coffee beans and leaves, minimalist line art, warm brown tones, repeating pattern --tile --ar 1:1\"\n\n\"abstract coffee splash, watercolor style, warm orange and brown gradient, artistic --ar 16:9\"\n\n用途：\n- 包装纸图案\n- 社交媒体背景\n- 店内装饰元素"
+        },
+        {
+          "title": "第4步：应用场景展示 (7分钟)",
+          "body": "生成品牌应用mockup：\n\n\"coffee cup mockup with [你的Logo], paper bag, business card, modern cafe setting, professional product photography --ar 16:9\"\n\n\"storefront design, modern coffee shop, [品牌色], large windows, minimalist signage, daytime --ar 16:9\"\n\n这些图片可用于：\n- 投资人展示\n- 社交媒体预告\n- 施工参考"
+        },
+        {
+          "title": "交付物清单",
+          "body": "完整品牌包包含：\n\n✓ Logo (PNG透明背景，多尺寸)\n✓ 配色方案 (HEX色值)\n✓ 辅助图形 (可平铺图案)\n✓ 应用场景示意图\n✓ 品牌使用指南 (ChatGPT生成)\n\n总耗时：约30分钟\n成本：AI工具订阅费 (约$20-50/月)"
+        }
+      ]
+    },
+    {
+      "slug": "case-course-content-creation",
+      "type": "case",
+      "title": "案例：AI辅助在线课程制作",
+      "summary": "2小时完成10节课程视频，包含脚本、配音、字幕、剪辑",
+      "cover": "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=500&fit=crop",
+      "tags": ["案例", "教育", "视频课程", "综合"],
+      "relatedToolIds": ["chatgpt", "elevenlabs", "descript", "runway"],
+      "steps": [
+        {
+          "title": "课程大纲生成 (15分钟)",
+          "body": "使用ChatGPT规划课程结构：\n\n\"创建一个[Python入门]课程，目标学员[零基础]，共10节课，每节5-8分钟。请提供：\n1. 课程大纲（10个标题）\n2. 每节核心知识点\n3. 实践练习建议\"\n\n审核并调整大纲，确保逻辑连贯、难度递进。"
+        },
+        {
+          "title": "脚本批量生成 (30分钟)",
+          "body": "为每节课生成详细脚本：\n\n\"为第[1]节课[Python安装与环境配置]写讲课脚本，要求：\n- 时长6分钟（约900字）\n- 口语化，适合视频讲解\n- 包含演示步骤说明\n- 标注需要展示的屏幕内容\"\n\n重复10次，或使用API批量处理。\n\n技巧：保存为Markdown，便于后续编辑。"
+        },
+        {
+          "title": "配音生成 (20分钟)",
+          "body": "使用ElevenLabs批量生成配音：\n\n1. 选择专业、清晰的声音\n2. 创建Project，导入10个脚本\n3. 统一参数：Stability 75, Clarity 80\n4. 批量生成，导出MP3\n\n质量检查：\n- 听前30秒，确认语速合适\n- 检查专业术语发音\n- 必要时手动调整停顿"
+        },
+        {
+          "title": "屏幕录制与合成 (40分钟)",
+          "body": "录制演示画面：\n\n1. 使用OBS/ScreenFlow录制操作演示\n2. 按脚本标注同步录制\n3. 每节课录制5-8分钟素材\n\n在Descript中合成：\n- 导入配音和屏幕录制\n- 自动对齐时间轴\n- 删除冗余片段\n- 添加字幕（自动生成）\n- 插入过渡效果"
+        },
+        {
+          "title": "批量导出与发布 (15分钟)",
+          "body": "统一导出设置：\n- 分辨率：1920×1080\n- 帧率：30fps\n- 格式：MP4 (H.264)\n- 字幕：嵌入或单独SRT\n\n上传到平台：\n- 统一命名：01-课程名称.mp4\n- 添加章节标记\n- 设置缩略图（用Midjourney生成）\n- 填写课程描述\n\n总耗时：约2小时\n传统方式：至少20小时"
+        }
+      ]
+    },
+    {
+      "slug": "comfyui-workflow-automation",
+      "type": "tutorial",
+      "title": "ComfyUI 工作流自动化",
+      "summary": "搭建可复用的图像生成流水线，提升批量创作效率",
+      "cover": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop",
+      "tags": ["ComfyUI", "自动化", "工作流", "高级"],
+      "relatedToolIds": ["comfyui", "stable-diffusion"],
+      "steps": [
+        {
+          "title": "ComfyUI基础概念",
+          "body": "ComfyUI是节点式Stable Diffusion界面，优势：\n\n- 可视化工作流\n- 精确控制每个步骤\n- 保存和分享工作流\n- 更高效的内存使用\n\n基础节点类型：\n- Loader: 加载模型\n- Sampler: 采样器\n- Conditioning: 提示词处理\n- VAE: 图像编解码"
+        },
+        {
+          "title": "构建基础工作流",
+          "body": "标准txt2img流程：\n\n1. Load Checkpoint → 加载基础模型\n2. CLIP Text Encode → 正面提示词\n3. CLIP Text Encode → 负面提示词\n4. KSampler → 采样生成\n5. VAE Decode → 解码为图像\n6. Save Image → 保存\n\n连接节点：拖拽输出点到输入点\n\n技巧：右键 → Add Node 快速添加"
+        },
+        {
+          "title": "高级工作流：多LoRA混合",
+          "body": "同时使用多个LoRA增强效果：\n\n1. Load Checkpoint\n2. Load LoRA (风格) → 权重0.8\n3. Load LoRA (角色) → 权重0.6\n4. Load LoRA (细节) → 权重0.4\n5. 连接到KSampler\n\n注意：\n- LoRA顺序影响结果\n- 总权重不要超过2.0\n- 测试不同组合找最佳配比"
+        },
+        {
+          "title": "批量处理工作流",
+          "body": "使用Queue Prompt批量生成：\n\n1. 添加 Primitive 节点设置变量\n2. 连接到 Seed (随机种子)\n3. 设置 Batch Size\n4. 点击 Queue Prompt 多次\n\n高级：使用 Image Batch 节点\n- 批量加载参考图\n- 统一风格处理\n- 自动编号保存"
+        },
+        {
+          "title": "保存与分享工作流",
+          "body": "导出工作流JSON：\n\n1. 点击 Save 按钮\n2. 保存为 .json 文件\n3. 分享给他人或备份\n\n导入工作流：\n- 拖拽JSON到ComfyUI窗口\n- 或点击 Load 选择文件\n\n社区资源：\n- ComfyUI Examples (官方)\n- CivitAI工作流分享\n- GitHub awesome-comfyui"
+        }
+      ]
+    },
+    {
+      "slug": "notion-ai-productivity",
+      "type": "tutorial",
+      "title": "Notion AI 生产力提升",
+      "summary": "用Notion AI自动化笔记整理、会议纪要、内容创作",
+      "cover": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=500&fit=crop",
+      "tags": ["Notion", "生产力", "笔记", "初级"],
+      "relatedToolIds": ["notion", "chatgpt"],
+      "steps": [
+        {
+          "title": "AI写作助手",
+          "body": "快捷键：空格 → 输入指令\n\n常用指令：\n- \"继续写作\" - 自动续写\n- \"改进写作\" - 优化表达\n- \"修正拼写和语法\" - 校对\n- \"翻译成[语言]\" - 多语言翻译\n- \"总结\" - 提取要点\n\n技巧：选中文本后使用AI，效果更精准"
+        },
+        {
+          "title": "会议纪要自动化",
+          "body": "会议后快速整理：\n\n1. 粘贴会议原始记录\n2. 选中文本 → AI → \"总结\"\n3. 要求：\"提取行动项和负责人\"\n4. 生成：\"写会议纪要，包含：背景、讨论要点、决策、待办\"\n\n模板示例：\n```\n会议：[主题]\n时间：[日期]\n参与者：[名单]\n\n讨论要点：\n- [AI自动提取]\n\n决策事项：\n- [AI自动提取]\n\n行动项：\n- [ ] [任务] - @负责人 - 截止日期\n```"
+        },
+        {
+          "title": "知识库问答",
+          "body": "在Notion页面中提问：\n\n\"根据这个页面，[你的问题]？\"\n\nAI会基于当前页面内容回答。\n\n适用场景：\n- 快速查找项目信息\n- 理解复杂文档\n- 生成FAQ\n\n技巧：建立结构化知识库，AI理解更准确"
+        },
+        {
+          "title": "内容创作模板",
+          "body": "博客文章生成：\n\n1. 输入主题和大纲\n2. AI → \"扩展这个大纲\"\n3. 逐段生成内容\n4. AI → \"添加引言和结论\"\n\n社交媒体内容：\n\"将这篇文章改写为：\n- Twitter帖子（280字）\n- LinkedIn帖子（专业语气）\n- Instagram标题（带emoji）\"\n\n一次创作，多平台分发"
+        },
+        {
+          "title": "数据库自动填充",
+          "body": "使用AI填充数据库字段：\n\n场景：项目管理数据库\n1. 创建\"项目描述\"字段\n2. AI → \"根据项目名称生成简短描述\"\n3. 批量应用到所有条目\n\n其他应用：\n- 自动生成标签\n- 提取关键词\n- 分类内容\n- 估算工作量\n\n节省大量手动输入时间"
+        }
+      ]
+    },
+    {
+      "slug": "case-product-launch-campaign",
+      "type": "case",
+      "title": "案例：产品发布全套营销素材制作",
+      "summary": "1天完成产品发布所需的所有视觉和文案素材",
+      "cover": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
+      "tags": ["案例", "营销", "产品发布", "综合"],
+      "relatedToolIds": ["chatgpt", "midjourney", "runway", "elevenlabs"],
+      "steps": [
+        {
+          "title": "营销策略规划 (1小时)",
+          "body": "使用ChatGPT制定发布策略：\n\n\"为[智能耳机]产品发布制定营销计划，目标[年轻专业人士]，预算[中等]，渠道[社交媒体+官网]。\n\n需要：\n1. 核心卖点提炼\n2. 内容日历（发布前2周）\n3. 各渠道素材清单\n4. 文案风格指南\"\n\n输出：完整营销方案和素材需求列表"
+        },
+        {
+          "title": "产品图生成 (2小时)",
+          "body": "用Midjourney创建产品视觉：\n\n主图：\"premium wireless earbuds, matte black finish, floating on gradient background, studio lighting, product photography, high-end --ar 1:1\"\n\n场景图：\n- \"person wearing earbuds during workout, gym setting, energetic --ar 4:5\"\n- \"earbuds on minimalist desk, laptop, coffee, productivity --ar 16:9\"\n- \"close-up of charging case, premium materials, soft lighting --ar 1:1\"\n\n生成20+张，筛选最佳10张"
+        },
+        {
+          "title": "宣传视频制作 (3小时)",
+          "body": "30秒产品宣传片流程：\n\n1. ChatGPT生成脚本（3个场景）\n2. Midjourney生成关键帧\n3. Runway转换为视频片段\n4. ElevenLabs生成旁白\n5. 剪辑软件合成\n\n脚本结构：\n- 0-10秒：痛点展示\n- 10-20秒：产品解决方案\n- 20-30秒：行动号召\n\n导出多版本：横屏、竖屏、方形"
+        },
+        {
+          "title": "文案批量生成 (1小时)",
+          "body": "使用ChatGPT生成全套文案：\n\n\"基于以下产品信息，生成：\n1. 官网首页标题和副标题\n2. 5条产品特性描述（每条50字）\n3. 10条社交媒体帖子（不同角度）\n4. 邮件营销主题行（5个变体）\n5. 广告文案（短、中、长版本）\n\n产品：[信息]\n目标：[受众]\n语气：[专业但亲切]\"\n\n一次性获得所有文案，微调后使用"
+        },
+        {
+          "title": "落地页设计 (2小时)",
+          "body": "快速搭建产品页面：\n\n1. 用ChatGPT生成页面结构\n2. Midjourney生成背景和装饰元素\n3. 使用Webflow/Framer快速搭建\n4. 嵌入视频和产品图\n5. 添加购买按钮和表单\n\n关键元素：\n- Hero区：产品主图+核心卖点\n- 特性展示：图标+简短说明\n- 社会证明：评价/媒体报道\n- CTA：明确的行动号召\n\n总耗时：约9小时（传统方式需1-2周）"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+  <link rel="stylesheet" href="./aether-theme.css" />
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .font-bricolage { font-family: "Bricolage Grotesque", sans-serif !important; }
+    .ws-page-grid {
+      background-color: #fafafa;
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .dark .ws-page-grid {
+      background-color: #0a0a0a;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    }
+    .ws-select-wrap select {
+      -webkit-appearance: none;
+      appearance: none;
+      padding-right: 1.75rem;
+      cursor: pointer;
+    }
+    .ws-composer-expanded #wsInput {
+      min-height: 200px;
+    }
+    /* Sidebar conversation item hover */
+    .ws-conv-item {
+      transition: background-color 0.15s ease;
+    }
+    .ws-conv-item:hover { background-color: rgba(0,0,0,0.04); }
+    .dark .ws-conv-item:hover { background-color: rgba(255,255,255,0.05); }
+    .ws-conv-item.active { background-color: rgba(99,102,241,0.08); }
+    /* Full-height layout */
+    html, body { height: 100%; overflow: hidden; }
+    .ws-layout { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+    .ws-body { display: flex; flex: 1; overflow: hidden; min-height: 0; }
+    /* Right sidebar */
+    #wsRightSidebar {
+      width: 280px; flex-shrink: 0;
+      display: flex; flex-direction: column;
+      border-left: 1px solid rgba(0,0,0,0.07);
+      background: rgba(255,255,255,0.9);
+      overflow-y: auto;
+    }
+    .dark #wsRightSidebar { background: rgba(10,10,10,0.7); border-color: rgba(255,255,255,0.07); }
+    #wsRightSidebar::-webkit-scrollbar { width: 3px; }
+    #wsRightSidebar::-webkit-scrollbar-track { background: transparent; }
+    #wsRightSidebar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 3px; }
+    .dark #wsRightSidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); }
+    /* Quality meter */
+    .ws-quality-bar-track { height: 5px; border-radius: 99px; background: rgba(0,0,0,0.07); overflow: hidden; }
+    .dark .ws-quality-bar-track { background: rgba(255,255,255,0.08); }
+    .ws-quality-bar-fill { height: 100%; border-radius: 99px; transition: width 0.6s cubic-bezier(0.22,1,0.36,1); }
+    /* Capsule quick-action buttons above input */
+    .ws-capsule-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 12px; border-radius: 99px;
+      font-size: 11.5px; font-weight: 600;
+      border: 1px solid rgba(0,0,0,0.09);
+      background: #fff; color: #374151;
+      cursor: pointer; white-space: nowrap;
+      transition: all 0.15s;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .dark .ws-capsule-btn { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: #d1d5db; }
+    .ws-capsule-btn:hover { background: #111; color: #fff; border-color: #111; }
+    .dark .ws-capsule-btn:hover { background: rgba(255,255,255,0.12); color: #f5f5f5; }
+    /* Mobile sidebar toggles */
+    @media (max-width: 1023px) {
+      #wsSidebar { display: none; }
+      #wsSidebar.ws-sidebar-open { display: flex; position: fixed; top: 57px; left: 0; bottom: 0; z-index: 40; }
+      #wsRightSidebar { display: none; }
+      #wsRightSidebar.ws-sidebar-open { display: flex; position: fixed; top: 57px; right: 0; bottom: 0; z-index: 40; }
+      .ws-mobile-overlay { display: block !important; }
+    }
+    .ws-mobile-overlay { display: none; position: fixed; inset: 0; z-index: 39; background: rgba(0,0,0,0.35); }
+    /* Welcome cards */
+    .ws-welcome-card {
+      border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 16px;
+      background: #fff; cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+    }
+    .dark .ws-welcome-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+    .ws-welcome-card:hover { border-color: rgba(99,102,241,0.5); box-shadow: 0 4px 20px -4px rgba(99,102,241,0.15); transform: translateY(-2px); }
+    /* Left sidebar template buttons */
+    .ws-tpl-btn {
+      display: flex; align-items: center; gap: 8px; width: 100%;
+      padding: 7px 10px; border-radius: 7px;
+      border: 1px solid rgba(0,0,0,0.07); background: #fff;
+      font-size: 11.5px; font-weight: 500; color: #374151;
+      cursor: pointer; transition: background 0.12s, border-color 0.12s; text-align: left;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .dark .ws-tpl-btn { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.07); color: #d1d5db; }
+    .ws-tpl-btn:hover { background: #f3f4f6; border-color: rgba(0,0,0,0.14); }
+    .dark .ws-tpl-btn:hover { background: rgba(255,255,255,0.07); }
+    /* Fav tool item */
+    .ws-fav-item { text-decoration: none; }
+    /* Scrollbar styling */
+    #wsMessages::-webkit-scrollbar,
+    #wsConvList::-webkit-scrollbar {
+      width: 4px;
+    }
+    #wsMessages::-webkit-scrollbar-track,
+    #wsConvList::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    #wsMessages::-webkit-scrollbar-thumb,
+    #wsConvList::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.12);
+      border-radius: 4px;
+    }
+    .dark #wsMessages::-webkit-scrollbar-thumb,
+    .dark #wsConvList::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.12);
+    }
+    /* Recommendation section scrolls outside the fixed layout */
+    .ws-scroll-outer {
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== Prompt Builder Modal ===== */
+    .ws-modal-font { font-family: 'Plus Jakarta Sans', 'Nunito', sans-serif; }
+    #wsPromptDrawer {
+      position: fixed;
+      top: 50%; left: 50%;
+      width: min(96vw, 760px);
+      max-height: 86vh;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.1);
+      box-shadow: 0 20px 60px -8px rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.06);
+      transform: translate(-50%, -50%) scale(0.96);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
+      overflow: hidden;
+    }
+    .dark #wsPromptDrawer {
+      background: #0a0a0a;
+      border-color: rgba(255,255,255,0.08);
+      box-shadow: 0 20px 60px -8px rgba(0,0,0,0.7), 0 4px 16px rgba(0,0,0,0.4);
+    }
+    #wsPromptDrawer.ws-drawer-open {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    /* Backdrop */
+    #wsPromptBackdrop {
+      position: fixed; inset: 0; z-index: 49;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.24s ease;
+    }
+    #wsPromptBackdrop.ws-drawer-open { opacity: 1; pointer-events: auto; }
+
+    /* Modal header — clean black/white like site nav */
+    #wsPromptDrawer .ws-modal-header {
+      flex-shrink: 0;
+      background: #fff;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 16px 20px 15px;
+      position: relative;
+    }
+    .dark #wsPromptDrawer .ws-modal-header {
+      background: #0a0a0a;
+      border-color: rgba(255,255,255,0.07);
+    }
+    .ws-modal-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #0a0a0a;
+      letter-spacing: -0.2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dark .ws-modal-title { color: #f5f5f5; }
+    .ws-modal-title-icon {
+      width: 26px; height: 26px;
+      background: #f3f4f6;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .dark .ws-modal-title-icon { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.08); }
+    .ws-modal-title-icon .material-symbols-outlined { color: #374151; font-size: 15px !important; }
+    .dark .ws-modal-title-icon .material-symbols-outlined { color: #d1d5db; }
+    .ws-modal-subtitle {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11.5px;
+      color: #6b7280;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+    .dark .ws-modal-subtitle { color: #6b7280; }
+    .ws-modal-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 28px; height: 28px;
+      background: transparent;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: #6b7280; cursor: pointer;
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .dark .ws-modal-close { border-color: rgba(255,255,255,0.1); color: #9ca3af; }
+    .ws-modal-close:hover { background: #f3f4f6; border-color: rgba(0,0,0,0.15); color: #111; }
+    .dark .ws-modal-close:hover { background: rgba(255,255,255,0.07); color: #f5f5f5; }
+
+    /* Two-column layout inside body */
+    #wsModalBody {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+    /* Left: prompt list */
+    #wsPromptPanel {
+      width: 52%;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid rgba(0,0,0,0.07);
+      overflow: hidden;
+      background: #fafafa;
+    }
+    .dark #wsPromptPanel { border-color: rgba(255,255,255,0.06); background: #0a0a0a; }
+    #wsPromptRows {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    #wsPromptRows::-webkit-scrollbar { width: 3px; }
+    #wsPromptRows::-webkit-scrollbar-track { background: transparent; }
+    #wsPromptRows::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 3px; }
+    .dark #wsPromptRows::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+
+    /* Prompt row cards */
+    .ws-prompt-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      padding: 9px 11px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.07);
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 0.13s, background 0.13s, box-shadow 0.13s;
+    }
+    .dark .ws-prompt-row {
+      background: rgba(255,255,255,0.03);
+      border-color: rgba(255,255,255,0.07);
+    }
+    .ws-prompt-row:hover {
+      border-color: rgba(0,0,0,0.18);
+      background: #fff;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .dark .ws-prompt-row:hover {
+      border-color: rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+    }
+    .ws-prompt-row.ws-row-selected {
+      border-color: #111;
+      background: #fff;
+      box-shadow: 0 0 0 1px #111;
+    }
+    .dark .ws-prompt-row.ws-row-selected {
+      border-color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.5);
+    }
+    .ws-row-icon {
+      width: 26px; height: 26px;
+      border-radius: 6px;
+      background: #f3f4f6;
+      border: 1px solid rgba(0,0,0,0.06);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 13px;
+      margin-top: 1px;
+    }
+    .dark .ws-row-icon { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.08); }
+    .ws-row-body { flex: 1; min-width: 0; }
+    .ws-row-cat {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 2px;
+    }
+    .dark .ws-row-cat { color: #6b7280; }
+    .ws-row-text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: #111827;
+      font-weight: 500;
+    }
+    .dark .ws-row-text { color: #e5e7eb; }
+    .ws-row-add {
+      flex-shrink: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #374151;
+      padding: 3px 8px;
+      border-radius: 5px;
+      background: #f3f4f6;
+      border: 1px solid rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+    .dark .ws-row-add { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.1); color: #d1d5db; }
+    .ws-row-add:hover { background: #111; color: #fff; border-color: #111; }
+    .dark .ws-row-add:hover { background: #fff; color: #111; border-color: #fff; }
+
+    /* Quick action chips */
+    .ws-quick-chips {
+      flex-shrink: 0;
+      padding: 8px 10px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      display: flex; gap: 5px; flex-wrap: wrap;
+    }
+    .dark .ws-quick-chips { border-color: rgba(255,255,255,0.06); }
+    .ws-chip {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px 9px; border-radius: 5px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10.5px; font-weight: 600;
+      border: 1px solid rgba(0,0,0,0.09);
+      background: #fff;
+      color: #6b7280;
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+    .dark .ws-chip { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); color: #9ca3af; }
+    .ws-chip:hover { background: #111; color: #fff; border-color: #111; }
+    .dark .ws-chip:hover { background: rgba(255,255,255,0.1); color: #f5f5f5; border-color: rgba(255,255,255,0.2); }
+
+    /* Right: config panel */
+    #wsConfigPanel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 12px 14px 0;
+      background: #fff;
+    }
+    .dark #wsConfigPanel { background: #0a0a0a; }
+    #wsConfigPanel::-webkit-scrollbar { width: 3px; }
+    #wsConfigPanel::-webkit-scrollbar-track { background: transparent; }
+    #wsConfigPanel::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 3px; }
+    .dark #wsConfigPanel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); }
+
+    /* Section label */
+    .ws-drawer-section-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 9.5px; font-weight: 700;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: #9ca3af;
+      padding: 0 0 7px;
+      display: flex; align-items: center; gap: 7px;
+      margin-top: 14px;
+    }
+    .ws-drawer-section-label:first-child { margin-top: 0; }
+    .dark .ws-drawer-section-label { color: #4b5563; }
+    .ws-drawer-section-label .ws-label-line {
+      flex: 1; height: 1px;
+      background: rgba(0,0,0,0.07);
+    }
+    .dark .ws-drawer-section-label .ws-label-line { background: rgba(255,255,255,0.06); }
+
+    /* Layout icon cards */
+    .ws-layout-card {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 5px;
+      padding: 7px 3px 6px;
+      border-radius: 7px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: #f9fafb;
+      cursor: pointer;
+      transition: border-color 0.13s, background 0.13s, box-shadow 0.13s;
+    }
+    .dark .ws-layout-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.07); }
+    .ws-layout-card:hover {
+      border-color: rgba(0,0,0,0.2);
+      background: #f3f4f6;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    .dark .ws-layout-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
+    .ws-layout-card.active {
+      border-color: #111;
+      background: #fff;
+      box-shadow: 0 0 0 1px #111;
+    }
+    .dark .ws-layout-card.active {
+      border-color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.6);
+    }
+    .ws-layout-card svg { display: block; }
+    .ws-layout-card .ws-card-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 9px; font-weight: 600;
+      color: #6b7280; line-height: 1; text-align: center;
+    }
+    .ws-layout-card.active .ws-card-label { color: #111; }
+    .dark .ws-layout-card .ws-card-label { color: #6b7280; }
+    .dark .ws-layout-card.active .ws-card-label { color: #f5f5f5; }
+
+    /* Toggle */
+    .ws-toggle-group {
+      display: flex; border-radius: 6px; overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.1); background: #f3f4f6;
+    }
+    .dark .ws-toggle-group { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); }
+    .ws-toggle-btn {
+      padding: 3px 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10.5px; font-weight: 600;
+      cursor: pointer; border: none; background: transparent;
+      color: #9ca3af; transition: all 0.13s;
+    }
+    .ws-toggle-btn.active { background: #111; color: #fff; border-radius: 4px; }
+    .dark .ws-toggle-btn.active { background: #fff; color: #111; }
+
+    /* Preview */
+    #wsLayoutPreview {
+      border-radius: 7px;
+      border: 1px dashed rgba(0,0,0,0.15);
+      min-height: 68px;
+      display: flex; align-items: center; justify-content: center;
+      color: #9ca3af; font-size: 11.5px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 500;
+      background: #f9fafb;
+      margin-bottom: 14px;
+      text-align: center;
+      padding: 12px;
+    }
+    .dark #wsLayoutPreview {
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(255,255,255,0.08);
+      color: #4b5563;
+    }
+
+    /* Footer */
+    .ws-modal-footer {
+      flex-shrink: 0;
+      padding: 11px 14px;
+      border-top: 1px solid rgba(0,0,0,0.07);
+      display: flex; align-items: center; gap: 10px;
+      background: #fff;
+    }
+    .dark .ws-modal-footer {
+      border-color: rgba(255,255,255,0.07);
+      background: #0a0a0a;
+    }
+    #wsDrawerInsert {
+      flex: 1;
+      padding: 9px 18px;
+      border-radius: 6px;
+      border: none;
+      background: #111;
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12.5px; font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.13s, transform 0.12s;
+    }
+    .dark #wsDrawerInsert { background: #fff; color: #111; }
+    #wsDrawerInsert:hover:not(:disabled) { opacity: 0.85; transform: translateY(-1px); }
+    #wsDrawerInsert:disabled {
+      background: #e5e7eb; color: #9ca3af;
+      cursor: not-allowed; transform: none; opacity: 1;
+    }
+    .dark #wsDrawerInsert:disabled { background: rgba(255,255,255,0.07); color: #4b5563; }
+    .ws-footer-hint {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px; color: #9ca3af; white-space: nowrap;
+    }
+    .dark .ws-footer-hint { color: #4b5563; }
+  </style>
+  <title>Workspace - Aether</title>
+</head>
+<body class="ws-page-grid dark:bg-neutral-950 dark:text-neutral-50 font-nunito antialiased text-neutral-900">
+
+  <div class="ws-scroll-outer">
+
+    <!-- ===== TOP NAV ===== -->
+    <header class="relative z-20 shrink-0 px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between animate-fade-in-up border-b border-neutral-200/60 dark:border-neutral-800 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-sm">
+      <a href="index.html" class="text-base font-semibold tracking-tighter dark:text-white uppercase font-bricolage text-black">Aether</a>
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+        <a href="index.html#tools" class="dark:hover:text-white transition-colors hover:text-black">Tools</a>
+        <a href="workspace.html" class="dark:hover:text-white transition-colors hover:text-black border-b-2 border-black dark:border-white pb-0.5">Workspace</a>
+        <a href="learn.html" class="dark:hover:text-white transition-colors hover:text-black">Learn</a>
+        <a href="resources.html" class="dark:hover:text-white transition-colors hover:text-black">Resources</a>
+      </nav>
+    </header>
+
+    <!-- ===== MAIN THREE-COLUMN WORKSPACE ===== -->
+    <div class="ws-body animate-fade-in-up delay-100" style="height: calc(100vh - 57px); flex: none;">
+
+      <!-- Mobile overlay -->
+      <div id="wsMobileOverlay" class="ws-mobile-overlay" onclick="document.getElementById('wsSidebar').classList.remove('ws-sidebar-open');document.getElementById('wsRightSidebar').classList.remove('ws-sidebar-open');this.style.display='none'"></div>
+
+      <!-- LEFT SIDEBAR -->
+      <aside
+        id="wsSidebar"
+        class="w-[260px] shrink-0 flex flex-col bg-white/80 dark:bg-neutral-950/60 backdrop-blur-sm border-r border-neutral-200/80 dark:border-neutral-800 overflow-hidden"
+      >
+        <!-- New Chat button -->
+        <div class="shrink-0 p-3 border-b border-neutral-200/70 dark:border-neutral-800">
+          <button
+            type="button"
+            id="wsNewChatBtn"
+            class="w-full inline-flex items-center justify-center gap-2 rounded-full border border-neutral-200/90 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-neutral-800 dark:text-neutral-100 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors shadow-sm"
+          >
+            <span class="material-symbols-outlined text-[18px] text-indigo-500" aria-hidden="true">add</span>
+            New Chat
+          </button>
+        </div>
+
+        <!-- Conversation list -->
+        <div id="wsConvList" class="overflow-y-auto py-2 px-2 space-y-0.5 border-b border-neutral-200/60 dark:border-neutral-800" style="max-height:200px" aria-label="Conversation history">
+          <div class="ws-conv-item active flex items-start gap-2 px-2.5 py-2 rounded-lg cursor-pointer">
+            <span class="material-symbols-outlined text-[15px] text-indigo-500 shrink-0 mt-0.5">chat</span>
+            <div class="min-w-0">
+              <p class="text-xs font-semibold text-neutral-800 dark:text-neutral-100 truncate">Midjourney poster workflow</p>
+              <p class="text-[10px] text-neutral-400 truncate">How do I create a cinematic…</p>
+            </div>
+          </div>
+          <div class="ws-conv-item flex items-start gap-2 px-2.5 py-2 rounded-lg cursor-pointer">
+            <span class="material-symbols-outlined text-[15px] text-neutral-400 shrink-0 mt-0.5">chat</span>
+            <div class="min-w-0">
+              <p class="text-xs font-medium text-neutral-700 dark:text-neutral-300 truncate">React landing page ideas</p>
+              <p class="text-[10px] text-neutral-400 truncate">Split this into smaller hooks…</p>
+            </div>
+          </div>
+          <div class="ws-conv-item flex items-start gap-2 px-2.5 py-2 rounded-lg cursor-pointer">
+            <span class="material-symbols-outlined text-[15px] text-neutral-400 shrink-0 mt-0.5">chat</span>
+            <div class="min-w-0">
+              <p class="text-xs font-medium text-neutral-700 dark:text-neutral-300 truncate">Video script for product launch</p>
+              <p class="text-[10px] text-neutral-400 truncate">Write a 60-second script…</p>
+            </div>
+          </div>
+          <div class="ws-conv-item flex items-start gap-2 px-2.5 py-2 rounded-lg cursor-pointer">
+            <span class="material-symbols-outlined text-[15px] text-neutral-400 shrink-0 mt-0.5">chat</span>
+            <div class="min-w-0">
+              <p class="text-xs font-medium text-neutral-700 dark:text-neutral-300 truncate">Brand voice guidelines</p>
+              <p class="text-[10px] text-neutral-400 truncate">Top 10 AI tools for designers…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Templates -->
+        <div class="shrink-0 px-3 pt-3 pb-2 border-b border-neutral-200/60 dark:border-neutral-800">
+          <p class="text-[9.5px] font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-600 mb-2">Quick Templates</p>
+          <div class="flex flex-col gap-1.5">
+            <button type="button" class="ws-tpl-btn" onclick="document.getElementById('wsInput').value='Generate a detailed image prompt for: ';document.getElementById('wsInput').focus()">
+              <span>🎨</span><span>Image Prompt</span>
+            </button>
+            <button type="button" class="ws-tpl-btn" onclick="document.getElementById('wsInput').value='Write a short video script for: ';document.getElementById('wsInput').focus()">
+              <span>🎬</span><span>Video Script</span>
+            </button>
+            <button type="button" class="ws-tpl-btn" onclick="document.getElementById('wsInput').value='Suggest the best AI tools for: ';document.getElementById('wsInput').focus()">
+              <span>🛠️</span><span>Tool Finder</span>
+            </button>
+            <button type="button" class="ws-tpl-btn" onclick="document.getElementById('wsInput').value='Create a step-by-step workflow for: ';document.getElementById('wsInput').focus()">
+              <span>⚡</span><span>Workflow Builder</span>
+            </button>
+            <button type="button" class="ws-tpl-btn" onclick="document.getElementById('wsInput').value='Write a blog post outline about: ';document.getElementById('wsInput').focus()">
+              <span>✍️</span><span>Blog Outline</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Favorite Tools -->
+        <div class="flex-1 overflow-y-auto px-3 pt-3 pb-4">
+          <p class="text-[9.5px] font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-600 mb-2">Favorite Tools</p>
+          <div class="flex flex-col gap-0.5">
+            <a href="tool.html?id=midjourney" class="ws-fav-item group flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer transition-colors hover:bg-neutral-100/70 dark:hover:bg-white/5">
+              <span class="w-6 h-6 rounded-md bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center text-xs shrink-0">🖼️</span>
+              <span class="text-xs font-medium text-neutral-700 dark:text-neutral-300 truncate flex-1">Midjourney</span>
+              <span class="text-[10px] bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 px-1.5 py-0.5 rounded-full shrink-0">Image</span>
+            </a>
+            <a href="tool.html?id=chatgpt" class="ws-fav-item group flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer transition-colors hover:bg-neutral-100/70 dark:hover:bg-white/5">
+              <span class="w-6 h-6 rounded-md bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center text-xs shrink-0">💬</span>
+              <span class="text-xs font-medium text-neutral-700 dark:text-neutral-300 truncate flex-1">ChatGPT</span>
+              <span class="text-[10px] bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 px-1.5 py-0.5 rounded-full shrink-0">Chat</span>
+            </a>
+            <a href="tool.html?id=runway" class="ws-fav-item group flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer transition-colors hover:bg-neutral-100/70 dark:hover:bg-white/5">
+              <span class="w-6 h-6 rounded-md bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-xs shrink-0">🎥</span>
+              <span class="text-xs font-medium text-neutral-700 dark:text-neutral-300 truncate flex-1">Runway</span>
+              <span class="text-[10px] bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 px-1.5 py-0.5 rounded-full shrink-0">Video</span>
+            </a>
+            <a href="tool.html?id=elevenlabs" class="ws-fav-item group flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer transition-colors hover:bg-neutral-100/70 dark:hover:bg-white/5">
+              <span class="w-6 h-6 rounded-md bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-xs shrink-0">🎙️</span>
+              <span class="text-xs font-medium text-neutral-700 dark:text-neutral-300 truncate flex-1">ElevenLabs</span>
+              <span class="text-[10px] bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 px-1.5 py-0.5 rounded-full shrink-0">Voice</span>
+            </a>
+            <a href="tool.html?id=cursor" class="ws-fav-item group flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer transition-colors hover:bg-neutral-100/70 dark:hover:bg-white/5">
+              <span class="w-6 h-6 rounded-md bg-sky-100 dark:bg-sky-900/40 flex items-center justify-center text-xs shrink-0">💻</span>
+              <span class="text-xs font-medium text-neutral-700 dark:text-neutral-300 truncate flex-1">Cursor</span>
+              <span class="text-[10px] bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 px-1.5 py-0.5 rounded-full shrink-0">Code</span>
+            </a>
+            <a href="tool.html?id=suno" class="ws-fav-item group flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer transition-colors hover:bg-neutral-100/70 dark:hover:bg-white/5">
+              <span class="w-6 h-6 rounded-md bg-rose-100 dark:bg-rose-900/40 flex items-center justify-center text-xs shrink-0">🎵</span>
+              <span class="text-xs font-medium text-neutral-700 dark:text-neutral-300 truncate flex-1">Suno</span>
+              <span class="text-[10px] bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 px-1.5 py-0.5 rounded-full shrink-0">Music</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RIGHT MAIN PANEL -->
+      <div class="flex-1 flex flex-col min-w-0 overflow-hidden animate-fade-in-up delay-200">
+
+        <!-- Header bar -->
+        <div class="shrink-0 flex items-center gap-3 px-4 sm:px-5 py-3 border-b border-neutral-200/70 dark:border-neutral-800 bg-white/60 dark:bg-neutral-950/50 backdrop-blur-sm">
+          <!-- Mobile sidebar toggles -->
+          <button type="button" class="lg:hidden h-8 w-8 rounded-lg border border-neutral-200/90 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors shrink-0" onclick="document.getElementById('wsSidebar').classList.toggle('ws-sidebar-open');document.getElementById('wsMobileOverlay').style.display='block'" aria-label="Toggle left sidebar">
+            <span class="material-symbols-outlined text-[18px]">menu</span>
+          </button>
+          <!-- Conversation title -->
+          <span class="text-sm font-semibold text-neutral-800 dark:text-neutral-100 truncate flex-1 min-w-0" id="wsConvTitle">New Chat</span>
+
+          <!-- Tech stack selector -->
+          <div class="ws-select-wrap relative inline-flex items-center gap-1.5 rounded-full border border-neutral-200/90 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-1.5 shrink-0">
+            <span class="material-symbols-outlined text-[16px] text-neutral-500 shrink-0" aria-hidden="true">description</span>
+            <select
+              id="wsTechStack"
+              class="bg-transparent text-xs font-medium text-neutral-800 dark:text-neutral-200 border-0 focus:ring-0 py-0.5 pr-5 max-w-[8rem] sm:max-w-[10rem]"
+              aria-label="Tech stack"
+            >
+              <option>HTML + Vanilla JS</option>
+              <option>React + Vite (Beta)</option>
+              <option>Next.js</option>
+              <option>Copy / No Code</option>
+            </select>
+            <span class="material-symbols-outlined text-[16px] text-neutral-400 pointer-events-none absolute right-2 top-1/2 -translate-y-1/2" aria-hidden="true">expand_more</span>
+          </div>
+
+          <!-- Model selector -->
+          <div class="ws-select-wrap relative inline-flex items-center gap-1.5 rounded-full border border-neutral-200/90 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-1.5 shrink-0">
+            <span class="material-symbols-outlined text-[16px] text-violet-500 shrink-0" aria-hidden="true">stars</span>
+            <select
+              id="wsModelPick"
+              class="bg-transparent text-xs font-medium text-neutral-800 dark:text-neutral-200 border-0 focus:ring-0 py-0.5 pr-5 max-w-[9rem] sm:max-w-[11rem]"
+              aria-label="Model"
+            >
+              <option value="__default__">Use saved model</option>
+              <option value="gpt-4o-mini">gpt-4o-mini</option>
+              <option value="gpt-4o">gpt-4o</option>
+              <option value="MiniMax-M2.7">MiniMax-M2.7</option>
+            </select>
+            <span class="material-symbols-outlined text-[16px] text-neutral-400 pointer-events-none absolute right-2 top-1/2 -translate-y-1/2" aria-hidden="true">expand_more</span>
+          </div>
+
+          <!-- Right sidebar toggle (mobile) -->
+          <button type="button" class="lg:hidden h-8 w-8 rounded-lg border border-neutral-200/90 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors shrink-0" onclick="document.getElementById('wsRightSidebar').classList.toggle('ws-sidebar-open');document.getElementById('wsMobileOverlay').style.display='block'" aria-label="Toggle right sidebar">
+            <span class="material-symbols-outlined text-[18px]">info</span>
+          </button>
+        </div>
+
+        <!-- Messages area -->
+        <div
+          id="wsMessages"
+          class="flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 space-y-3 text-sm bg-neutral-50/40 dark:bg-neutral-900/25"
+        >
+          <!-- Welcome panel (shown when no conversation) -->
+          <div id="wsEmptyState" class="h-full flex flex-col items-center justify-center px-4 py-6">
+            <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 dark:bg-indigo-400/10 flex items-center justify-center mb-4">
+              <span class="material-symbols-outlined text-2xl text-indigo-500 dark:text-indigo-400">auto_awesome</span>
+            </div>
+            <p class="text-base font-semibold text-neutral-800 dark:text-neutral-100 mb-1">Welcome to Workspace</p>
+            <p class="text-xs text-neutral-500 dark:text-neutral-500 text-center max-w-xs mb-6 leading-relaxed">
+              Describe your creative goal, paste a screenshot, or pick a quick action below.
+            </p>
+            <!-- 4 quick action cards -->
+            <div class="grid grid-cols-2 gap-3 w-full max-w-md">
+              <button type="button" class="ws-welcome-card text-left" onclick="document.getElementById('wsInput').value='Generate a Midjourney prompt for a cinematic sci-fi poster with neon lighting';document.getElementById('wsInput').focus()">
+                <span class="text-xl mb-1 block">🎨</span>
+                <p class="text-xs font-semibold text-neutral-800 dark:text-neutral-100">Image Prompt</p>
+                <p class="text-[10px] text-neutral-500 mt-0.5 leading-snug">Generate a Midjourney or DALL·E prompt</p>
+              </button>
+              <button type="button" class="ws-welcome-card text-left" onclick="document.getElementById('wsInput').value='Suggest the best AI tools for creating a short product demo video';document.getElementById('wsInput').focus()">
+                <span class="text-xl mb-1 block">🛠️</span>
+                <p class="text-xs font-semibold text-neutral-800 dark:text-neutral-100">Find AI Tools</p>
+                <p class="text-[10px] text-neutral-500 mt-0.5 leading-snug">Get tool recommendations for your goal</p>
+              </button>
+              <button type="button" class="ws-welcome-card text-left" onclick="document.getElementById('wsInput').value='Write a 60-second video script for a SaaS product launch targeting developers';document.getElementById('wsInput').focus()">
+                <span class="text-xl mb-1 block">🎬</span>
+                <p class="text-xs font-semibold text-neutral-800 dark:text-neutral-100">Video Script</p>
+                <p class="text-[10px] text-neutral-500 mt-0.5 leading-snug">Write a short-form video script</p>
+              </button>
+              <button type="button" class="ws-welcome-card text-left" onclick="document.getElementById('wsInput').value='Create a step-by-step AI workflow for automating social media content creation';document.getElementById('wsInput').focus()">
+                <span class="text-xl mb-1 block">⚡</span>
+                <p class="text-xs font-semibold text-neutral-800 dark:text-neutral-100">Build Workflow</p>
+                <p class="text-[10px] text-neutral-500 mt-0.5 leading-snug">Design an AI-powered workflow</p>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Capsule quick-action bar -->
+        <div class="shrink-0 flex flex-wrap gap-2 px-4 pt-2.5 pb-1 bg-white dark:bg-neutral-950 border-t border-neutral-200/60 dark:border-neutral-800">
+          <button type="button" class="ws-capsule-btn" onclick="document.getElementById('wsInput').value='Summarize this in 3 bullet points: ';document.getElementById('wsInput').focus()">
+            <span class="material-symbols-outlined text-[13px]">format_list_bulleted</span>Summarize
+          </button>
+          <button type="button" class="ws-capsule-btn" onclick="document.getElementById('wsInput').value='Improve and rewrite this: ';document.getElementById('wsInput').focus()">
+            <span class="material-symbols-outlined text-[13px]">edit</span>Rewrite
+          </button>
+          <button type="button" class="ws-capsule-btn" onclick="document.getElementById('wsInput').value='Translate to Chinese: ';document.getElementById('wsInput').focus()">
+            <span class="material-symbols-outlined text-[13px]">translate</span>Translate
+          </button>
+          <button type="button" class="ws-capsule-btn" onclick="document.getElementById('wsInput').value='Explain this simply: ';document.getElementById('wsInput').focus()">
+            <span class="material-symbols-outlined text-[13px]">lightbulb</span>Explain
+          </button>
+          <button type="button" class="ws-capsule-btn" onclick="document.getElementById('wsInput').value='Generate 5 creative ideas for: ';document.getElementById('wsInput').focus()">
+            <span class="material-symbols-outlined text-[13px]">auto_awesome</span>Brainstorm
+          </button>
+        </div>
+
+        <!-- Composer -->
+        <div id="wsComposer" class="shrink-0 border-t border-neutral-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-4 sm:p-5 transition-[min-height] duration-200">
+          <label for="wsInput" class="sr-only">Type your message</label>
+          <textarea
+            id="wsInput"
+            rows="3"
+            class="w-full resize-y min-h-[88px] max-h-[min(38vh,280px)] rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/60 px-4 py-3.5 text-sm text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/25 focus:border-indigo-300/50 dark:focus:border-indigo-500/40"
+            placeholder="Paste a screenshot or describe what you want to create…"
+            enterkeyhint="send"
+          ></textarea>
+          <div id="wsAttachmentChips" class="flex flex-wrap gap-1.5 mt-2 empty:hidden"></div>
+
+          <!-- Bottom toolbar -->
+          <div class="mt-3 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+            <!-- Left: prompt builder + mention -->
+            <div class="flex flex-wrap items-center gap-2">
+              <!-- Prompt builder (opens drawer) -->
+              <button
+                type="button"
+                id="wsPromptBuilderBtn"
+                class="inline-flex items-center gap-1.5 rounded-full border border-neutral-200/90 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-xs font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+              >
+                <span class="material-symbols-outlined text-[18px] text-amber-600 dark:text-amber-400" aria-hidden="true">auto_fix_high</span>
+                Prompt Templates
+              </button>
+              <!-- wsPromptMenu kept as empty hidden div so workspace-chat.js doesn't break -->
+              <div id="wsPromptMenu" class="hidden" aria-hidden="true"></div>
+
+              <!-- Mention / scene tag -->
+              <div class="relative">
+                <button
+                  type="button"
+                  id="wsMentionBtn"
+                  class="h-9 w-9 rounded-full border border-neutral-200/90 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 flex items-center justify-center transition-colors"
+                  aria-label="Insert scene tag"
+                  title="Insert scene tag"
+                >
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">alternate_email</span>
+                </button>
+                <div
+                  id="wsMentionMenu"
+                  class="hidden absolute z-30 bottom-[calc(100%+10px)] left-0 w-52 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 shadow-xl py-1.5"
+                  role="menu"
+                >
+                  <button type="button" role="menuitem" data-ws-mention="[Scene: Image / Poster]" class="w-full text-left px-3 py-2 text-xs hover:bg-neutral-100 dark:hover:bg-neutral-900">Image / Poster</button>
+                  <button type="button" role="menuitem" data-ws-mention="[Scene: Video / Motion]" class="w-full text-left px-3 py-2 text-xs hover:bg-neutral-100 dark:hover:bg-neutral-900">Video / Motion</button>
+                  <button type="button" role="menuitem" data-ws-mention="[Scene: Copywriting / Long-form]" class="w-full text-left px-3 py-2 text-xs hover:bg-neutral-100 dark:hover:bg-neutral-900">Copywriting / Long-form</button>
+                  <button type="button" role="menuitem" data-ws-mention="[Scene: Code / Prototype]" class="w-full text-left px-3 py-2 text-xs hover:bg-neutral-100 dark:hover:bg-neutral-900">Code / Prototype</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: action icons + send -->
+            <div class="flex items-center justify-end gap-1 sm:gap-1.5">
+              <input type="file" id="wsFileInput" class="hidden" multiple accept="image/*,text/plain,text/markdown,.md,.json,.csv,.txt" />
+
+              <button
+                type="button"
+                id="wsAttachBtn"
+                class="h-9 w-9 rounded-full border border-neutral-200/90 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 flex items-center justify-center transition-colors"
+                aria-label="Attach file"
+                title="Attach file"
+              >
+                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">attach_file</span>
+              </button>
+
+              <button
+                type="button"
+                id="wsLinkBtn"
+                class="h-9 w-9 rounded-full border border-neutral-200/90 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 flex items-center justify-center transition-colors"
+                aria-label="Add reference link"
+                title="Add reference link"
+              >
+                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">link</span>
+              </button>
+
+              <button
+                type="button"
+                id="wsLayoutBtn"
+                class="h-9 w-9 rounded-full border border-neutral-200/90 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 flex items-center justify-center transition-colors"
+                aria-label="Expand input area"
+                aria-pressed="false"
+                title="Expand input area"
+              >
+                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">aspect_ratio</span>
+              </button>
+
+              <button
+                type="button"
+                id="wsSend"
+                class="h-10 w-10 shrink-0 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-md hover:opacity-90 disabled:opacity-40 disabled:pointer-events-none flex items-center justify-center transition-opacity ml-0.5"
+                aria-label="Send"
+              >
+                <span class="material-symbols-outlined text-[20px]" aria-hidden="true">arrow_upward</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- /Composer -->
+
+      </div>
+      <!-- /Right panel -->
+
+      <!-- RIGHT SIDEBAR (280px) -->
+      <aside id="wsRightSidebar" class="w-[280px] shrink-0 flex flex-col bg-white/90 dark:bg-neutral-950/70 border-l border-neutral-200/80 dark:border-neutral-800 overflow-y-auto">
+
+        <!-- Tool Recommendations -->
+        <div class="px-4 pt-4 pb-3 border-b border-neutral-200/60 dark:border-neutral-800">
+          <p class="text-[9px] font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-600 mb-3">Recommended Tools</p>
+          <div id="wsRecommendedTools" class="flex flex-col gap-2">
+            <a href="tool.html?id=midjourney" class="flex items-center gap-3 p-2.5 rounded-xl border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900/50 hover:border-indigo-300/60 dark:hover:border-indigo-700/50 hover:shadow-sm transition-all group">
+              <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-base shrink-0">🖼️</span>
+              <div class="min-w-0 flex-1">
+                <p class="text-xs font-semibold text-neutral-800 dark:text-neutral-100">Midjourney</p>
+                <p class="text-[10px] text-neutral-500 truncate">Best for cinematic image gen</p>
+              </div>
+              <span class="material-symbols-outlined text-[13px] text-neutral-300 group-hover:text-indigo-500 transition-colors shrink-0">arrow_outward</span>
+            </a>
+            <a href="tool.html?id=runway" class="flex items-center gap-3 p-2.5 rounded-xl border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900/50 hover:border-purple-300/60 dark:hover:border-purple-700/50 hover:shadow-sm transition-all group">
+              <span class="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center text-base shrink-0">🎥</span>
+              <div class="min-w-0 flex-1">
+                <p class="text-xs font-semibold text-neutral-800 dark:text-neutral-100">Runway Gen-3</p>
+                <p class="text-[10px] text-neutral-500 truncate">AI video generation</p>
+              </div>
+              <span class="material-symbols-outlined text-[13px] text-neutral-300 group-hover:text-purple-500 transition-colors shrink-0">arrow_outward</span>
+            </a>
+            <a href="tool.html?id=elevenlabs" class="flex items-center gap-3 p-2.5 rounded-xl border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900/50 hover:border-amber-300/60 dark:hover:border-amber-700/50 hover:shadow-sm transition-all group">
+              <span class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center text-base shrink-0">🎙️</span>
+              <div class="min-w-0 flex-1">
+                <p class="text-xs font-semibold text-neutral-800 dark:text-neutral-100">ElevenLabs</p>
+                <p class="text-[10px] text-neutral-500 truncate">Realistic voice synthesis</p>
+              </div>
+              <span class="material-symbols-outlined text-[13px] text-neutral-300 group-hover:text-amber-500 transition-colors shrink-0">arrow_outward</span>
+            </a>
+            <a href="tool.html?id=cursor" class="flex items-center gap-3 p-2.5 rounded-xl border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900/50 hover:border-sky-300/60 dark:hover:border-sky-700/50 hover:shadow-sm transition-all group">
+              <span class="w-8 h-8 rounded-lg bg-sky-100 dark:bg-sky-900/50 flex items-center justify-center text-base shrink-0">💻</span>
+              <div class="min-w-0 flex-1">
+                <p class="text-xs font-semibold text-neutral-800 dark:text-neutral-100">Cursor</p>
+                <p class="text-[10px] text-neutral-500 truncate">AI-powered code editor</p>
+              </div>
+              <span class="material-symbols-outlined text-[13px] text-neutral-300 group-hover:text-sky-500 transition-colors shrink-0">arrow_outward</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tutorial Links -->
+        <div class="px-4 pt-3 pb-3 border-b border-neutral-200/60 dark:border-neutral-800">
+          <p class="text-[9px] font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-600 mb-3">Tutorials</p>
+          <div id="wsRecommendedTutorials" class="flex flex-col gap-1.5">
+            <a href="learn.html" class="flex items-start gap-2.5 p-2.5 rounded-xl border border-neutral-100 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/30 hover:bg-white dark:hover:bg-neutral-900/60 hover:border-neutral-200 dark:hover:border-neutral-700 transition-all group">
+              <span class="w-6 h-6 rounded-md bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-xs shrink-0 mt-0.5">📖</span>
+              <div class="min-w-0">
+                <p class="text-xs font-medium text-neutral-700 dark:text-neutral-300 leading-snug">Midjourney Beginner Guide</p>
+                <p class="text-[10px] text-neutral-400 mt-0.5">5 min read · Image</p>
+              </div>
+            </a>
+            <a href="learn.html" class="flex items-start gap-2.5 p-2.5 rounded-xl border border-neutral-100 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/30 hover:bg-white dark:hover:bg-neutral-900/60 hover:border-neutral-200 dark:hover:border-neutral-700 transition-all group">
+              <span class="w-6 h-6 rounded-md bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center text-xs shrink-0 mt-0.5">🎬</span>
+              <div class="min-w-0">
+                <p class="text-xs font-medium text-neutral-700 dark:text-neutral-300 leading-snug">AI Video Workflow 101</p>
+                <p class="text-[10px] text-neutral-400 mt-0.5">8 min read · Video</p>
+              </div>
+            </a>
+            <a href="learn.html" class="flex items-start gap-2.5 p-2.5 rounded-xl border border-neutral-100 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/30 hover:bg-white dark:hover:bg-neutral-900/60 hover:border-neutral-200 dark:hover:border-neutral-700 transition-all group">
+              <span class="w-6 h-6 rounded-md bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-xs shrink-0 mt-0.5">⚡</span>
+              <div class="min-w-0">
+                <p class="text-xs font-medium text-neutral-700 dark:text-neutral-300 leading-snug">Prompt Engineering Tips</p>
+                <p class="text-[10px] text-neutral-400 mt-0.5">6 min read · Prompting</p>
+              </div>
+            </a>
+            <a href="learn.html" class="flex items-start gap-2.5 p-2.5 rounded-xl border border-neutral-100 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/30 hover:bg-white dark:hover:bg-neutral-900/60 hover:border-neutral-200 dark:hover:border-neutral-700 transition-all group">
+              <span class="w-6 h-6 rounded-md bg-rose-100 dark:bg-rose-900/50 flex items-center justify-center text-xs shrink-0 mt-0.5">🎵</span>
+              <div class="min-w-0">
+                <p class="text-xs font-medium text-neutral-700 dark:text-neutral-300 leading-snug">Make Music with Suno AI</p>
+                <p class="text-[10px] text-neutral-400 mt-0.5">4 min read · Music</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quality Assessment Widget -->
+        <div class="px-4 pt-3 pb-4">
+          <p class="text-[9px] font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-600 mb-3">Prompt Quality</p>
+          <div class="rounded-xl border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900/40 p-3">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold text-neutral-700 dark:text-neutral-300">Overall Score</span>
+              <span id="wsQualityScore" class="text-sm font-bold text-indigo-600 dark:text-indigo-400">—</span>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-[10px] text-neutral-500">Clarity</span>
+                  <span class="text-[10px] font-medium text-neutral-600 dark:text-neutral-400" id="wsQClarity">—</span>
+                </div>
+                <div class="ws-quality-bar-track"><div class="ws-quality-bar-fill bg-indigo-500" id="wsQClarityBar" style="width:0%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-[10px] text-neutral-500">Specificity</span>
+                  <span class="text-[10px] font-medium text-neutral-600 dark:text-neutral-400" id="wsQSpec">—</span>
+                </div>
+                <div class="ws-quality-bar-track"><div class="ws-quality-bar-fill bg-violet-500" id="wsQSpecBar" style="width:0%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-[10px] text-neutral-500">Context</span>
+                  <span class="text-[10px] font-medium text-neutral-600 dark:text-neutral-400" id="wsQCtx">—</span>
+                </div>
+                <div class="ws-quality-bar-track"><div class="ws-quality-bar-fill bg-sky-500" id="wsQCtxBar" style="width:0%"></div></div>
+              </div>
+            </div>
+            <p class="text-[10px] text-neutral-400 dark:text-neutral-600 mt-3 leading-snug" id="wsQualityHint">Type a message to see quality analysis.</p>
+          </div>
+        </div>
+
+        <!-- Quick Quality Check -->
+        <div class="px-4 pt-3 pb-4 border-t border-neutral-200/60 dark:border-neutral-800">
+          <!-- Collapsible header -->
+          <button type="button" id="wsQQCToggle"
+            class="w-full flex items-center justify-between group"
+            aria-expanded="false" aria-controls="wsQQCBody">
+            <p class="text-[9px] font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-600 dark:group-hover:text-neutral-400 transition-colors">
+              Quick Quality Check
+            </p>
+            <span id="wsQQCChevron"
+              class="material-symbols-outlined text-[15px] text-neutral-300 dark:text-neutral-600 group-hover:text-neutral-500 transition-all">
+              expand_more
+            </span>
+          </button>
+
+          <!-- Collapsible body -->
+          <div id="wsQQCBody" class="hidden mt-3 flex flex-col gap-4">
+
+            <!-- ① Image Score -->
+            <div class="rounded-xl border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900/40 p-3">
+              <p class="text-[10px] font-semibold text-neutral-600 dark:text-neutral-300 mb-2 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[13px] text-indigo-400">image_search</span>
+                Image Score
+              </p>
+              <div class="flex gap-2">
+                <input id="wsQQCImageUrl" type="url" placeholder="Paste image URL…"
+                  class="flex-1 min-w-0 text-[11px] rounded-lg border border-neutral-200 dark:border-neutral-700
+                         bg-neutral-50 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200
+                         placeholder-neutral-400 px-2.5 py-1.5 outline-none
+                         focus:border-indigo-400 dark:focus:border-indigo-600 transition-colors" />
+                <button type="button" id="wsQQCScoreBtn"
+                  class="shrink-0 px-2.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 active:scale-95
+                         text-white text-[11px] font-semibold transition-all disabled:opacity-50">
+                  Score
+                </button>
+              </div>
+              <!-- Result -->
+              <div id="wsQQCImageResult" class="hidden mt-2.5 rounded-lg bg-neutral-50 dark:bg-neutral-800/60
+                   border border-neutral-100 dark:border-neutral-700 px-3 py-2">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-[10px] text-neutral-500">CLIP Score</span>
+                  <span id="wsQQCImageScore" class="text-sm font-bold text-indigo-600 dark:text-indigo-400">—</span>
+                </div>
+                <p id="wsQQCImageNote" class="text-[10px] text-neutral-400 leading-snug"></p>
+              </div>
+            </div>
+
+            <!-- ② Prompt Analyzer -->
+            <div class="rounded-xl border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900/40 p-3">
+              <p class="text-[10px] font-semibold text-neutral-600 dark:text-neutral-300 mb-2 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[13px] text-violet-400">auto_fix_high</span>
+                Prompt Analyzer
+              </p>
+              <textarea id="wsQQCPromptInput" rows="3" placeholder="Paste your prompt here…"
+                class="w-full text-[11px] rounded-lg border border-neutral-200 dark:border-neutral-700
+                       bg-neutral-50 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200
+                       placeholder-neutral-400 px-2.5 py-1.5 outline-none resize-none
+                       focus:border-violet-400 dark:focus:border-violet-600 transition-colors"></textarea>
+              <button type="button" id="wsQQCAnalyzeBtn"
+                class="mt-2 w-full py-1.5 rounded-lg bg-violet-600 hover:bg-violet-700 active:scale-95
+                       text-white text-[11px] font-semibold transition-all disabled:opacity-50">
+                Analyze Prompt
+              </button>
+              <!-- Result -->
+              <div id="wsQQCPromptResult" class="hidden mt-2.5 rounded-lg bg-neutral-50 dark:bg-neutral-800/60
+                   border border-neutral-100 dark:border-neutral-700 px-3 py-2">
+                <p class="text-[9px] font-bold uppercase tracking-widest text-neutral-400 mb-1.5">Suggestions</p>
+                <p id="wsQQCPromptNote" class="text-[11px] text-neutral-600 dark:text-neutral-300 leading-relaxed"></p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </aside>
+      <!-- /Right sidebar -->
+
+    </div>
+    <!-- /Three-column workspace -->
+
+    <!-- ===== TOOL RECOMMENDATION (below main chat) ===== -->
+    <main class="relative z-10 pb-20 shrink-0">
+      <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-20 mt-4 border-t border-neutral-200/70 dark:border-neutral-800 animate-fade-in-up delay-300">
+        <div class="text-center mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold font-bricolage text-neutral-900 dark:text-white">Tool Recommendations</h2>
+          <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400 max-w-lg mx-auto">
+            Generate targeted tool combinations based on your creative goal. Use alongside the chat above.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/50 backdrop-blur-sm p-6 sm:p-8 shadow-sm">
+          <form id="recommendForm" class="grid gap-6 sm:grid-cols-2">
+            <label class="grid gap-2">
+              <span class="text-sm font-medium text-neutral-600 dark:text-neutral-400">Creative Goal</span>
+              <select id="recGoal" class="px-4 py-2.5 rounded-full text-sm border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-950 outline-none focus:ring-2 focus:ring-indigo-500/30">
+                <option value="poster_text">Poster / Key Visual (with text)</option>
+                <option value="image_art">Illustration / Concept Art</option>
+                <option value="video_short">Short Video / Motion</option>
+                <option value="writing_long">Long-form Writing / Report</option>
+                <option value="code_project">Code / Prototype / Agent</option>
+              </select>
+            </label>
+            <label class="grid gap-2">
+              <span class="text-sm font-medium text-neutral-600 dark:text-neutral-400">Experience Level</span>
+              <select id="recLevel" class="px-4 py-2.5 rounded-full text-sm border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-950 outline-none focus:ring-2 focus:ring-indigo-500/30">
+                <option value="beginner">Beginner</option>
+                <option value="advanced">Advanced</option>
+              </select>
+            </label>
+            <label class="grid gap-2 sm:col-span-2">
+              <span class="text-sm font-medium text-neutral-600 dark:text-neutral-400">Additional Notes (optional)</span>
+              <textarea id="recExtra" rows="3" class="px-4 py-3 rounded-2xl text-sm border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-950 outline-none focus:ring-2 focus:ring-indigo-500/30 resize-y" placeholder="e.g. English novel, needs API access, print bleed required…"></textarea>
+            </label>
+            <div class="sm:col-span-2 flex gap-4 justify-center pt-2">
+              <button type="submit" class="px-8 py-3 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 rounded-full text-sm font-semibold hover:opacity-90 transition inline-flex items-center gap-2">
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">recommend</span>
+                Get Recommendations
+              </button>
+            </div>
+          </form>
+          <div id="recommendResults" class="mt-8"></div>
+        </div>
+      </section>
+    </main>
+
+  </div>
+  <!-- /ws-scroll-outer -->
+
+  <script src="./tools.js"></script>
+  <script>
+    // ── Prompt Quality Widget ──────────────────────────────────────────────
+    (function () {
+      const input = document.getElementById('wsInput');
+      if (!input) return;
+      function score(text) {
+        const words = text.trim().split(/\s+/).filter(Boolean).length;
+        const hasContext = /for|about|with|using|in|to|that|which/i.test(text);
+        const hasDetail = words > 12;
+        const hasSpecific = /\b(style|tone|format|length|audience|goal|output|example|like|such as)\b/i.test(text);
+        const clarity = Math.min(100, Math.round((words / 20) * 100));
+        const specificity = hasSpecific ? Math.min(100, 60 + words * 2) : Math.min(60, words * 3);
+        const context = hasContext && hasDetail ? Math.min(100, 50 + words * 2) : Math.min(50, words * 2);
+        const overall = Math.round((clarity + specificity + context) / 3);
+        return { clarity, specificity, context, overall };
+      }
+      function fmt(n) { return n + '%'; }
+      function update() {
+        const text = input.value;
+        if (!text.trim()) {
+          document.getElementById('wsQualityScore').textContent = '—';
+          ['wsQClarity','wsQSpec','wsQCtx'].forEach(id => document.getElementById(id).textContent = '—');
+          ['wsQClarityBar','wsQSpecBar','wsQCtxBar'].forEach(id => document.getElementById(id).style.width = '0%');
+          document.getElementById('wsQualityTip') && (document.getElementById('wsQualityTip').textContent = 'Start typing to see your prompt quality score.');
+          document.getElementById('wsQualityHint') && (document.getElementById('wsQualityHint').textContent = 'Type a message to see quality analysis.');
+          return;
+        }
+        const s = score(text);
+        document.getElementById('wsQualityScore').textContent = s.overall + '/100';
+        document.getElementById('wsQClarity').textContent = fmt(s.clarity);
+        document.getElementById('wsQSpec').textContent = fmt(s.specificity);
+        document.getElementById('wsQCtx').textContent = fmt(s.context);
+        document.getElementById('wsQClarityBar').style.width = s.clarity + '%';
+        document.getElementById('wsQSpecBar').style.width = s.specificity + '%';
+        document.getElementById('wsQCtxBar').style.width = s.context + '%';
+        const tip = s.overall < 40 ? 'Add more detail and context.' : s.overall < 70 ? 'Good start — try adding specifics.' : 'Great prompt!';
+        document.getElementById('wsQualityTip') && (document.getElementById('wsQualityTip').textContent = tip);
+        document.getElementById('wsQualityHint') && (document.getElementById('wsQualityHint').textContent = tip);
+      }
+      input.addEventListener('input', update);
+    })();
+  </script>
+  <script src="./workspace-chat.js"></script>
+  <script src="./recommend.js"></script>
+
+  <!-- ===== Prompt Builder Modal ===== -->
+  <div id="wsPromptBackdrop"></div>
+  <div id="wsPromptDrawer" role="dialog" aria-modal="true" aria-label="Prompt Builder" class="ws-modal-font">
+
+    <!-- Header -->
+    <div class="ws-modal-header">
+      <div class="ws-modal-title">
+        <div class="ws-modal-title-icon">
+          <span class="material-symbols-outlined">auto_fix_high</span>
+        </div>
+        Prompt Builder
+      </div>
+      <div class="ws-modal-subtitle">Choose a template · Configure · Insert into chat</div>
+      <button id="wsDrawerClose" class="ws-modal-close" aria-label="Close">
+        <span class="material-symbols-outlined" style="font-size:15px;">close</span>
+      </button>
+    </div>
+
+    <!-- Two-column body -->
+    <div id="wsModalBody">
+
+      <!-- LEFT: Prompt list -->
+      <div id="wsPromptPanel">
+        <div style="padding:9px 10px 0;flex-shrink:0;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.09em;">Templates</span>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:9.5px;color:#9ca3af;">15 prompts</span>
+          </div>
+        </div>
+        <div id="wsPromptRows"></div>
+        <div class="ws-quick-chips">
+          <div class="ws-chip">
+            <span class="material-symbols-outlined" style="font-size:12px;">description</span>
+            From Course Template
+          </div>
+          <div class="ws-chip">
+            <span class="material-symbols-outlined" style="font-size:12px;">auto_awesome</span>
+            AI Autocomplete
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Config panel -->
+      <div id="wsConfigPanel">
+
+        <!-- Content Type -->
+        <div class="ws-drawer-section-label">
+          Content Type
+          <div class="ws-label-line"></div>
+          <div class="ws-toggle-group">
+            <button class="ws-toggle-btn active" data-layout-mode="web">Image</button>
+            <button class="ws-toggle-btn" data-layout-mode="mobile">Video</button>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-bottom:2px;" id="wsLayoutTypeGrid">
+          <div class="ws-layout-card" data-layout="image">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><rect x="3" y="3" width="30" height="16" rx="2" fill="#e5e7eb"/><circle cx="9" cy="10" r="2.5" fill="#9ca3af"/><path d="M3 19 l8-6 6 4 5-3 8 5" stroke="#9ca3af" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="3" y="21" width="20" height="2" rx="1" fill="#e5e7eb"/></svg>
+            <span class="ws-card-label">Image Gen</span>
+          </div>
+          <div class="ws-layout-card" data-layout="video">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><rect x="3" y="4" width="22" height="20" rx="2" fill="#e5e7eb"/><polygon points="25,7 32,14 25,21" fill="#9ca3af"/></svg>
+            <span class="ws-card-label">Video Gen</span>
+          </div>
+          <div class="ws-layout-card" data-layout="text">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><rect x="6" y="6" width="24" height="2.5" rx="1.2" fill="#6b7280"/><rect x="6" y="11" width="24" height="2" rx="1" fill="#d1d5db"/><rect x="6" y="16" width="18" height="2" rx="1" fill="#d1d5db"/><rect x="6" y="21" width="12" height="2" rx="1" fill="#d1d5db"/></svg>
+            <span class="ws-card-label">Writing</span>
+          </div>
+          <div class="ws-layout-card" data-layout="code">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#111827"/><rect x="4" y="5" width="16" height="2.5" rx="1" fill="#6b7280"/><rect x="4" y="10" width="22" height="2" rx="1" fill="#374151"/><rect x="4" y="14" width="16" height="2" rx="1" fill="#374151"/><rect x="4" y="18" width="20" height="2" rx="1" fill="#374151"/><rect x="4" y="22" width="12" height="2" rx="1" fill="#374151"/></svg>
+            <span class="ws-card-label">Code</span>
+          </div>
+          <div class="ws-layout-card" data-layout="workflow">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><circle cx="7" cy="14" r="3" fill="#9ca3af"/><circle cx="18" cy="7" r="3" fill="#9ca3af"/><circle cx="18" cy="21" r="3" fill="#9ca3af"/><circle cx="29" cy="14" r="3" fill="#9ca3af"/><line x1="10" y1="14" x2="14.5" y2="8.5" stroke="#d1d5db" stroke-width="1.2"/><line x1="10" y1="14" x2="14.5" y2="19.5" stroke="#d1d5db" stroke-width="1.2"/><line x1="21" y1="8.5" x2="25.5" y2="12.5" stroke="#d1d5db" stroke-width="1.2"/><line x1="21" y1="19.5" x2="25.5" y2="15.5" stroke="#d1d5db" stroke-width="1.2"/></svg>
+            <span class="ws-card-label">Workflow</span>
+          </div>
+          <div class="ws-layout-card" data-layout="course">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><rect x="3" y="3" width="30" height="7" rx="2" fill="#e5e7eb"/><rect x="3" y="12" width="14" height="5" rx="2" fill="#e5e7eb"/><rect x="3" y="19" width="14" height="6" rx="2" fill="#e5e7eb"/><rect x="19" y="12" width="14" height="13" rx="2" fill="#e5e7eb"/></svg>
+            <span class="ws-card-label">Course</span>
+          </div>
+        </div>
+
+        <!-- Output Format -->
+        <div class="ws-drawer-section-label">Output Format <div class="ws-label-line"></div></div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-bottom:2px;">
+          <div class="ws-layout-card" data-layout-cfg="card">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><rect x="4" y="4" width="28" height="20" rx="3" fill="#e5e7eb"/><rect x="7" y="8" width="22" height="2.5" rx="1.2" fill="#9ca3af"/><rect x="7" y="13" width="16" height="2" rx="1" fill="#d1d5db"/></svg>
+            <span class="ws-card-label">Card</span>
+          </div>
+          <div class="ws-layout-card" data-layout-cfg="list">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><rect x="4" y="5" width="28" height="4" rx="1.5" fill="#e5e7eb"/><rect x="4" y="11" width="28" height="4" rx="1.5" fill="#e5e7eb"/><rect x="4" y="17" width="28" height="4" rx="1.5" fill="#e5e7eb"/></svg>
+            <span class="ws-card-label">List</span>
+          </div>
+          <div class="ws-layout-card" data-layout-cfg="2-2">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><rect x="3" y="4" width="13" height="9" rx="2" fill="#e5e7eb"/><rect x="20" y="4" width="13" height="9" rx="2" fill="#e5e7eb"/><rect x="3" y="15" width="13" height="9" rx="2" fill="#e5e7eb"/><rect x="20" y="15" width="13" height="9" rx="2" fill="#e5e7eb"/></svg>
+            <span class="ws-card-label">Grid</span>
+          </div>
+          <div class="ws-layout-card" data-layout-cfg="table">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><rect x="3" y="4" width="30" height="5" rx="1.5" fill="#6b7280"/><rect x="3" y="11" width="30" height="4" rx="1" fill="#e5e7eb"/><rect x="3" y="17" width="30" height="4" rx="1" fill="#e5e7eb"/><rect x="3" y="23" width="30" height="2" rx="1" fill="#e5e7eb"/></svg>
+            <span class="ws-card-label">Table</span>
+          </div>
+          <div class="ws-layout-card" data-layout-cfg="sidebar-l">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><rect x="3" y="3" width="9" height="22" rx="2" fill="#e5e7eb"/><rect x="14" y="3" width="19" height="5" rx="2" fill="#e5e7eb"/><rect x="14" y="10" width="19" height="3" rx="1" fill="#e5e7eb"/><rect x="14" y="15" width="14" height="3" rx="1" fill="#e5e7eb"/></svg>
+            <span class="ws-card-label">Steps</span>
+          </div>
+          <div class="ws-layout-card" data-layout-cfg="sidebar-r">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><rect x="3" y="5" width="30" height="4" rx="2" fill="#6b7280"/><rect x="3" y="11" width="9" height="4" rx="2" fill="#e5e7eb"/><rect x="14" y="11" width="9" height="4" rx="2" fill="#e5e7eb"/><rect x="25" y="11" width="8" height="4" rx="2" fill="#e5e7eb"/><rect x="3" y="18" width="30" height="6" rx="2" fill="#e5e7eb"/></svg>
+            <span class="ws-card-label">Q&amp;A</span>
+          </div>
+        </div>
+
+        <!-- Audience -->
+        <div class="ws-drawer-section-label">Audience <div class="ws-label-line"></div></div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:2px;">
+          <div class="ws-layout-card" data-framing="zero">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><circle cx="10" cy="14" r="4.5" fill="#e5e7eb"/><rect x="16" y="9" width="16" height="2.5" rx="1.2" fill="#9ca3af"/><rect x="16" y="14" width="12" height="2" rx="1" fill="#d1d5db"/><rect x="16" y="19" width="10" height="2" rx="1" fill="#d1d5db"/></svg>
+            <span class="ws-card-label">Beginner</span>
+          </div>
+          <div class="ws-layout-card active" data-framing="beginner">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><rect x="3" y="5" width="30" height="8" rx="2" fill="#e5e7eb"/><rect x="3" y="16" width="22" height="3" rx="1.5" fill="#d1d5db"/><rect x="3" y="21" width="30" height="3" rx="1.5" fill="#d1d5db"/></svg>
+            <span class="ws-card-label">Basic</span>
+          </div>
+          <div class="ws-layout-card" data-framing="mid">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><rect x="3" y="5" width="30" height="7" rx="2" fill="#6b7280"/><rect x="3" y="14" width="30" height="3" rx="1" fill="#e5e7eb"/><rect x="3" y="19" width="22" height="3" rx="1" fill="#e5e7eb"/><rect x="3" y="24" width="30" height="1.5" rx="1" fill="#e5e7eb"/></svg>
+            <span class="ws-card-label">Intermediate</span>
+          </div>
+          <div class="ws-layout-card" data-framing="adv">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#111827"/><rect x="3" y="5" width="18" height="2.5" rx="1" fill="#6b7280"/><rect x="3" y="10" width="30" height="2" rx="1" fill="#374151"/><rect x="3" y="14" width="24" height="2" rx="1" fill="#374151"/><rect x="3" y="18" width="30" height="2" rx="1" fill="#374151"/><rect x="3" y="22" width="16" height="2" rx="1" fill="#374151"/></svg>
+            <span class="ws-card-label">Advanced</span>
+          </div>
+          <div class="ws-layout-card" data-framing="pro">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="1" width="34" height="26" rx="3" fill="#f3f4f6"/><rect x="3" y="3" width="6" height="22" rx="2" fill="#e5e7eb"/><rect x="3" y="5" width="6" height="5" rx="1" fill="#6b7280"/><rect x="11" y="3" width="22" height="7" rx="2" fill="#e5e7eb"/><rect x="11" y="12" width="22" height="6" rx="2" fill="#e5e7eb"/><rect x="11" y="20" width="22" height="5" rx="2" fill="#e5e7eb"/></svg>
+            <span class="ws-card-label">Pro</span>
+          </div>
+        </div>
+
+        <!-- Preview -->
+        <div class="ws-drawer-section-label" style="margin-top:12px;">Preview <div class="ws-label-line"></div></div>
+        <div id="wsLayoutPreview">Click a content type to preview</div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="ws-modal-footer">
+      <span class="ws-footer-hint"><span id="wsSelectedCount">0</span> selected</span>
+      <button id="wsDrawerInsert" disabled>Insert Prompt</button>
+    </div>
+
+  </div>
+  <!-- /wsPromptDrawer -->
+
+  <script>
+  (function () {
+    const $btn = document.getElementById('wsPromptBuilderBtn');
+    const $drawer = document.getElementById('wsPromptDrawer');
+    const $backdrop = document.getElementById('wsPromptBackdrop');
+    const $closeBtn = document.getElementById('wsDrawerClose');
+    const $insertBtn = document.getElementById('wsDrawerInsert');
+    const $input = document.getElementById('wsInput');
+    const $countEl = document.getElementById('wsSelectedCount');
+
+    // Each prompt has: cat label, icon emoji, text
+    const PROMPTS = [
+      { cat: 'Starter Guide', icon: '📖', text: 'Write a beginner\'s guide to {Tool Name} in plain, jargon-free language. Cover: core features, 3 real-world use cases, and a step-by-step getting-started checklist for newcomers.' },
+      { cat: 'Learning Plan', icon: '🗓️', text: 'Design a 4-week learning plan for mastering {AIGC Skill}. Each week should include: a clear goal, recommended tools, a hands-on project, and milestones — with difficulty ramping up progressively.' },
+      { cat: 'Image Prompts', icon: '🎨', text: 'Generate 5 ready-to-use image prompts for Midjourney / DALL·E on the topic of "{Topic}". Style: flat illustration, suitable for course slides and educational visuals. Include aspect ratio and style tags.' },
+      { cat: 'Tool Comparison', icon: '⚖️', text: 'Compare {Tool A} vs {Tool B} for {Use Case}. Cover: core features, pricing, ease of use, target audience, and a final recommendation. Present as a side-by-side table followed by a summary.' },
+      { cat: 'Workflow', icon: '🔗', text: 'Write a step-by-step workflow to complete "{Creative Project}" using {AI Tool Stack}. For each step include: the tool used, what to input, what output to expect, and any common pitfalls to avoid.' },
+      { cat: 'Plain English', icon: '💡', text: 'Explain "{AIGC Concept}" in under 150 words for a non-technical audience. Use an everyday analogy, avoid jargon, and end with one actionable tip the reader can try immediately.' },
+      { cat: 'Prompt Tips', icon: '✨', text: 'List 10 high-impact prompting techniques for {Tool Name}. For each tip, show a before/after example (basic prompt vs. optimized prompt) and explain why the improved version works better.' },
+      { cat: 'Course Outline', icon: '📋', text: 'Design a lesson plan for a hands-on AIGC workshop on "{Topic}". Include: learning objectives, a structured outline of key concepts, an in-class exercise, and a take-home assignment.' },
+      { cat: 'Tool Review', icon: '🔬', text: 'Write a 7-day honest review of {Tool Name}. Score it across four dimensions: output quality, UX & ease of use, pricing value, and learning curve. Conclude with a "who should use this" summary.' },
+      { cat: 'Learning Path', icon: '🚀', text: 'Recommend a complete AIGC learning path for beginners, progressing through: Text Generation → Image Generation → Video Generation → Workflow Automation. For each stage, list the top tools and one practice project.' },
+      { cat: 'Case Study', icon: '🏆', text: 'Write a case study showing how {Role / Team} used {AI Tool} to achieve {Goal}. Structure: challenge, approach, tools used, results (with metrics if possible), and key takeaways for readers to apply.' },
+      { cat: 'Social Post', icon: '📣', text: 'Write 5 social media posts about "{Topic}" for different platforms: LinkedIn (professional tone), Twitter/X (punchy, under 280 chars), Instagram caption (visual hook + hashtags), and a Reddit-style discussion opener.' },
+      { cat: 'FAQ', icon: '❓', text: 'Generate a FAQ section (10 questions) for {Tool / Topic}. Cover beginner questions, pricing & plans, common errors, and advanced use cases. Keep answers concise — 2–4 sentences each.' },
+      { cat: 'Video Script', icon: '🎬', text: 'Write a 3-minute YouTube script introducing {Tool Name} to beginners. Include: a hook opening (first 15s), a clear problem statement, a live demo walkthrough narrative, and a strong call-to-action ending.' },
+      { cat: 'Newsletter', icon: '📰', text: 'Draft a weekly AI newsletter section covering the top 3 developments in {AIGC Area} this week. For each item: a one-line headline, a 2-sentence summary, and a "why it matters" takeaway for creators.' },
+    ];
+
+    let selectedPrompt = null;
+
+    // Build prompt rows with new card design
+    const $rows = document.getElementById('wsPromptRows');
+    PROMPTS.forEach((p) => {
+      const row = document.createElement('div');
+      row.className = 'ws-prompt-row';
+      row.innerHTML = `
+        <div class="ws-row-icon">${p.icon}</div>
+        <div class="ws-row-body">
+          <div class="ws-row-cat">${p.cat}</div>
+          <div class="ws-row-text">${p.text}</div>
+        </div>
+        <button type="button" class="ws-row-add">Add</button>
+      `;
+      // Click row to select
+      row.addEventListener('click', (e) => {
+        if (e.target.classList.contains('ws-row-add')) return;
+        document.querySelectorAll('.ws-prompt-row').forEach(r => r.classList.remove('ws-row-selected'));
+        row.classList.add('ws-row-selected');
+        selectedPrompt = p.text;
+        if ($insertBtn) $insertBtn.disabled = false;
+        if ($countEl) $countEl.textContent = '1';
+      });
+      // Add/Insert button
+      row.querySelector('.ws-row-add').addEventListener('click', (e) => {
+        e.stopPropagation();
+        insertPrompt(p.text);
+      });
+      $rows.appendChild(row);
+    });
+
+    function insertPrompt(text) {
+      if (!$input) return;
+      const cur = $input.value;
+      $input.value = cur ? cur + '\n\n' + text : text;
+      $input.focus();
+      closeDrawer();
+    }
+
+    function openDrawer() {
+      $drawer.classList.add('ws-drawer-open');
+      $backdrop.classList.add('ws-drawer-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      $drawer.classList.remove('ws-drawer-open');
+      $backdrop.classList.remove('ws-drawer-open');
+      document.body.style.overflow = '';
+    }
+
+    if ($btn) $btn.addEventListener('click', (e) => { e.stopPropagation(); openDrawer(); });
+    if ($closeBtn) $closeBtn.addEventListener('click', closeDrawer);
+    if ($backdrop) $backdrop.addEventListener('click', closeDrawer);
+    if ($insertBtn) $insertBtn.addEventListener('click', () => { if (selectedPrompt) insertPrompt(selectedPrompt); });
+
+    // Escape key closes
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && $drawer.classList.contains('ws-drawer-open')) closeDrawer();
+    });
+
+    // Layout type cards — single select + preview
+    const LAYOUT_PREVIEWS = {
+      image:    'Image Generation selected — suited for Midjourney / DALL·E prompts',
+      video:    'Video Generation selected — suited for Runway / Pika / Sora',
+      text:     'Writing selected — suited for ChatGPT / Claude long-form content',
+      code:     'Code selected — suited for Cursor / v0 / Copilot',
+      workflow: 'Workflow selected — multi-tool pipeline design',
+      course:   'Course selected — full lesson outline & hands-on exercises',
+    };
+    document.querySelectorAll('[data-layout]').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('[data-layout]').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        const preview = document.getElementById('wsLayoutPreview');
+        if (preview) preview.textContent = LAYOUT_PREVIEWS[card.dataset.layout] || card.dataset.layout + ' selected';
+      });
+    });
+
+    // Other card groups — single select within group
+    ['[data-layout-cfg]', '[data-framing]'].forEach(sel => {
+      document.querySelectorAll(sel).forEach(card => {
+        card.addEventListener('click', () => {
+          document.querySelectorAll(sel).forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+        });
+      });
+    });
+
+    // Toggle Image/Video
+    document.querySelectorAll('[data-layout-mode]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-layout-mode]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="./aether-theme.css" />
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .font-bricolage { font-family: "Bricolage Grotesque", sans-serif !important; }
+  </style>
+  <title>Learn & Practice - Aether</title>
+</head>
+<body class="dark:bg-neutral-950 dark:text-neutral-50 font-nunito antialiased bg-white text-neutral-900">
+
+  <header class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex items-center justify-between animate-fade-in-up">
+    <a href="index.html" class="text-base font-semibold tracking-tighter dark:text-white uppercase font-bricolage text-black">Aether</a>
+    <nav class="hidden md:flex gap-6 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+      <a href="index.html#tools" class="dark:hover:text-white transition-colors hover:text-black">Tools</a>
+      <a href="workspace.html" class="dark:hover:text-white transition-colors hover:text-black">Workspace</a>
+      <a href="learn.html" class="dark:hover:text-white transition-colors hover:text-black border-b-2 border-black dark:border-white">Learn</a>
+      <a href="resources.html" class="dark:hover:text-white transition-colors hover:text-black">Resources</a>
+      <a href="midjourney-guide.html" class="dark:hover:text-white transition-colors hover:text-black">Midjourney Guide</a>
+    </nav>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center mb-12 animate-fade-in-up delay-100">
+      <h1 class="text-4xl sm:text-5xl font-bold font-bricolage mb-4">Learn & Practice</h1>
+      <p class="text-neutral-600 dark:text-neutral-400">Step-by-step tutorials and real-world case studies</p>
+    </div>
+
+    <div class="flex justify-center gap-3 mb-10 animate-fade-in-up delay-200">
+      <button type="button" id="tabAll" class="px-5 py-2.5 rounded-full text-sm font-medium bg-black text-white dark:bg-white dark:text-black transition">All</button>
+      <button type="button" id="tabTutorial" class="px-5 py-2.5 rounded-full text-sm font-medium border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition">Tutorials</button>
+      <button type="button" id="tabCase" class="px-5 py-2.5 rounded-full text-sm font-medium border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition">Cases</button>
+    </div>
+
+    <div id="learnListMount" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </main>
+
+  <script src="./tools.js"></script>
+  <script src="./learn-content.js"></script>
+  <script src="./learn.js"></script>
+</body>
+</html>

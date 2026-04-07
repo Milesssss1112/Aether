@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+  </style>
+  <title>ContentHub - AI Tools & Community</title>
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased">
+
+  <!-- Sidebar -->
+  <aside class="fixed left-0 top-0 h-screen w-64 bg-zinc-900 border-r border-zinc-800 flex flex-col z-50">
+    <div class="p-6 border-b border-zinc-800">
+      <h1 class="text-xl font-bold">ContentHub</h1>
+    </div>
+    <nav class="flex-1 p-4 space-y-1">
+      <a href="#home" class="block px-4 py-2.5 rounded-lg hover:bg-zinc-800 transition">🏠 首页</a>
+      <a href="#tutorials" class="block px-4 py-2.5 rounded-lg hover:bg-zinc-800 transition">📚 教程</a>
+      <a href="#tools" class="block px-4 py-2.5 rounded-lg hover:bg-zinc-800 transition">🛠️ 工具导航</a>
+      <a href="#forum" class="block px-4 py-2.5 rounded-lg hover:bg-zinc-800 transition">💬 论坛</a>
+      <a href="#news" class="block px-4 py-2.5 rounded-lg hover:bg-zinc-800 transition">📰 AI 资讯</a>
+    </nav>
+    <div class="p-4 border-t border-zinc-800">
+      <button id="authBtn" class="w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition">
+        登录 / 注册
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="ml-64">
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center px-8 py-20 bg-gradient-to-b from-zinc-900 to-zinc-950">
+      <div class="max-w-4xl text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-zinc-800 rounded-full text-sm mb-6 animate-fade-in-up">
+          <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+          AI 驱动的内容创作平台
+        </div>
+        <h1 class="text-6xl font-bold mb-6 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent animate-fade-in-up delay-100">
+          探索 AI 工具<br/>连接创作社区
+        </h1>
+        <p class="text-xl text-zinc-400 mb-8 animate-fade-in-up delay-200">
+          从教程学习到工具发现，从社区交流到资讯获取，一站式 AI 内容创作平台
+        </p>
+        <div class="flex gap-4 justify-center animate-fade-in-up delay-300">
+          <a href="#tools" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition">
+            探索工具
+          </a>
+          <a href="#tutorials" class="px-6 py-3 bg-zinc-800 hover:bg-zinc-700 rounded-lg font-medium transition">
+            查看教程
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tutorials Section -->
+    <section id="tutorials" class="px-8 py-20 bg-zinc-950">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold mb-12">📚 精选教程</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <a href="#midjourney-tutorial" class="block p-6 bg-zinc-900 rounded-xl border border-zinc-800 hover:border-zinc-700 transition group">
+            <h3 class="text-xl font-semibold mb-2 group-hover:text-blue-400 transition">Midjourney 图像生成完全指南</h3>
+            <p class="text-zinc-400 text-sm">从入门到精通，学习如何使用 Midjourney 创作高质量 AI 图像</p>
+          </a>
+          <div class="p-6 bg-zinc-900 rounded-xl border border-zinc-800">
+            <h3 class="text-xl font-semibold mb-2">ChatGPT 提示词工程</h3>
+            <p class="text-zinc-400 text-sm">掌握高效的提示词技巧，提升 AI 对话质量</p>
+          </div>
+          <div class="p-6 bg-zinc-900 rounded-xl border border-zinc-800">
+            <h3 class="text-xl font-semibold mb-2">Stable Diffusion 本地部署</h3>
+            <p class="text-zinc-400 text-sm">在本地搭建 AI 绘画环境，完全掌控创作流程</p>
+          </div>
+          <div class="p-6 bg-zinc-900 rounded-xl border border-zinc-800">
+            <h3 class="text-xl font-semibold mb-2">AI 视频制作入门</h3>
+            <p class="text-zinc-400 text-sm">使用 Runway、Pika 等工具创作 AI 视频内容</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="px-8 py-20 bg-zinc-900">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold mb-8">🛠️ AI 工具导航</h2>
+        <div class="flex gap-3 mb-8">
+          <input type="search" placeholder="搜索工具..." class="flex-1 px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-blue-500" />
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="p-6 bg-zinc-950 rounded-xl border border-zinc-800 hover:border-zinc-700 transition">
+            <div class="text-3xl mb-3">🎨</div>
+            <h3 class="text-lg font-semibold mb-2">Midjourney</h3>
+            <p class="text-sm text-zinc-400 mb-3">AI 图像生成</p>
+            <span class="text-xs px-2 py-1 bg-blue-600/20 text-blue-400 rounded">图像</span>
+          </div>
+          <div class="p-6 bg-zinc-950 rounded-xl border border-zinc-800 hover:border-zinc-700 transition">
+            <div class="text-3xl mb-3">💬</div>
+            <h3 class="text-lg font-semibold mb-2">ChatGPT</h3>
+            <p class="text-sm text-zinc-400 mb-3">对话式 AI</p>
+            <span class="text-xs px-2 py-1 bg-green-600/20 text-green-400 rounded">文本</span>
+          </div>
+          <div class="p-6 bg-zinc-950 rounded-xl border border-zinc-800 hover:border-zinc-700 transition">
+            <div class="text-3xl mb-3">🎬</div>
+            <h3 class="text-lg font-semibold mb-2">Runway</h3>
+            <p class="text-sm text-zinc-400 mb-3">AI 视频编辑</p>
+            <span class="text-xs px-2 py-1 bg-purple-600/20 text-purple-400 rounded">视频</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Forum Section -->
+    <section id="forum" class="px-8 py-20 bg-zinc-950">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold mb-8">💬 社区论坛</h2>
+        <div class="grid lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-1 p-6 bg-zinc-900 rounded-xl border border-zinc-800">
+            <h3 class="font-semibold mb-4">发布帖子</h3>
+            <form id="forumForm" class="space-y-3">
+              <input placeholder="标题" class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-blue-500" required />
+              <textarea placeholder="内容" rows="4" class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-blue-500" required></textarea>
+              <button type="submit" class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition">发布</button>
+            </form>
+          </div>
+          <div class="lg:col-span-2 p-6 bg-zinc-900 rounded-xl border border-zinc-800">
+            <h3 class="font-semibold mb-4">最新帖子</h3>
+            <div class="space-y-3" id="forumPosts">
+              <div class="p-4 bg-zinc-800 rounded-lg">
+                <h4 class="font-medium mb-1">如何优化 Midjourney 提示词？</h4>
+                <p class="text-sm text-zinc-400">分享一些实用技巧...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="px-8 py-20 bg-zinc-900">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold mb-8">📰 AI 资讯</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <article class="p-6 bg-zinc-950 rounded-xl border border-zinc-800">
+            <span class="text-xs px-2 py-1 bg-blue-600/20 text-blue-400 rounded">融资</span>
+            <h3 class="text-lg font-semibold mt-3 mb-2">OpenAI 完成 400 亿美元融资</h3>
+            <p class="text-sm text-zinc-400">估值达 3000 亿美元，软银领投...</p>
+          </article>
+          <article class="p-6 bg-zinc-950 rounded-xl border border-zinc-800">
+            <span class="text-xs px-2 py-1 bg-green-600/20 text-green-400 rounded">产品</span>
+            <h3 class="text-lg font-semibold mt-3 mb-2">Google 发布 Gemini 2.5</h3>
+            <p class="text-sm text-zinc-400">新一代思维模型，推理能力大幅提升...</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Midjourney Tutorial Detail -->
+    <section id="midjourney-tutorial" class="hidden px-8 py-20 bg-zinc-950">
+      <div class="max-w-4xl mx-auto">
+        <a href="#tutorials" class="text-blue-400 text-sm mb-4 inline-block">← 返回教程</a>
+        <h1 class="text-4xl font-bold mb-4">Midjourney 图像生成完全指南</h1>
+        <p class="text-zinc-400 mb-8">学习如何创作高质量 AI 图像</p>
+        
+        <div class="space-y-8">
+          <div class="p-6 bg-zinc-900 rounded-xl border border-zinc-800">
+            <h2 class="text-2xl font-semibold mb-4">快速开始</h2>
+            <div class="space-y-4">
+              <div>
+                <h3 class="font-semibold mb-2">1. 加入 Midjourney</h3>
+                <p class="text-zinc-400 text-sm">访问 midjourney.com 注册账号</p>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-2">2. 使用 /imagine 命令</h3>
+                <p class="text-zinc-400 text-sm">在 Discord 中输入提示词</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 bg-zinc-900 rounded-xl border border-zinc-800">
+            <h2 class="text-2xl font-semibold mb-4">提示词示例</h2>
+            <div class="space-y-3">
+              <div class="p-3 bg-zinc-800 rounded-lg">
+                <p class="text-sm text-zinc-400 mb-1">人像摄影：</p>
+                <code class="text-blue-400 text-sm">portrait of a woman, natural lighting, 85mm --ar 2:3</code>
+              </div>
+              <div class="p-3 bg-zinc-800 rounded-lg">
+                <p class="text-sm text-zinc-400 mb-1">风景：</p>
+                <code class="text-blue-400 text-sm">mountain landscape at sunset, dramatic clouds --ar 16:9</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 bg-zinc-900 rounded-xl border border-zinc-800">
+            <h2 class="text-2xl font-semibold mb-4">常见错误</h2>
+            <ul class="space-y-2 text-zinc-400">
+              <li>❌ 描述过于模糊</li>
+              <li>❌ 细节过多导致混乱</li>
+              <li>❌ 忽略宽高比参数</li>
+              <li>✅ 使用清晰具体的描述</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          // Show/hide tutorial detail
+          if (this.getAttribute('href') === '#midjourney-tutorial') {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+            document.getElementById('midjourney-tutorial').classList.remove('hidden');
+          } else if (this.getAttribute('href') === '#tutorials') {
+            document.querySelectorAll('section').forEach(s => s.classList.remove('hidden'));
+            document.getElementById('midjourney-tutorial').classList.add('hidden');
+          }
+        }
+      });
+    });
+
+    // Forum form
+    document.getElementById('forumForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('帖子已发布！');
+      e.target.reset();
+    });
+
+    // Auth button
+    document.getElementById('authBtn')?.addEventListener('click', () => {
+      alert('登录功能开发中...');
+    });
+  </script>
+</body>
+</html>

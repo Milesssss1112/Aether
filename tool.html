@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aether · Tool Detail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    <link rel="stylesheet" href="./aether-theme.css" />
+    <style>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+      }
+      .delay-100 {
+        animation-delay: 0.1s;
+      }
+      .delay-200 {
+        animation-delay: 0.2s;
+      }
+      .delay-300 {
+        animation-delay: 0.3s;
+      }
+      .font-bricolage {
+        font-family: "Bricolage Grotesque", sans-serif !important;
+      }
+    </style>
+  </head>
+  <body class="dark:bg-neutral-950 dark:text-neutral-50 font-nunito antialiased bg-white text-neutral-900">
+    <header class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex items-center justify-between animate-fade-in-up">
+      <a href="./index.html" class="text-base font-semibold tracking-tighter dark:text-white uppercase font-bricolage text-black inline-flex items-center gap-1">
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">home</span>Aether
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+        <a href="./index.html#tools" class="dark:hover:text-white transition-colors hover:text-black">Tools</a>
+        <a href="./workspace.html" class="dark:hover:text-white transition-colors hover:text-black">Workspace</a>
+        <a href="./midjourney-guide.html" class="dark:hover:text-white transition-colors hover:text-black">Midjourney Guide</a>
+      </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div id="heroBlock" class="animate-fade-in-up delay-100 hidden">
+        <img id="heroImg" src="" alt="" class="w-full h-64 object-cover rounded-2xl mb-8 bg-neutral-100 dark:bg-neutral-900" />
+        <h1 id="title" class="text-4xl sm:text-5xl font-bold font-bricolage mb-4"></h1>
+        <p id="tagline" class="text-xl text-neutral-600 dark:text-neutral-400 mb-8"></p>
+        <div id="heroActions" class="flex flex-wrap gap-3 mb-8 items-center"></div>
+      </div>
+
+      <div id="contentBlocks" class="space-y-8 hidden">
+        <div class="rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/75 dark:bg-neutral-950/35 p-6 sm:p-8 animate-fade-in-up delay-200">
+          <h2 class="text-2xl font-semibold font-bricolage mb-4">Overview</h2>
+          <p id="description" class="text-neutral-600 dark:text-neutral-400 leading-relaxed"></p>
+        </div>
+        <div class="rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/75 dark:bg-neutral-950/35 p-6 sm:p-8 animate-fade-in-up delay-300">
+          <h2 class="text-2xl font-semibold font-bricolage mb-6">Key Features</h2>
+          <div id="featuresGrid" class="grid md:grid-cols-2 gap-4"></div>
+        </div>
+      </div>
+
+      <div id="errorBlock" class="rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/75 dark:bg-neutral-950/35 p-8 animate-fade-in-up delay-100 hidden">
+        <h1 id="errTitle" class="text-2xl font-bold font-bricolage mb-3"></h1>
+        <p id="errMsg" class="text-neutral-600 dark:text-neutral-400 leading-relaxed mb-6"></p>
+        <a href="./index.html" class="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold bg-black text-white dark:bg-white dark:text-black hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_back</span>Back to Tools
+        </a>
+      </div>
+    </main>
+
+    <script src="tools.js" charset="utf-8"></script>
+    <script>
+      (function () {
+        const CATEGORY_STYLES = {
+          "chat-search": "bg-green-600/20 text-green-600 dark:text-green-400",
+          image: "bg-indigo-600/20 text-indigo-600 dark:text-indigo-400",
+          video: "bg-purple-600/20 text-purple-600 dark:text-purple-400",
+          audio: "bg-orange-600/20 text-orange-600 dark:text-orange-400",
+          "dev-agent": "bg-blue-600/20 text-blue-600 dark:text-blue-400",
+          models: "bg-pink-600/20 text-pink-600 dark:text-pink-400",
+        };
+        const FEATURE_EMOJI = ["✨", "🚀", "💡", "⚡", "🎯", "🔧", "📝", "🎨", "📊", "🌐", "💬", "🎬", "🎵"];
+
+        function parseToolId() {
+          const sp = new URLSearchParams(location.search);
+          let raw = sp.get("id") || sp.get("toolId") || sp.get("tool");
+          if (!raw && location.search.length > 1) {
+            const m = /(?:^|[?&])id=([^&]+)/.exec(location.search);
+            if (m) raw = m[1];
+          }
+          if (!raw && location.hash) {
+            const h = location.hash.slice(1);
+            if (h.startsWith("id=")) raw = h.slice(3);
+            else if (/^[a-zA-Z0-9_.-]+$/.test(h)) raw = h;
+          }
+          if (!raw) {
+            const segs = location.pathname.split("/").filter(Boolean);
+            if (segs.length >= 2 && segs[segs.length - 2] === "tool") {
+              const last = segs[segs.length - 1];
+              if (last && !/\.html?$/i.test(last)) raw = last;
+            } else if (segs.length === 2 && segs[0] === "tool" && segs[1] && !/\.html?$/i.test(segs[1])) {
+              raw = segs[1];
+            }
+          }
+          if (!raw) return "";
+          raw = String(raw).replace(/\+/g, " ").trim();
+          try {
+            raw = decodeURIComponent(raw);
+          } catch (_) {}
+          return String(raw).replace(/\u200b/g, "").trim();
+        }
+
+        function escapeHtml(s) {
+          const d = document.createElement("div");
+          d.textContent = s == null ? "" : String(s);
+          return d.innerHTML;
+        }
+
+        const list = Array.isArray(window.AIGC_TOOLS) ? window.AIGC_TOOLS : [];
+        const id = parseToolId();
+        let tool = id && list.find((t) => String(t.id) === id);
+        if (!tool && id) {
+          tool = list.find((t) => String(t.id).toLowerCase() === id.toLowerCase());
+        }
+        const ensureImages = window.AIGC_ENSURE_TOOL_IMAGES || ((t) => t.images || { a: "", b: "" });
+
+        const heroBlock = document.getElementById("heroBlock");
+        const contentBlocks = document.getElementById("contentBlocks");
+        const errorBlock = document.getElementById("errorBlock");
+
+        function showError(title, msg) {
+          heroBlock.classList.add("hidden");
+          contentBlocks.classList.add("hidden");
+          errorBlock.classList.remove("hidden");
+          document.getElementById("errTitle").textContent = title;
+          document.getElementById("errMsg").textContent = msg;
+        }
+
+        if (!list.length) {
+          showError(
+            "Tool data not loaded",
+            "Please serve the site root with a local server (e.g.: npx serve -l 5500), do not open via file://. Also confirm tools.js and tool.html are in the same folder."
+          );
+          return;
+        }
+
+        if (!tool) {
+          const pathTip =
+            /\/tool\/?$/i.test(location.pathname) && !id
+              ? "Current path is \"/tool\" with no id. Try a URL like: " +
+                location.origin +
+                location.pathname.replace(/\/tool\/?$/i, "/tool.html") +
+                "?id=chatgpt (replace chatgpt with the tool id). Please open a card from the homepage."
+              : "";
+          showError(
+            "Tool not found",
+            id
+              ? "Parsed id: \"" + id + "\". No match found in the list — please open the card again from the homepage or browse page."
+              : pathTip || "Missing id. Click a tool card from the homepage, or visit tool.html?id=<toolId>."
+          );
+          return;
+        }
+
+        heroBlock.classList.remove("hidden");
+        contentBlocks.classList.remove("hidden");
+
+        const imgs = ensureImages(tool);
+        const heroImg = document.getElementById("heroImg");
+        heroImg.src = imgs?.a || "";
+        heroImg.alt = tool.name || "";
+
+        document.getElementById("title").textContent = tool.name || "";
+        document.getElementById("tagline").textContent = tool.tagline || "";
+        document.getElementById("description").textContent = tool.description || "";
+
+        document.title = (tool.name ? tool.name + " - Aether" : "Aether · Tool Detail").replace(/\s+/g, " ").trim();
+
+        const cat = (window.AIGC_CATEGORIES || []).find((c) => c.id === tool.category);
+        const catClass = CATEGORY_STYLES[tool.category] || CATEGORY_STYLES.models;
+        const actions = document.getElementById("heroActions");
+        actions.innerHTML = "";
+
+        if (cat) {
+          const span = document.createElement("span");
+          span.className = "px-3 py-1 rounded-full text-sm " + catClass;
+          span.textContent = cat.label;
+          actions.appendChild(span);
+        }
+
+        for (const h of (tool.highlights || []).slice(0, 4)) {
+          const span = document.createElement("span");
+          span.className =
+            "px-3 py-1 rounded-full text-sm border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300";
+          span.textContent = h;
+          actions.appendChild(span);
+        }
+
+        const visit = document.createElement("a");
+        visit.href = tool.url || "#";
+        visit.target = "_blank";
+        visit.rel = "noopener noreferrer";
+        visit.className =
+          "px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-full text-sm font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-1";
+        visit.innerHTML = "Visit Site →";
+        actions.appendChild(visit);
+
+        const grid = document.getElementById("featuresGrid");
+        grid.innerHTML = "";
+        const highs = tool.highlights && tool.highlights.length ? tool.highlights : [tool.tagline || "Core features"].filter(Boolean);
+        highs.forEach((h, i) => {
+          const cell = document.createElement("div");
+          cell.className = "p-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg";
+          const emoji = FEATURE_EMOJI[i % FEATURE_EMOJI.length];
+          cell.innerHTML =
+            "<h3 class=\"font-semibold mb-2\">" +
+            emoji +
+            " " +
+            escapeHtml(h) +
+            "</h3>" +
+            "<p class=\"text-sm text-neutral-600 dark:text-neutral-400\">" +
+            escapeHtml("Based on official site experience and common usage patterns — refer to official documentation for authoritative details.") +
+            "</p>";
+          grid.appendChild(cell);
+        });
+      })();
+    </script>
+  </body>
+</html>

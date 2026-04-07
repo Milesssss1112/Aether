@@ -1,0 +1,420 @@
+{
+  "resources": [
+    {
+      "id": "midjourney-complete-guide",
+      "title": "Midjourney 完整使用指南",
+      "category": "guide",
+      "tool": "Midjourney",
+      "tags": ["图像生成", "提示词", "入门"],
+      "summary": "从零开始掌握 Midjourney，包含账号设置、基础命令、提示词技巧和高级参数。",
+      "icon": "image",
+      "difficulty": "beginner",
+      "readTime": "15 min",
+      "sections": [
+        {
+          "title": "快速开始",
+          "type": "steps",
+          "content": "1. 加入 Midjourney Discord 服务器\n2. 在 #newbies 频道输入 /imagine\n3. 描述你想要的图像（英文效果更好）\n4. 等待约 60 秒生成 4 张图\n5. 点击 U1-U4 放大，V1-V4 变体"
+        },
+        {
+          "title": "核心命令",
+          "type": "code",
+          "content": "/imagine  — 生成图像（最常用）\n/settings — 调整默认设置\n/info     — 查看账户信息与积分\n/blend    — 混合多张图片\n/describe — 分析图片生成提示词\n/shorten  — 精简过长的提示词"
+        },
+        {
+          "title": "常用参数",
+          "type": "code",
+          "content": "--ar 16:9       设置宽高比（16:9 横屏 / 9:16 竖屏 / 1:1 方形）\n--v 6           使用最新版本 v6\n--style raw     减少AI美化，更写实\n--q 2           提高质量（消耗 2x 积分）\n--no text,logo  负面提示词：排除文字和 logo\n--seed 12345    固定随机种子，复现结果"
+        },
+        {
+          "title": "提示词黄金结构",
+          "type": "template",
+          "content": "[主体描述] [环境/背景] [光线效果] [艺术风格] [参数]\n\n示例：\nA young woman reading in a cozy library, warm afternoon light streaming through tall windows, oil painting style, detailed brushwork --ar 3:4 --v 6\n\na futuristic city skyline at dusk, neon reflections on wet streets, cyberpunk aesthetic, cinematic photography --ar 16:9 --style raw"
+        },
+        {
+          "title": "风格关键词速查",
+          "type": "table",
+          "content": "写实风格 | photorealistic, hyperrealistic, 8k uhd, DSLR photo\n插画风格 | digital illustration, concept art, artstation trending\n油画风格 | oil painting, impasto, impressionist style\n水彩风格 | watercolor painting, soft edges, paper texture\n3D渲染 | 3D render, octane render, cinema 4D, studio lighting\n动漫风格 | anime style, Studio Ghibli, manga illustration"
+        }
+      ]
+    },
+    {
+      "id": "chatgpt-api-guide",
+      "title": "ChatGPT / OpenAI API 开发指南",
+      "category": "api",
+      "tool": "OpenAI",
+      "tags": ["API", "开发", "Python", "GPT"],
+      "summary": "学习如何调用 OpenAI API，包含认证、模型选择、流式输出、函数调用和成本控制。",
+      "icon": "code",
+      "difficulty": "intermediate",
+      "readTime": "20 min",
+      "sections": [
+        {
+          "title": "安装与认证",
+          "type": "code",
+          "content": "# 安装\npip install openai\n\n# 基础初始化\nfrom openai import OpenAI\nclient = OpenAI(api_key=\"sk-...\")\n\n# 推荐：从环境变量读取\nimport os\nclient = OpenAI(api_key=os.environ.get(\"OPENAI_API_KEY\"))"
+        },
+        {
+          "title": "基础对话",
+          "type": "code",
+          "content": "response = client.chat.completions.create(\n    model=\"gpt-4o\",\n    messages=[\n        {\"role\": \"system\", \"content\": \"You are a helpful assistant.\"},\n        {\"role\": \"user\", \"content\": \"用中文介绍一下自己\"}\n    ],\n    temperature=0.7,\n    max_tokens=500\n)\nprint(response.choices[0].message.content)"
+        },
+        {
+          "title": "流式输出（Streaming）",
+          "type": "code",
+          "content": "stream = client.chat.completions.create(\n    model=\"gpt-4o\",\n    messages=[{\"role\": \"user\", \"content\": \"写一首诗\"}],\n    stream=True\n)\n\nfor chunk in stream:\n    delta = chunk.choices[0].delta\n    if delta.content:\n        print(delta.content, end=\"\", flush=True)"
+        },
+        {
+          "title": "函数调用（Function Calling）",
+          "type": "code",
+          "content": "tools = [{\n    \"type\": \"function\",\n    \"function\": {\n        \"name\": \"get_weather\",\n        \"description\": \"Get current weather for a city\",\n        \"parameters\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"location\": {\"type\": \"string\", \"description\": \"City name\"}\n            },\n            \"required\": [\"location\"]\n        }\n    }\n}]\n\nresponse = client.chat.completions.create(\n    model=\"gpt-4o\",\n    tools=tools,\n    messages=[{\"role\": \"user\", \"content\": \"北京今天天气?\"}]\n)"
+        },
+        {
+          "title": "模型与成本对比",
+          "type": "table",
+          "content": "gpt-4o | 最强推理+视觉 | $5/$15 per 1M tokens | 复杂任务首选\ngpt-4o-mini | 轻量快速 | $0.15/$0.6 per 1M | 简单任务/高并发\no1 | 深度推理 | $15/$60 per 1M | 数学/代码/科学\no1-mini | 轻量推理 | $3/$12 per 1M | 推理+成本平衡"
+        }
+      ]
+    },
+    {
+      "id": "claude-api-guide",
+      "title": "Claude / Anthropic API 完整文档",
+      "category": "api",
+      "tool": "Claude",
+      "tags": ["API", "Anthropic", "开发", "Python"],
+      "summary": "使用 Anthropic Claude API 构建 AI 应用，涵盖 Messages API、工具调用、视觉理解、流式输出。",
+      "icon": "api",
+      "difficulty": "intermediate",
+      "readTime": "25 min",
+      "sections": [
+        {
+          "title": "安装与快速开始",
+          "type": "code",
+          "content": "pip install anthropic\n\nimport anthropic\nclient = anthropic.Anthropic(api_key=\"sk-ant-...\")\n\nmessage = client.messages.create(\n    model=\"claude-opus-4-6\",\n    max_tokens=1024,\n    messages=[{\"role\": \"user\", \"content\": \"Hello!\"}]\n)\nprint(message.content[0].text)"
+        },
+        {
+          "title": "流式输出",
+          "type": "code",
+          "content": "with client.messages.stream(\n    model=\"claude-sonnet-4-6\",\n    max_tokens=1024,\n    messages=[{\"role\": \"user\", \"content\": \"写一篇短文\"}]\n) as stream:\n    for text in stream.text_stream:\n        print(text, end=\"\", flush=True)"
+        },
+        {
+          "title": "工具调用（Tool Use）",
+          "type": "code",
+          "content": "tools = [{\n    \"name\": \"calculator\",\n    \"description\": \"Perform mathematical calculations\",\n    \"input_schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"expression\": {\"type\": \"string\", \"description\": \"Math expression\"}\n        },\n        \"required\": [\"expression\"]\n    }\n}]\n\nresponse = client.messages.create(\n    model=\"claude-opus-4-6\",\n    max_tokens=1024,\n    tools=tools,\n    messages=[{\"role\": \"user\", \"content\": \"123 * 456 等于多少?\"}]\n)"
+        },
+        {
+          "title": "视觉理解（Vision）",
+          "type": "code",
+          "content": "import base64\n\nwith open(\"image.jpg\", \"rb\") as f:\n    image_data = base64.b64encode(f.read()).decode()\n\nresponse = client.messages.create(\n    model=\"claude-opus-4-6\",\n    max_tokens=1024,\n    messages=[{\n        \"role\": \"user\",\n        \"content\": [\n            {\n                \"type\": \"image\",\n                \"source\": {\n                    \"type\": \"base64\",\n                    \"media_type\": \"image/jpeg\",\n                    \"data\": image_data\n                }\n            },\n            {\"type\": \"text\", \"text\": \"详细描述这张图片\"}\n        ]\n    }]\n)"
+        },
+        {
+          "title": "模型选择指南",
+          "type": "table",
+          "content": "claude-opus-4-6 | 最强推理 | $15/$75 per 1M | 复杂分析/创意写作\nclaude-sonnet-4-6 | 平衡性价比 | $3/$15 per 1M | 日常开发推荐\nclaude-haiku-4-5 | 最快最便宜 | $0.25/$1.25 per 1M | 简单任务/高并发"
+        }
+      ]
+    },
+    {
+      "id": "stable-diffusion-api-guide",
+      "title": "Stable Diffusion WebUI API 集成",
+      "category": "api",
+      "tool": "Stable Diffusion",
+      "tags": ["API", "Python", "本地部署", "自动化"],
+      "summary": "通过 REST API 调用 Stable Diffusion WebUI，实现批量生图、ControlNet、模型切换等自动化操作。",
+      "icon": "settings_ethernet",
+      "difficulty": "advanced",
+      "readTime": "20 min",
+      "sections": [
+        {
+          "title": "启动 API 模式",
+          "type": "steps",
+          "content": "1. 编辑 webui-user.bat（Windows）\n   set COMMANDLINE_ARGS=--api --listen\n\n2. 启动 WebUI 后访问 API 文档：\n   http://localhost:7860/docs\n\n3. 验证 API 可用：\n   curl http://localhost:7860/sdapi/v1/sd-models"
+        },
+        {
+          "title": "文生图（txt2img）",
+          "type": "code",
+          "content": "import requests, base64\n\nurl = \"http://localhost:7860/sdapi/v1/txt2img\"\npayload = {\n    \"prompt\": \"a beautiful mountain landscape, golden hour, 8k\",\n    \"negative_prompt\": \"blurry, low quality, watermark\",\n    \"steps\": 25,\n    \"width\": 768,\n    \"height\": 512,\n    \"cfg_scale\": 7.5,\n    \"sampler_name\": \"DPM++ 2M Karras\"\n}\n\nresponse = requests.post(url, json=payload)\nfor i, img in enumerate(response.json()[\"images\"]):\n    with open(f\"output_{i}.png\", \"wb\") as f:\n        f.write(base64.b64decode(img))\nprint(\"Done!\")"
+        },
+        {
+          "title": "图生图（img2img）",
+          "type": "code",
+          "content": "with open(\"input.png\", \"rb\") as f:\n    input_b64 = base64.b64encode(f.read()).decode()\n\npayload = {\n    \"init_images\": [input_b64],\n    \"prompt\": \"oil painting style, detailed brushwork\",\n    \"denoising_strength\": 0.65,  # 0=不变, 1=完全重绘\n    \"steps\": 20\n}\nresponse = requests.post(\n    \"http://localhost:7860/sdapi/v1/img2img\", json=payload\n)"
+        },
+        {
+          "title": "ControlNet API",
+          "type": "code",
+          "content": "payload = {\n    \"prompt\": \"a person dancing, vibrant colors\",\n    \"alwayson_scripts\": {\n        \"controlnet\": {\n            \"args\": [{\n                \"input_image\": base64_pose_image,\n                \"module\": \"openpose\",\n                \"model\": \"control_v11p_sd15_openpose\",\n                \"weight\": 1.0,\n                \"guidance_start\": 0.0,\n                \"guidance_end\": 1.0\n            }]\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "id": "prompt-engineering-templates",
+      "title": "提示词工程模板库",
+      "category": "template",
+      "tool": "通用",
+      "tags": ["提示词", "模板", "ChatGPT", "Claude"],
+      "summary": "覆盖写作、分析、编程、营销等场景的高效提示词模板，经过验证可直接复制使用。",
+      "icon": "edit_note",
+      "difficulty": "beginner",
+      "readTime": "8 min",
+      "sections": [
+        {
+          "title": "角色设定模板",
+          "type": "template",
+          "content": "【专家顾问】\n你是一位拥有20年经验的[领域]专家。用专业但易懂的语言回答问题，先给出核心结论，再解释原因，最后提供具体可执行的建议。\n\n【批判性审查】\n以严格的批评者身份审查以下内容，找出所有潜在问题、逻辑漏洞、数据缺陷和改进空间，不要客气：\n[内容]\n\n【苏格拉底式引导】\n不要直接给出答案，通过提问引导我自己找到解决方案。从最基础的问题开始。"
+        },
+        {
+          "title": "写作辅助模板",
+          "type": "template",
+          "content": "【文章优化】\n优化以下文章：①保持原意 ②提升可读性 ③加强论点说服力 ④修正语法错误 ⑤让开头更吸引人。\n原文：[文章]\n\n【风格转换】\n将以下内容改写为[正式/轻松/学术/营销]风格，目标读者是[受众描述]，篇幅控制在[字数]字以内：\n[原文]\n\n【标题生成】\n为以下内容生成10个不同风格的标题（包含数字型、问句型、悬念型、利益型），标注每个标题的适用平台：\n[内容摘要]"
+        },
+        {
+          "title": "分析研究模板",
+          "type": "template",
+          "content": "【竞品分析】\n对比分析[A]和[B]，维度：功能完整性、定价策略、目标用户、核心优势、明显缺陷、市场定位。以表格呈现，最后给出选择建议。\n\n【数据解读】\n分析以下数据，找出：①关键趋势 ②异常值及可能原因 ③与行业基准对比 ④建议的行动方向：\n[数据]\n\n【SWOT分析】\n对[公司/产品/项目]进行完整的SWOT分析，每个维度列出5个具体要点，最后给出战略建议。"
+        },
+        {
+          "title": "编程辅助模板",
+          "type": "template",
+          "content": "【代码审查】\n审查以下代码，检查：①潜在 bug ②性能瓶颈 ③安全漏洞 ④可读性问题 ⑤违反最佳实践的地方，给出具体修改建议和改进后的代码：\n[代码]\n\n【功能实现】\n用[语言]实现：[功能描述]。要求：有中文注释、处理边界情况、包含使用示例、遵循[语言]最佳实践。\n\n【调试助手】\n报错信息：[错误]\n代码：[代码]\n已尝试：[已尝试的解决方法]\n请分析根本原因并提供修复方案，如有多种方案请说明优劣。"
+        },
+        {
+          "title": "营销文案模板",
+          "type": "template",
+          "content": "【产品介绍】\n为[产品名]写一段150字的产品介绍，突出3个核心卖点[卖点1][卖点2][卖点3]，目标用户是[用户画像]，语气要[专业/亲切/激动人心]。\n\n【社交媒体帖子】\n为以下产品/活动写5条小红书/微博风格的文案，包含适当的emoji，每条100字以内，附上5个相关话题标签：\n[产品/活动描述]\n\n【邮件营销】\n写一封营销邮件：主题行（A/B两个版本）、开场白、核心价值主张、社会证明、行动号召（CTA）。产品：[产品]，优惠：[优惠内容]。"
+        }
+      ]
+    },
+    {
+      "id": "sd-prompt-templates",
+      "title": "Stable Diffusion 提示词模板库",
+      "category": "template",
+      "tool": "Stable Diffusion",
+      "tags": ["模板", "提示词", "图像风格"],
+      "summary": "精选 40+ 个经验证的 SD 提示词模板，覆盖人像、风景、产品、概念艺术等场景，附通用负面提示词。",
+      "icon": "palette",
+      "difficulty": "beginner",
+      "readTime": "10 min",
+      "sections": [
+        {
+          "title": "人像摄影模板",
+          "type": "template",
+          "content": "【专业人像】\nportrait of [描述], professional photography, studio lighting, sharp focus, 85mm lens, shallow depth of field, 8k uhd, photorealistic\n\n【环境人像】\n[人物描述] in [场景], natural lighting, candid photography, lifestyle, bokeh background, film grain, Fujifilm XT4\n\n【艺术人像】\nportrait of [描述], oil painting, renaissance style, dramatic chiaroscuro lighting, museum quality, detailed brushwork\n\n【赛博朋克人像】\n[人物描述], cyberpunk aesthetic, neon lights, rain-soaked streets, futuristic city background, cinematic, volumetric fog"
+        },
+        {
+          "title": "风景场景模板",
+          "type": "template",
+          "content": "【自然风光】\n[场景描述], golden hour, volumetric lighting, ultra detailed, landscape photography, award winning, National Geographic\n\n【幻想场景】\n[场景描述], fantasy art, magical atmosphere, ethereal lighting, concept art, artstation trending, epic scale\n\n【城市夜景】\n[城市描述], blue hour, long exposure, light trails, HDR, ultra wide angle, architectural photography, Sony A7R\n\n【极简风格】\n[主体], minimalist composition, negative space, clean background, simple elegant, studio lighting"
+        },
+        {
+          "title": "产品摄影模板",
+          "type": "template",
+          "content": "【白底产品】\n[产品名], product photography, pure white background, studio lighting, commercial photography, high detail, sharp focus\n\n【场景产品】\n[产品] in [使用场景], lifestyle photography, natural lighting, shallow depth of field, premium feel\n\n【奢侈品风格】\n[产品], luxury product photography, dark dramatic background, rim lighting, gold accents, premium brand aesthetic\n\n【悬浮展示】\n[产品] floating on [背景], levitation product shot, dramatic shadows, clean composition"
+        },
+        {
+          "title": "通用负面提示词",
+          "type": "code",
+          "content": "# 粘贴到 Negative Prompt 框中使用\nblurry, low quality, worst quality, low resolution, distorted, deformed, ugly, bad anatomy, watermark, signature, text, logo, cropped, out of frame, duplicate, extra limbs, mutation, poorly drawn face, bad proportions, grainy, noise, overexposed, underexposed, cartoon, anime (如需写实风格时)"
+        }
+      ]
+    },
+    {
+      "id": "runway-gen3-inspiration",
+      "title": "Runway Gen-3 视频创作灵感集",
+      "category": "inspiration",
+      "tool": "Runway",
+      "tags": ["视频", "灵感", "Gen-3", "镜头"],
+      "summary": "精选 Runway Gen-3 优秀镜头案例，包含完整提示词、参数设置和创作思路，直接可用。",
+      "icon": "movie",
+      "difficulty": "intermediate",
+      "readTime": "12 min",
+      "sections": [
+        {
+          "title": "电影感镜头",
+          "type": "template",
+          "content": "【城市延时】\nAerial view of a bustling city at night, time-lapse, neon lights reflecting on wet streets, cinematic 4K\n参数：Duration 10s | Motion: Slow zoom out\n\n【人物特写】\nExtreme close-up of a woman's eye, tear slowly forming and falling, dramatic side lighting, film noir, 35mm\n参数：Duration 5s | Camera: Static\n\n【史诗远景】\nWide establishing shot of ancient stone ruins at sunset, silhouetted adventurer, golden dust particles, cinematic widescreen\n参数：Duration 8s | Motion: Slow dolly forward"
+        },
+        {
+          "title": "自然场景",
+          "type": "template",
+          "content": "【海浪慢动作】\nMassive ocean waves crashing against rocky cliffs in slow motion, golden sunset, sea spray catching light, photorealistic, 8K\n参数：Duration 8s | Motion: Slow\n\n【森林晨雾】\nAncient redwood forest at dawn, mist rolling through trees, rays of golden light filtering through canopy, peaceful, nature documentary\n参数：Duration 10s | Camera: Slow pan right\n\n【夜空星轨】\nTime-lapse of star trails over a mountain peak, Milky Way visible, cold blue tones, 4K astrophotography\n参数：Duration 10s | Camera: Static"
+        },
+        {
+          "title": "抽象创意",
+          "type": "template",
+          "content": "【流体艺术】\nAbstract fluid art, vibrant neon colors merging and flowing, macro photography style, smooth hypnotic motion, satisfying\n参数：Duration 8s | Motion: Smooth\n\n【粒子成形】\nThousands of golden particles swirling and forming a human silhouette, dark background, magical energy, cinematic lighting\n参数：Duration 8s | Motion: Dynamic\n\n【几何变换】\nSleek geometric shapes morphing and transforming, chrome and glass materials, studio lighting, product visualization style\n参数：Duration 6s | Motion: Smooth"
+        },
+        {
+          "title": "创作技巧总结",
+          "type": "steps",
+          "content": "1. 先用 Midjourney 生成静态关键帧，再用 Image to Video 保持一致性\n2. 镜头运动词汇：pan left/right（横摇）, zoom in/out（推拉）, dolly forward（向前推）, tilt up/down（俯仰）\n3. 时间修饰词：slow motion, time-lapse, real-time\n4. 电影风格参考：Wes Anderson style, Christopher Nolan style, Wong Kar-wai style\n5. 质量提升词：cinematic, 4K, photorealistic, film grain, anamorphic lens\n6. 避免过于复杂的场景描述，简洁清晰的提示词效果更稳定"
+        }
+      ]
+    },
+    {
+      "id": "elevenlabs-voice-guide",
+      "title": "ElevenLabs 语音克隆与配音指南",
+      "category": "guide",
+      "tool": "ElevenLabs",
+      "tags": ["语音", "TTS", "克隆", "配音"],
+      "summary": "完整掌握 ElevenLabs 声音克隆、文字转语音和 API 集成，适用于播客、有声书、视频配音。",
+      "icon": "mic",
+      "difficulty": "beginner",
+      "readTime": "12 min",
+      "sections": [
+        {
+          "title": "声音克隆步骤",
+          "type": "steps",
+          "content": "1. 准备录音材料：\n   • 时长：1-3 分钟（越长越准确）\n   • 格式：MP3/WAV，44.1kHz 或以上\n   • 环境：安静室内，无背景音乐\n   • 内容：自然说话，包含多种语调和停顿\n\n2. 上传到 ElevenLabs：\n   • 进入 VoiceLab → Add a new voice\n   • 选择 Instant Voice Cloning\n   • 上传音频，填写声音名称\n   • 点击 Add Voice 完成克隆\n\n3. 测试效果：在 Speech Synthesis 中输入文本测试"
+        },
+        {
+          "title": "参数调优指南",
+          "type": "table",
+          "content": "Stability（稳定性）| 0.3-0.5 | 表现力强，适合故事/情感内容\nStability（稳定性）| 0.7-0.9 | 更稳定，适合新闻/播报\nSimilarity（相似度）| 0.75-0.85 | 推荐范围，相似且清晰\nStyle（风格强度）| 0-0.3 | 少量增加表现力\nSpeaker Boost | 开启 | 进一步提升相似度"
+        },
+        {
+          "title": "API 集成",
+          "type": "code",
+          "content": "pip install elevenlabs\n\nfrom elevenlabs.client import ElevenLabs\nfrom elevenlabs import save\n\nclient = ElevenLabs(api_key=\"your-api-key\")\n\naudio = client.generate(\n    text=\"欢迎收听本期播客，今天我们来聊聊AI创作。\",\n    voice=\"your-voice-id\",  # 或内置声音名称如 \"Rachel\"\n    model=\"eleven_multilingual_v2\"  # 支持中文\n)\n\nsave(audio, \"output.mp3\")\nprint(\"音频已保存\")"
+        },
+        {
+          "title": "使用场景最佳实践",
+          "type": "steps",
+          "content": "播客制作：\n• 用克隆声音生成广告插播段落\n• 批量生成多语言版本（11种语言）\n• 导出 MP3 后在 Descript 中精细编辑\n\n有声书：\n• 不同角色使用不同克隆声音\n• 保持每章节相同的参数设置确保一致性\n• 使用项目功能管理多章节\n\n视频配音：\n• 先生成配音，再根据配音调整视频节奏\n• 使用字幕文件辅助对齐\n• 导出时选择合适的格式（视频配音建议 WAV）"
+        }
+      ]
+    },
+    {
+      "id": "suno-music-guide",
+      "title": "Suno AI 音乐创作完整指南",
+      "category": "guide",
+      "tool": "Suno",
+      "tags": ["音乐", "AI创作", "歌词", "风格"],
+      "summary": "用 Suno AI 创作完整歌曲，掌握风格描述、歌词结构标签、Extend 续写和商用注意事项。",
+      "icon": "music_note",
+      "difficulty": "beginner",
+      "readTime": "10 min",
+      "sections": [
+        {
+          "title": "两种创作方式",
+          "type": "steps",
+          "content": "方式一：描述生成（推荐新手）\n在 Style of Music 框输入描述，例如：\n\"upbeat pop song, female vocals, piano and guitar, happy summer vibes\"\nSuno 自动生成歌词和音乐\n\n方式二：自定义歌词\n1. 点击 Customize 开启自定义模式\n2. 填写完整歌词（支持结构标签）\n3. 在 Style 框描述音乐风格\n4. 可填写歌曲标题\n5. 点击 Create 生成"
+        },
+        {
+          "title": "歌词结构标签",
+          "type": "code",
+          "content": "# 在歌词中使用方括号标注段落结构\n\n[Intro]          前奏（通常无人声或哼唱）\n[Verse]          主歌\n[Pre-Chorus]     预副歌（桥接段）\n[Chorus]         副歌（最重要，会重复）\n[Bridge]         中间桥段（只出现一次）\n[Outro]          尾奏/结尾\n[Break]          间奏\n\n# 推荐歌曲结构\n[Intro]\n[Verse]\n歌词...\n[Chorus]\n副歌歌词...\n[Verse]\n第二段歌词...\n[Chorus]\n[Bridge]\n桥段歌词...\n[Chorus]\n[Outro]"
+        },
+        {
+          "title": "风格描述关键词",
+          "type": "table",
+          "content": "流行 | pop, indie pop, synth-pop, bedroom pop, K-pop\n摇滚 | rock, indie rock, alternative, punk, metal\n电子 | electronic, EDM, house, lo-fi, ambient, chillwave\n嘻哈 | hip-hop, rap, trap, boom bap, drill\n古典 | orchestral, classical, cinematic, piano, strings\n世界音乐 | jazz, blues, folk, bossa nova, reggae, latin"
+        },
+        {
+          "title": "进阶技巧",
+          "type": "steps",
+          "content": "1. Extend（续写）：生成后点击 ... → Extend，在喜欢的位置续写歌曲\n2. Remaster：对旧歌进行音质升级\n3. Covers：上传参考音频让 AI 学习特定风格\n4. 商用版权：Pro 套餐以上可商用（需确认最新条款）\n5. Stems 分离：付费用户可下载人声/伴奏分离版本\n6. 快速迭代：同一 prompt 生成多个版本，选最好的继续 Extend"
+        }
+      ]
+    },
+    {
+      "id": "aigc-workflow-inspiration",
+      "title": "AIGC 创作工作流灵感合集",
+      "category": "inspiration",
+      "tool": "多工具",
+      "tags": ["工作流", "灵感", "综合", "效率"],
+      "summary": "10 个经过验证的 AIGC 全链路工作流，从内容策划到最终交付的完整流程与工具链。",
+      "icon": "account_tree",
+      "difficulty": "intermediate",
+      "readTime": "15 min",
+      "sections": [
+        {
+          "title": "短视频内容工作流",
+          "type": "steps",
+          "content": "工具链：ChatGPT → Midjourney → Runway → ElevenLabs → CapCut\n\n1. ChatGPT：输入主题，生成脚本 + 分镜描述（10-15个场景）\n2. Midjourney：按分镜描述生成关键帧图像\n3. Runway Gen-3：将图像转换为 3-8 秒视频片段\n4. ElevenLabs：将脚本转换为配音 MP3\n5. CapCut：导入所有素材，剪辑合成，添加字幕\n\n适用：知识科普、产品展示、故事叙述\n预计耗时：3-5 小时（熟练后 1-2 小时）"
+        },
+        {
+          "title": "品牌视觉工作流",
+          "type": "steps",
+          "content": "工具链：Claude → Midjourney → Adobe Firefly → Canva\n\n1. Claude：分析品牌定位，生成视觉方向 3 个备选方案\n2. Midjourney：每个方向生成 10+ 张风格探索图\n3. Adobe Firefly：基于选定风格生成品牌素材（保持一致性）\n4. Canva：制作各尺寸物料（海报/名片/社媒封面）\n\n适用：品牌设计、营销物料、社交媒体\n核心优势：Firefly 商用安全，无版权风险"
+        },
+        {
+          "title": "播客制作工作流",
+          "type": "steps",
+          "content": "工具链：Perplexity → Claude → ElevenLabs → Descript\n\n1. Perplexity：研究话题，收集最新观点和数据\n2. Claude：撰写播客脚本（含开场白、正文、结尾）\n3. ElevenLabs：生成 AI 配音（或真人录音后上传）\n4. Descript：一键降噪、剪辑空白、生成字幕文件\n\n适用：知识播客、新闻解读、教育音频\n输出：MP3 音频 + SRT 字幕 + 封面图"
+        },
+        {
+          "title": "电商内容工作流",
+          "type": "steps",
+          "content": "工具链：ChatGPT → Stable Diffusion → Remove.bg → Canva\n\n1. ChatGPT：生成产品卖点文案 + 5个场景描述\n2. Stable Diffusion：生成产品在各场景中的展示图\n3. Remove.bg：自动抠图，去除背景\n4. Canva：制作主图、详情页轮播图、促销 banner\n\n适用：电商运营、产品展示、促销活动\n成本估算：SD 本地部署近乎免费，比外包拍摄节省 80%+"
+        }
+      ]
+    },
+    {
+      "id": "comfyui-workflow-guide",
+      "title": "ComfyUI 工作流使用指南",
+      "category": "guide",
+      "tool": "ComfyUI",
+      "tags": ["ComfyUI", "工作流", "自动化", "进阶"],
+      "summary": "掌握 ComfyUI 节点编辑器，学习加载工作流、连接节点、批量生成和常用工作流推荐。",
+      "icon": "hub",
+      "difficulty": "advanced",
+      "readTime": "18 min",
+      "sections": [
+        {
+          "title": "安装与启动",
+          "type": "steps",
+          "content": "1. 安装 Python 3.10+ 和 Git\n2. 克隆仓库：\n   git clone https://github.com/comfyanonymous/ComfyUI\n   cd ComfyUI\n\n3. 安装依赖：\n   pip install -r requirements.txt\n\n4. 放入模型（到 models/checkpoints/）\n\n5. 启动：\n   python main.py\n   访问 http://127.0.0.1:8188"
+        },
+        {
+          "title": "核心概念",
+          "type": "steps",
+          "content": "节点（Node）：每个处理步骤是一个节点，例如：\n• Load Checkpoint — 加载模型\n• CLIPTextEncode — 编码提示词\n• KSampler — 扩散采样（核心节点）\n• VAE Decode — 解码为图像\n• Save Image — 保存结果\n\n连线：将节点输出连接到下一个节点的输入\n队列：右侧 Queue Prompt 按钮提交生成任务\n工作流：整个节点图可导出为 JSON 文件分享"
+        },
+        {
+          "title": "必装扩展推荐",
+          "type": "table",
+          "content": "ComfyUI Manager | 扩展管理器，必装基础 | 在 GitHub 搜索 ltdrdata/ComfyUI-Manager\nWAS Node Suite | 150+ 实用节点 | WASasquatch/was-node-suite-comfyui\nIPAdapter Plus | 风格迁移/人脸一致性 | cubiq/ComfyUI_IPAdapter_plus\nControlNet | 姿势/线稿控制 | Fannovel16/comfyui_controlnet_aux\nUltimate SD Upscale | 高清放大 | ssitu/ComfyUI_UltimateSDUpscale"
+        },
+        {
+          "title": "工作流资源",
+          "type": "steps",
+          "content": "获取优质工作流的途径：\n\n1. OpenArt.ai/workflows — 最大工作流分享社区\n2. Civitai.com — 附带工作流的模型页面\n3. Reddit r/comfyui — 社区分享\n4. GitHub Awesome ComfyUI — 精选工作流列表\n\n使用方法：\n• 下载 .json 文件\n• 在 ComfyUI 中拖入或 Load 按钮导入\n• 安装缺失节点（Manager 会提示）\n• 替换为本地已有的模型路径"
+        }
+      ]
+    },
+    {
+      "id": "perplexity-research-guide",
+      "title": "Perplexity AI 高效研究工作流",
+      "category": "guide",
+      "tool": "Perplexity",
+      "tags": ["搜索", "研究", "信息获取", "效率"],
+      "summary": "用 Perplexity AI 替代传统搜索引擎，快速获取有引用来源的准确信息，适合研究、选题、竞品分析。",
+      "icon": "search",
+      "difficulty": "beginner",
+      "readTime": "8 min",
+      "sections": [
+        {
+          "title": "核心功能与使用场景",
+          "type": "steps",
+          "content": "Perplexity 特点：\n• 实时联网搜索 + AI 整合回答\n• 每条结论附有来源链接可验证\n• 支持追问和多轮对话\n• Focus 模式可指定搜索范围\n\n最适合场景：\n• 行业研究和市场分析\n• 快速了解陌生领域\n• 验证某个说法是否准确\n• 收集竞品信息\n• 选题时寻找热点角度"
+        },
+        {
+          "title": "高效提问技巧",
+          "type": "template",
+          "content": "【市场研究】\n分析[行业/产品]的市场现状：规模、增长率、主要玩家、近期趋势、用户痛点，引用最新数据\n\n【竞品调研】\n对比[A产品]和[B产品]的定价、功能、用户评价、优缺点，汇总成表格\n\n【技术调研】\n[技术名称]的工作原理是什么？当前最佳实践有哪些？有哪些主流开源实现？\n\n【选题助手】\n关于[主题]，最近3个月有哪些值得讨论的新发展？读者可能感兴趣的角度有哪些？"
+        },
+        {
+          "title": "Focus 模式使用",
+          "type": "table",
+          "content": "All | 默认模式 | 全网搜索\nAcademic | 学术研究 | 优先搜索学术论文和研究\nYouTube | 视频研究 | 搜索并总结 YouTube 视频内容\nReddit | 社区观点 | 获取真实用户的讨论和评价\nWolfram Alpha | 计算/数学 | 精确数学和科学计算"
+        },
+        {
+          "title": "与其他工具配合",
+          "type": "steps",
+          "content": "研究工作流：\n1. Perplexity：快速研究主题，收集关键信息和来源\n2. 打开原始来源链接，验证重要数据\n3. Claude/ChatGPT：基于收集的信息，撰写结构化报告\n4. Notion AI：整理到知识库，添加个人见解\n\n内容创作工作流：\n1. Perplexity：搜索话题 + 收集最新观点\n2. 确定独特角度和结构\n3. Claude：撰写完整文章\n4. Perplexity：事实核查关键数据"
+        }
+      ]
+    }
+  ]
+}

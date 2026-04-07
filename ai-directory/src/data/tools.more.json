@@ -1,0 +1,4198 @@
+[
+  {
+    "id": "openai-chatgpt-2025-01-01",
+    "name": "OpenAI ChatGPT",
+    "slug": "openai-chatgpt",
+    "officialUrl": "https://chat.openai.com/",
+    "description": "Popular AI chatbot (GPT-3.5/GPT-4) for text Q&A and content creation.",
+    "categories": [
+      "writing",
+      "coding",
+      "data",
+      "drawing",
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 93,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "google-bard-2025-01-01",
+    "name": "Google Bard",
+    "slug": "google-bard",
+    "officialUrl": "https://bard.google.com/",
+    "description": "Google's AI conversational system with web-based knowledge integration.",
+    "categories": [
+      "writing",
+      "coding",
+      "data",
+      "drawing",
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 绘画"
+    ],
+    "pricing": "free",
+    "hotScore": 78,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "bing-chat-gpt-4-2025-01-01",
+    "name": "Bing Chat (GPT-4)",
+    "slug": "bing-chat-gpt-4",
+    "officialUrl": "https://bing.com/chat",
+    "description": "Microsoft's GPT-4 chatbot with integrated web search and image generation.",
+    "categories": [
+      "writing",
+      "coding",
+      "data",
+      "drawing",
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 绘画"
+    ],
+    "pricing": "free",
+    "hotScore": 64,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "pi-inflection-ai-2025-01-01",
+    "name": "Pi (Inflection AI)",
+    "slug": "pi-inflection-ai",
+    "officialUrl": "https://heypi.com/",
+    "description": "Personal AI companion for casual conversation & daily support.",
+    "categories": [
+      "writing",
+      "coding",
+      "data",
+      "drawing",
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 绘画"
+    ],
+    "pricing": "free",
+    "hotScore": 84,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "character-ai-2025-01-01",
+    "name": "Character.AI",
+    "slug": "character-ai",
+    "officialUrl": "https://beta.character.ai/",
+    "description": "Create and chat with custom AI characters and personalities.",
+    "categories": [
+      "writing",
+      "coding",
+      "data",
+      "drawing",
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 80,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "meta-ai-llama-2-2025-01-01",
+    "name": "Meta AI (Llama 2)",
+    "slug": "meta-ai-llama-2",
+    "officialUrl": "https://ai.meta.com/llama/",
+    "description": "Large Language Model from Meta with various parameter sizes.",
+    "categories": [
+      "writing",
+      "coding",
+      "data",
+      "drawing",
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 绘画"
+    ],
+    "pricing": "free",
+    "hotScore": 98,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "deepseek-2025-01-01",
+    "name": "DeepSeek",
+    "slug": "deepseek",
+    "officialUrl": "https://github.com/opennlplab/deepseek",
+    "description": "Open-source LLMs for enterprise, research, and consumer use.",
+    "categories": [
+      "writing",
+      "coding",
+      "data",
+      "drawing",
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 绘画"
+    ],
+    "pricing": "free",
+    "hotScore": 55,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "qwen-2025-01-01",
+    "name": "Qwen",
+    "slug": "qwen",
+    "officialUrl": "https://qwen.ai/",
+    "description": "Alibaba Cloud's open-sourced LLM with advanced reasoning & image support.",
+    "categories": [
+      "writing",
+      "coding",
+      "data",
+      "drawing",
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 绘画"
+    ],
+    "pricing": "free",
+    "hotScore": 50,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "mistral-ai-2025-01-01",
+    "name": "Mistral AI",
+    "slug": "mistral-ai",
+    "officialUrl": "https://mistral.ai/",
+    "description": "Lightweight, high-performing open-weight LLMs by Mistral AI.",
+    "categories": [
+      "writing",
+      "coding",
+      "data",
+      "drawing",
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 绘画"
+    ],
+    "pricing": "free",
+    "hotScore": 86,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "xai-grok-2025-01-01",
+    "name": "xAI Grok",
+    "slug": "xai-grok",
+    "officialUrl": "https://x.ai/",
+    "description": "Elon Musk's xAI LLM with open-source weights & code.",
+    "categories": [
+      "writing",
+      "coding",
+      "data",
+      "drawing",
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 绘画"
+    ],
+    "pricing": "free",
+    "hotScore": 84,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "komobot-2025-01-01",
+    "name": "Komobot",
+    "slug": "komobot",
+    "officialUrl": "https://komo.ai/",
+    "description": "Simple AI chat engine with short, fast Q&A focus.",
+    "categories": [
+      "writing",
+      "coding",
+      "data",
+      "drawing",
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 绘画"
+    ],
+    "pricing": "free",
+    "hotScore": 63,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "forefront-ai-2025-01-01",
+    "name": "Forefront AI",
+    "slug": "forefront-ai",
+    "officialUrl": "https://forefront.ai/",
+    "description": "Chat interface with GPT-4, image generation, and conversation tools.",
+    "categories": [
+      "writing",
+      "coding",
+      "data",
+      "drawing",
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 98,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "librechat-2025-01-01",
+    "name": "LibreChat",
+    "slug": "librechat",
+    "officialUrl": "https://github.com/mckaywrigley/chatbot-ui",
+    "description": "Self-hosted, open-source ChatGPT-like interface.",
+    "categories": [
+      "writing",
+      "coding",
+      "data",
+      "drawing",
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 绘画"
+    ],
+    "pricing": "free",
+    "hotScore": 77,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "jasper-2025-01-01",
+    "name": "Jasper",
+    "slug": "jasper",
+    "officialUrl": "https://www.jasper.ai/",
+    "description": "AI copywriting & content generation for marketing, ads, social media.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "paid",
+    "hotScore": 66,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "copy-ai-2025-01-01",
+    "name": "Copy.ai",
+    "slug": "copy-ai",
+    "officialUrl": "https://www.copy.ai/",
+    "description": "Marketing copy generator with templates and brainstorming features.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 59,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "anyword-2025-01-01",
+    "name": "Anyword",
+    "slug": "anyword",
+    "officialUrl": "https://anyword.com/",
+    "description": "AI-driven copywriting for ads, emails, landing pages; predictive performance.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 71,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "rytr-2025-01-01",
+    "name": "Rytr",
+    "slug": "rytr",
+    "officialUrl": "https://rytr.me/",
+    "description": "Automated writing assistant for blog posts, ads, and creative text.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 51,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "wordtune-2025-01-01",
+    "name": "Wordtune",
+    "slug": "wordtune",
+    "officialUrl": "https://www.wordtune.com/",
+    "description": "Rewrites and refines sentences for clarity and style.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 61,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "quillbot-2025-01-01",
+    "name": "QuillBot",
+    "slug": "quillbot",
+    "officialUrl": "https://quillbot.com/",
+    "description": "Paraphrasing tool and grammar checker with AI-based rewriting.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 88,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "hypotenuse-ai-2025-01-01",
+    "name": "Hypotenuse AI",
+    "slug": "hypotenuse-ai",
+    "officialUrl": "https://www.hypotenuse.ai/",
+    "description": "Automated content generator for e-commerce, product descriptions & more.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 57,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "lavender-2025-01-01",
+    "name": "Lavender",
+    "slug": "lavender",
+    "officialUrl": "https://www.lavender.ai/",
+    "description": "AI email assistant for sales & outreach with personalized writing.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "paid",
+    "hotScore": 54,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "moonbeam-2025-01-01",
+    "name": "Moonbeam",
+    "slug": "moonbeam",
+    "officialUrl": "https://www.gomoonbeam.com/",
+    "description": "AI writing tool focused on blog posts & structured outlines.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "paid",
+    "hotScore": 90,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "jenni-2025-01-01",
+    "name": "Jenni",
+    "slug": "jenni",
+    "officialUrl": "https://jenni.ai/",
+    "description": "AI writing partner that helps you draft & expand ideas.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "paid",
+    "hotScore": 70,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "lex-2025-01-01",
+    "name": "Lex",
+    "slug": "lex",
+    "officialUrl": "https://lex.page/",
+    "description": "AI-augmented text editor that can rewrite, summarize, and generate text.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 92,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "compose-ai-2025-01-01",
+    "name": "Compose AI",
+    "slug": "compose-ai",
+    "officialUrl": "https://www.compose.ai/",
+    "description": "Chrome extension that autocompletes and rewrites text on websites.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 58,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "ai-poem-generator-2025-01-01",
+    "name": "AI Poem Generator",
+    "slug": "ai-poem-generator",
+    "officialUrl": "https://www.poem-generator.org.uk/ai",
+    "description": "Quickly create rhyming poems from prompts.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 99,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "laika-2025-01-01",
+    "name": "LAIKA",
+    "slug": "laika",
+    "officialUrl": "https://laika.ai/",
+    "description": "Personal AI model trained on your own writing style for creative tasks.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "paid",
+    "hotScore": 86,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "copysmith-2025-01-01",
+    "name": "Copysmith",
+    "slug": "copysmith",
+    "officialUrl": "https://copysmith.ai/",
+    "description": "AI content generation for ecommerce product descriptions & ads.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "paid",
+    "hotScore": 96,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "github-copilot-2025-01-01",
+    "name": "GitHub Copilot",
+    "slug": "github-copilot",
+    "officialUrl": "https://github.com/features/copilot",
+    "description": "AI pair programmer for real-time code suggestions in your IDE.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 90,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "amazon-codewhisperer-2025-01-01",
+    "name": "Amazon CodeWhisperer",
+    "slug": "amazon-codewhisperer",
+    "officialUrl": "https://aws.amazon.com/codewhisperer/",
+    "description": "AI code completion & suggestions for AWS stack. Free for individuals.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 79,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "replit-ghostwriter-2025-01-01",
+    "name": "Replit Ghostwriter",
+    "slug": "replit-ghostwriter",
+    "officialUrl": "https://replit.com/site/ghostwriter",
+    "description": "AI dev companion in Replit for code generation & explanations.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 96,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "tabnine-2025-01-01",
+    "name": "Tabnine",
+    "slug": "tabnine",
+    "officialUrl": "https://www.tabnine.com/",
+    "description": "AI assistant for code completion & snippet generation.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 65,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "codeium-2025-01-01",
+    "name": "Codeium",
+    "slug": "codeium",
+    "officialUrl": "https://codeium.com/",
+    "description": "100% free AI code completion for major languages/IDEs.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "free",
+    "hotScore": 68,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "stenography-2025-01-01",
+    "name": "Stenography",
+    "slug": "stenography",
+    "officialUrl": "https://stenography.dev/",
+    "description": "Automated code documentation with integrated AI.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 76,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "mutableai-2025-01-01",
+    "name": "MutableAI",
+    "slug": "mutableai",
+    "officialUrl": "https://mutable.ai/",
+    "description": "AI dev environment for code transformation & refactoring.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 90,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "gpt-pilot-2025-01-01",
+    "name": "GPT Pilot",
+    "slug": "gpt-pilot",
+    "officialUrl": "https://github.com/PicoCreator/GPT-Pilot",
+    "description": "Autonomous AI agent that writes scalable apps with GPT-4.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "free",
+    "hotScore": 68,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "pr-agent-2025-01-01",
+    "name": "PR-Agent",
+    "slug": "pr-agent",
+    "officialUrl": "https://github.com/Codium-ai/pr-agent",
+    "description": "AI tool for code reviews, PR analysis, suggestions in GitHub flow.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "free",
+    "hotScore": 88,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "cursor-1-2025-01-01",
+    "name": "Cursor",
+    "slug": "cursor-1",
+    "officialUrl": "https://cursor.dev/",
+    "description": "AI-powered code editor with chat-driven refactoring & generation.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 79,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "turbopilot-2025-01-01",
+    "name": "TurboPilot",
+    "slug": "turbopilot",
+    "officialUrl": "https://github.com/ravenscroftj/turbopilot",
+    "description": "Self-hosted Copilot alternative using open code models.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "free",
+    "hotScore": 72,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "ai2sql-2025-01-01",
+    "name": "AI2sql",
+    "slug": "ai2sql",
+    "officialUrl": "https://ai2sql.io/",
+    "description": "Natural language to SQL query generator for analytics and data teams.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 94,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "debuild-2025-01-01",
+    "name": "Debuild",
+    "slug": "debuild",
+    "officialUrl": "https://debuild.app/",
+    "description": "Low-code AI tool that scaffolds web apps from prompts.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 67,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "mintlify-2025-01-01",
+    "name": "Mintlify",
+    "slug": "mintlify",
+    "officialUrl": "https://mintlify.com/",
+    "description": "AI-based documentation writer for dev teams, with doc hosting.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 85,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "auto-gpt-2025-01-01",
+    "name": "Auto-GPT",
+    "slug": "auto-gpt",
+    "officialUrl": "https://github.com/Significant-Gravitas/Auto-GPT",
+    "description": "GPT-4-based autonomous agent that spawns tasks to achieve user goals.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 100,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "babyagi-2025-01-01",
+    "name": "BabyAGI",
+    "slug": "babyagi",
+    "officialUrl": "https://github.com/yoheinakajima/babyagi",
+    "description": "Minimal AI-driven task manager that self-prioritizes tasks.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 81,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "agentgpt-2025-01-01",
+    "name": "AgentGPT",
+    "slug": "agentgpt",
+    "officialUrl": "https://agentgpt.reworkd.ai/",
+    "description": "Browser-based deployment of autonomous GPT agents with no coding.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 78,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "metagpt-2025-01-01",
+    "name": "MetaGPT",
+    "slug": "metagpt",
+    "officialUrl": "https://github.com/geekan/MetaGPT",
+    "description": "Multi-agent framework that designs PRD, tasks & code from a one-line prompt.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 90,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "gpt-engineer-2025-01-01",
+    "name": "GPT Engineer",
+    "slug": "gpt-engineer",
+    "officialUrl": "https://github.com/AntonOsika/gpt-engineer",
+    "description": "GPT-based system that builds entire codebases from a single prompt + Q&A.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 67,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "gpt-prompt-engineer-2025-01-01",
+    "name": "GPT Prompt Engineer",
+    "slug": "gpt-prompt-engineer",
+    "officialUrl": "https://github.com/mshumer/gpt-prompt-engineer",
+    "description": "Automated agent that tests & ranks multiple prompts to find the best result.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 56,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "autogen-2025-01-01",
+    "name": "AutoGen",
+    "slug": "autogen",
+    "officialUrl": "https://github.com/microsoft/AutoGen",
+    "description": "Microsoft's multi-agent orchestration to solve tasks with GPT-based LLMs.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 97,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "devin-2025-01-01",
+    "name": "Devin",
+    "slug": "devin",
+    "officialUrl": "https://www.getdevin.com/",
+    "description": "AI software engineering agent that can read, plan, and write code.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 84,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "superagi-2025-01-01",
+    "name": "SuperAGI",
+    "slug": "superagi",
+    "officialUrl": "https://github.com/TransformerOptimus/SuperAGI",
+    "description": "Agent framework that manages concurrent AI agents to solve large tasks.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 71,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "opendevin-2025-01-01",
+    "name": "OpenDevin",
+    "slug": "opendevin",
+    "officialUrl": "https://github.com/opendevin/opendevin",
+    "description": "AI agent specialized in automated software debugging & refactoring.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 74,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "n8n-2025-01-01",
+    "name": "N8n",
+    "slug": "n8n",
+    "officialUrl": "https://n8n.io/",
+    "description": "Automation tool with AI modules (e.g. GPT integration) for connecting APIs.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 99,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "midjourney-1-2025-01-01",
+    "name": "Midjourney",
+    "slug": "midjourney-1",
+    "officialUrl": "https://midjourney.com/",
+    "description": "High-quality, artistic text-to-image via Discord bot or web app.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "paid",
+    "hotScore": 53,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "stable-diffusion-2025-01-01",
+    "name": "Stable Diffusion",
+    "slug": "stable-diffusion",
+    "officialUrl": "https://github.com/Stability-AI/stablediffusion",
+    "description": "Community-driven text-to-image model with countless fine-tuned checkpoints.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "free",
+    "hotScore": 54,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "leonardo-ai-2025-01-01",
+    "name": "Leonardo AI",
+    "slug": "leonardo-ai",
+    "officialUrl": "https://leonardo.ai/",
+    "description": "Versatile image generator for game art & concept design. Daily free credits.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 87,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "ideogram-2025-01-01",
+    "name": "Ideogram",
+    "slug": "ideogram",
+    "officialUrl": "https://ideogram.ai/",
+    "description": "Specialized in generating images with **accurate text** inside them.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "free",
+    "hotScore": 76,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "adobe-firefly-2025-01-01",
+    "name": "Adobe Firefly",
+    "slug": "adobe-firefly",
+    "officialUrl": "https://www.adobe.com/sensei/generative-ai/firefly.html",
+    "description": "Powerful creative suite integrated with Photoshop for generative fill & text effects.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 69,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "dreamstudio-2025-01-01",
+    "name": "DreamStudio",
+    "slug": "dreamstudio",
+    "officialUrl": "https://beta.dreamstudio.ai/",
+    "description": "Official web app for Stable Diffusion by Stability AI. Credit-based usage.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 99,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "craiyon-2025-01-01",
+    "name": "Craiyon",
+    "slug": "craiyon",
+    "officialUrl": "https://www.craiyon.com/",
+    "description": "Formerly DALL-E mini, quick text-to-image generator with simpler outputs.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "free",
+    "hotScore": 86,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "nightcafe-2025-01-01",
+    "name": "NightCafe",
+    "slug": "nightcafe",
+    "officialUrl": "https://nightcafe.studio/",
+    "description": "User-friendly platform for generating & social-sharing AI artworks.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 91,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "playground-ai-2025-01-01",
+    "name": "Playground AI",
+    "slug": "playground-ai",
+    "officialUrl": "https://playgroundai.com/",
+    "description": "Free image generation & editing tool using Stable Diffusion, DALL·E, others.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 60,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "recraft-ai-2025-01-01",
+    "name": "Recraft AI",
+    "slug": "recraft-ai",
+    "officialUrl": "https://recraft.ai/",
+    "description": "Generate vector illustrations, icons, images, or 3D graphics from text prompts.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 86,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "modyfi-2025-01-01",
+    "name": "modyfi",
+    "slug": "modyfi",
+    "officialUrl": "https://www.modyfi.com/",
+    "description": "Online image editor with AI features (background removal, style transfer).",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 71,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "clipdrop-2025-01-01",
+    "name": "ClipDrop",
+    "slug": "clipdrop",
+    "officialUrl": "https://clipdrop.co/",
+    "description": "Remove backgrounds, upscale images, generate variations using stability.ai tech.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 92,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "ponzu-ai-2025-01-01",
+    "name": "Ponzu AI",
+    "slug": "ponzu-ai",
+    "officialUrl": "https://www.ponzu.ai/",
+    "description": "AI-based logo generator that designs unique brand marks.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "free",
+    "hotScore": 59,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "photoroom-2025-01-01",
+    "name": "PhotoRoom",
+    "slug": "photoroom",
+    "officialUrl": "https://www.photoroom.com/",
+    "description": "Product photo editing with AI background removal & easy retouching.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 84,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "genshare-2025-01-01",
+    "name": "GenShare",
+    "slug": "genshare",
+    "officialUrl": "https://genshare.art/",
+    "description": "AI platform to generate, showcase & share your images.",
+    "categories": [
+      "drawing",
+      "design"
+    ],
+    "tags": [
+      "AI 绘画",
+      "生成式图片",
+      "创意素材",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 55,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "heygen-2025-01-01",
+    "name": "HeyGen",
+    "slug": "heygen",
+    "officialUrl": "https://heygen.com/",
+    "description": "Text-to-video with customizable avatars & language dubbing features.",
+    "categories": [
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 视频",
+      "视频生成",
+      "剪辑/制作",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 86,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "d-id-creative-reality-2025-01-01",
+    "name": "D-ID Creative Reality",
+    "slug": "d-id-creative-reality",
+    "officialUrl": "https://www.d-id.com/",
+    "description": "Animate a single photo into a talking avatar by uploading text/audio.",
+    "categories": [
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 视频",
+      "视频生成",
+      "剪辑/制作",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 69,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "pictory-2025-01-01",
+    "name": "Pictory",
+    "slug": "pictory",
+    "officialUrl": "https://pictory.ai/",
+    "description": "Convert long-form text into short branded videos with AI scene matching.",
+    "categories": [
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 视频",
+      "视频生成",
+      "剪辑/制作",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 83,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "fliki-2025-01-01",
+    "name": "Fliki",
+    "slug": "fliki",
+    "officialUrl": "https://fliki.ai/",
+    "description": "Text to video + TTS for fast video creation using stock footage.",
+    "categories": [
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 视频",
+      "视频生成",
+      "剪辑/制作",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 65,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "colossyan-2025-01-01",
+    "name": "Colossyan",
+    "slug": "colossyan",
+    "officialUrl": "https://colossyan.com/",
+    "description": "AI video generator focusing on corporate training & e-learning scenarios.",
+    "categories": [
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 视频",
+      "视频生成",
+      "剪辑/制作",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "paid",
+    "hotScore": 98,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "rephrase-ai-2025-01-01",
+    "name": "Rephrase.ai",
+    "slug": "rephrase-ai",
+    "officialUrl": "https://www.rephrase.ai/",
+    "description": "Lifelike AI avatars for personalized video messages & marketing.",
+    "categories": [
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 视频",
+      "视频生成",
+      "剪辑/制作",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "paid",
+    "hotScore": 64,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "wonder-studio-2025-01-01",
+    "name": "Wonder Studio",
+    "slug": "wonder-studio",
+    "officialUrl": "https://wonderdynamics.com/",
+    "description": "Auto-animate 3D characters into live-action video scenes.",
+    "categories": [
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 视频",
+      "视频生成",
+      "剪辑/制作",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 69,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "kaiber-2025-01-01",
+    "name": "Kaiber",
+    "slug": "kaiber",
+    "officialUrl": "https://kaiber.ai/",
+    "description": "Generate AI-driven music videos or animations from images & text.",
+    "categories": [
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 视频",
+      "视频生成",
+      "剪辑/制作",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 52,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "elai-2025-01-01",
+    "name": "Elai",
+    "slug": "elai",
+    "officialUrl": "https://elai.io/",
+    "description": "Generate business videos with AI avatars in multiple languages.",
+    "categories": [
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 视频",
+      "视频生成",
+      "剪辑/制作",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "paid",
+    "hotScore": 78,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "deepbrain-ai-2025-01-01",
+    "name": "DeepBrain AI",
+    "slug": "deepbrain-ai",
+    "officialUrl": "https://www.deepbrain.io/",
+    "description": "Virtual news anchors & spokesperson videos, often used for broadcasts.",
+    "categories": [
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 视频",
+      "视频生成",
+      "剪辑/制作",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "paid",
+    "hotScore": 54,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "invideo-ai-2025-01-01",
+    "name": "InVideo AI",
+    "slug": "invideo-ai",
+    "officialUrl": "https://invideo.io/",
+    "description": "AI-driven video maker with templates & auto-summarizing from scripts.",
+    "categories": [
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 视频",
+      "视频生成",
+      "剪辑/制作",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 96,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "vidyo-ai-2025-01-01",
+    "name": "Vidyo.ai",
+    "slug": "vidyo-ai",
+    "officialUrl": "https://vidyo.ai/",
+    "description": "Automatically repurpose long videos into short highlight clips.",
+    "categories": [
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 视频",
+      "视频生成",
+      "剪辑/制作",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "freemium",
+    "hotScore": 59,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "hour-one-2025-01-01",
+    "name": "Hour One",
+    "slug": "hour-one",
+    "officialUrl": "https://hourone.ai/",
+    "description": "Text-to-video with hyper-realistic AI presenters, used for training content.",
+    "categories": [
+      "video",
+      "design"
+    ],
+    "tags": [
+      "AI 视频",
+      "视频生成",
+      "剪辑/制作",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材"
+    ],
+    "pricing": "paid",
+    "hotScore": 53,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "resemble-ai-2025-01-01",
+    "name": "Resemble AI",
+    "slug": "resemble-ai",
+    "officialUrl": "https://www.resemble.ai/",
+    "description": "Custom voice generation & cloning for apps/branding.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "freemium",
+    "hotScore": 51,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "play-ht-2025-01-01",
+    "name": "Play.ht",
+    "slug": "play-ht",
+    "officialUrl": "https://play.ht/",
+    "description": "TTS with large voice library & customization options.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "freemium",
+    "hotScore": 78,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "murf-2025-01-01",
+    "name": "Murf",
+    "slug": "murf",
+    "officialUrl": "https://murf.ai/",
+    "description": "AI voice-over studio for marketing, e-learning, podcasts.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "freemium",
+    "hotScore": 76,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "wellsaid-labs-2025-01-01",
+    "name": "WellSaid Labs",
+    "slug": "wellsaid-labs",
+    "officialUrl": "https://www.wellsaidlabs.com/",
+    "description": "High-quality, human-like voice generator for professional use.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "paid",
+    "hotScore": 95,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "tortoise-tts-2025-01-01",
+    "name": "TorToiSe TTS",
+    "slug": "tortoise-tts",
+    "officialUrl": "https://github.com/neonbjb/tortoise-tts",
+    "description": "Transformer-based TTS with emphasis on natural prosody.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "free",
+    "hotScore": 76,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "bark-2025-01-01",
+    "name": "Bark",
+    "slug": "bark",
+    "officialUrl": "https://github.com/suno-ai/bark",
+    "description": "Transformer-based text-to-audio model supporting multiple languages.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "free",
+    "hotScore": 62,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "vall-e-x-2025-01-01",
+    "name": "VALL-E X",
+    "slug": "vall-e-x",
+    "officialUrl": "https://vallex.github.io/",
+    "description": "Experimental cross-lingual speech synthesis from small samples.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "free",
+    "hotScore": 65,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "whisper-2025-01-01",
+    "name": "Whisper",
+    "slug": "whisper",
+    "officialUrl": "https://github.com/openai/whisper",
+    "description": "OpenAI's robust model for accurate speech recognition.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "free",
+    "hotScore": 83,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "whisper-cpp-2025-01-01",
+    "name": "whisper.cpp",
+    "slug": "whisper-cpp",
+    "officialUrl": "https://github.com/ggerganov/whisper.cpp",
+    "description": "C/C++ port of Whisper for local CPU/GPU inference.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "free",
+    "hotScore": 50,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "vibe-transcribe-2025-01-01",
+    "name": "Vibe Transcribe",
+    "slug": "vibe-transcribe",
+    "officialUrl": "https://github.com/dhiaayachi/vibe-transcribe",
+    "description": "Self-hosted transcription & subtitling with Whisper.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "free",
+    "hotScore": 71,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "wispr-flow-2025-01-01",
+    "name": "Wispr Flow",
+    "slug": "wispr-flow",
+    "officialUrl": "https://www.wispr.ai/",
+    "description": "Desktop tool for hands-free voice dictation & quick transcripts.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "freemium",
+    "hotScore": 62,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "mubert-2025-01-01",
+    "name": "Mubert",
+    "slug": "mubert",
+    "officialUrl": "https://mubert.com/",
+    "description": "Generate royalty-free music by choosing moods & genres.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "freemium",
+    "hotScore": 73,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "aiva-2025-01-01",
+    "name": "AIVA",
+    "slug": "aiva",
+    "officialUrl": "https://www.aiva.ai/",
+    "description": "AI composer with styles like classical, jazz, ambient, etc.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "freemium",
+    "hotScore": 51,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "musicgen-audiocraft-2025-01-01",
+    "name": "MusicGen (AudioCraft)",
+    "slug": "musicgen-audiocraft",
+    "officialUrl": "https://github.com/facebookresearch/audiocraft",
+    "description": "Meta's open-source music/sound generation suite (AudioGen, etc.).",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "free",
+    "hotScore": 86,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "stable-audio-2025-01-01",
+    "name": "Stable Audio",
+    "slug": "stable-audio",
+    "officialUrl": "https://www.stability.ai/products/stable-audio",
+    "description": "Text-based music creation by Stability AI with track durations.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "freemium",
+    "hotScore": 50,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "soundraw-2025-01-01",
+    "name": "Soundraw",
+    "slug": "soundraw",
+    "officialUrl": "https://soundraw.io/",
+    "description": "Generate & customize unique music for videos, games, podcasts.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "freemium",
+    "hotScore": 79,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "suno-ai-2025-01-01",
+    "name": "Suno AI",
+    "slug": "suno-ai",
+    "officialUrl": "https://suno.ai/",
+    "description": "Create and share AI-generated songs, voice clones, soundscapes.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "freemium",
+    "hotScore": 57,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "boomy-2025-01-01",
+    "name": "Boomy",
+    "slug": "boomy",
+    "officialUrl": "https://boomy.com/",
+    "description": "Create entire music tracks in minutes and publish to streaming.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "freemium",
+    "hotScore": 64,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "riffusion-2025-01-01",
+    "name": "Riffusion",
+    "slug": "riffusion",
+    "officialUrl": "https://www.riffusion.com/",
+    "description": "Diffusion-based approach to create music from spectrogram images.",
+    "categories": [
+      "audio"
+    ],
+    "tags": [
+      "AI 音频",
+      "语音合成",
+      "配音"
+    ],
+    "pricing": "free",
+    "hotScore": 99,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "microsoft-365-copilot-2025-01-01",
+    "name": "Microsoft 365 Copilot",
+    "slug": "microsoft-365-copilot",
+    "officialUrl": "https://www.microsoft.com/en-us/microsoft-365/ai",
+    "description": "AI assistant in Word, Excel, PowerPoint, Outlook for enterprise.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "paid",
+    "hotScore": 83,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "google-workspace-duet-ai-2025-01-01",
+    "name": "Google Workspace Duet AI",
+    "slug": "google-workspace-duet-ai",
+    "officialUrl": "https://workspace.google.com/duet-ai/",
+    "description": "AI for Docs, Sheets, Slides, Gmail, generating text/images & analyzing data.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "paid",
+    "hotScore": 84,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "grammarlygo-2025-01-01",
+    "name": "GrammarlyGO",
+    "slug": "grammarlygo",
+    "officialUrl": "https://www.grammarly.com/grammarlygo",
+    "description": "AI writing expansions inside emails, documents, and social media.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 70,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "zapier-ai-2025-01-01",
+    "name": "Zapier AI",
+    "slug": "zapier-ai",
+    "officialUrl": "https://zapier.com/",
+    "description": "Natural language-based workflow automation across apps & APIs.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 94,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "coda-ai-2025-01-01",
+    "name": "Coda AI",
+    "slug": "coda-ai",
+    "officialUrl": "https://coda.io/ai",
+    "description": "AI in docs & tables for summarizing, extracting data, or drafting content.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 98,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "slack-gpt-2025-01-01",
+    "name": "Slack GPT",
+    "slug": "slack-gpt",
+    "officialUrl": "https://slack.com/gpt",
+    "description": "Summaries, drafting replies, and knowledge retrieval inside Slack.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 96,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "tactiq-2025-01-01",
+    "name": "Tactiq",
+    "slug": "tactiq",
+    "officialUrl": "https://tactiq.io/",
+    "description": "AI meeting assistant that transcribes & summarizes video calls.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 97,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "motion-2025-01-01",
+    "name": "Motion",
+    "slug": "motion",
+    "officialUrl": "https://www.usemotion.com/",
+    "description": "AI time management & scheduling tool with automated calendar.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "paid",
+    "hotScore": 92,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "workflowy-ai-2025-01-01",
+    "name": "Workflowy AI",
+    "slug": "workflowy-ai",
+    "officialUrl": "https://workflowy.com/",
+    "description": "Fast outlining tool with AI summarization & auto-structuring.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 85,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "mem-ai-2025-01-01",
+    "name": "Mem AI",
+    "slug": "mem-ai",
+    "officialUrl": "https://get.mem.ai/",
+    "description": "AI workspace for notes & tasks with auto-organization & chat integration.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 54,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "nekton-ai-2025-01-01",
+    "name": "Nekton AI",
+    "slug": "nekton-ai",
+    "officialUrl": "https://nekton.ai/",
+    "description": "AI-driven task automation: describe tasks, let AI code the workflow.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "paid",
+    "hotScore": 80,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "rewind-2025-01-01",
+    "name": "Rewind",
+    "slug": "rewind",
+    "officialUrl": "https://www.rewind.ai/",
+    "description": "Mac-based \"searchable history\" that uses AI to recall anything you've seen.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "paid",
+    "hotScore": 70,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "fireflies-ai-2025-01-01",
+    "name": "Fireflies.ai",
+    "slug": "fireflies-ai",
+    "officialUrl": "https://fireflies.ai/",
+    "description": "AI notetaker for Zoom/Teams/Meet, auto-transcribes & summarizes calls.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 72,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "otter-ai-2025-01-01",
+    "name": "Otter.ai",
+    "slug": "otter-ai",
+    "officialUrl": "https://otter.ai/",
+    "description": "Live transcriptions & summary for Zoom/Meet with AI notes.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 93,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "sybill-2025-01-01",
+    "name": "Sybill",
+    "slug": "sybill",
+    "officialUrl": "https://sybill.ai/",
+    "description": "Summarizes sales calls with emotional cues & action items.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "paid",
+    "hotScore": 73,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "airgram-2025-01-01",
+    "name": "Airgram",
+    "slug": "airgram",
+    "officialUrl": "https://www.airgram.io/",
+    "description": "AI meeting assistant for agendas, notes, transcripts, task tracking.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 65,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "avoma-2025-01-01",
+    "name": "Avoma",
+    "slug": "avoma",
+    "officialUrl": "https://www.avoma.com/",
+    "description": "Conversation intelligence for sales calls, meeting recording & analytics.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "paid",
+    "hotScore": 76,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "fathom-2025-01-01",
+    "name": "Fathom",
+    "slug": "fathom",
+    "officialUrl": "https://www.fathom.video/",
+    "description": "Zoom call transcription & highlight tool, with summary notes & keywords.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 54,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "read-ai-2025-01-01",
+    "name": "Read AI",
+    "slug": "read-ai",
+    "officialUrl": "https://www.read.ai/",
+    "description": "Tracks meeting engagement, sentiment & provides AI summary.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 97,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "grain-2025-01-01",
+    "name": "Grain",
+    "slug": "grain",
+    "officialUrl": "https://grain.com/",
+    "description": "Records and transcribes Zoom calls, with AI highlight reels.",
+    "categories": [
+      "office",
+      "writing",
+      "design",
+      "drawing",
+      "video"
+    ],
+    "tags": [
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 设计",
+      "UI/品牌",
+      "视觉素材",
+      "AI 绘画"
+    ],
+    "pricing": "freemium",
+    "hotScore": 76,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "khanmigo-2025-01-01",
+    "name": "Khanmigo",
+    "slug": "khanmigo",
+    "officialUrl": "https://www.khanacademy.org/khan-labs",
+    "description": "GPT-4-based tutor within Khan Academy for math, coding, and more.",
+    "categories": [
+      "writing",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 86,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "duolingo-max-2025-01-01",
+    "name": "Duolingo Max",
+    "slug": "duolingo-max",
+    "officialUrl": "https://blog.duolingo.com/duolingo-max/",
+    "description": "Language learning with AI roleplays & advanced lesson feedback.",
+    "categories": [
+      "writing",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 60,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "quizlet-q-chat-2025-01-01",
+    "name": "Quizlet Q-Chat",
+    "slug": "quizlet-q-chat",
+    "officialUrl": "https://quizlet.com/blog/introducing-q-chat",
+    "description": "GPT-based study assistant using Quizlet flashcard sets & explanations.",
+    "categories": [
+      "writing",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 87,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "socratic-by-google-2025-01-01",
+    "name": "Socratic by Google",
+    "slug": "socratic-by-google",
+    "officialUrl": "https://socratic.org/",
+    "description": "Snap a photo of homework questions, get AI-guided solutions.",
+    "categories": [
+      "writing",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "free",
+    "hotScore": 81,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "photomath-2025-01-01",
+    "name": "Photomath",
+    "slug": "photomath",
+    "officialUrl": "https://photomath.com/",
+    "description": "Scan math problems and see step-by-step solutions with AI.",
+    "categories": [
+      "writing",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 76,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "explainpaper-2025-01-01",
+    "name": "Explainpaper",
+    "slug": "explainpaper",
+    "officialUrl": "https://www.explainpaper.com/",
+    "description": "Upload academic papers, highlight text to get AI explanations.",
+    "categories": [
+      "writing",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 54,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "elicit-2025-01-01",
+    "name": "Elicit",
+    "slug": "elicit",
+    "officialUrl": "https://elicit.org/",
+    "description": "AI research assistant for literature review, references, summarizing papers.",
+    "categories": [
+      "writing",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "free",
+    "hotScore": 88,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "peerai-2025-01-01",
+    "name": "Peerai",
+    "slug": "peerai",
+    "officialUrl": "https://peerai.co/",
+    "description": "GPT-based peer tutor that creates interactive lessons & quizzes from notes.",
+    "categories": [
+      "writing",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 96,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "synthical-2025-01-01",
+    "name": "Synthical",
+    "slug": "synthical",
+    "officialUrl": "https://synthical.com/",
+    "description": "AI-powered collaborative research environment to track references & insights.",
+    "categories": [
+      "writing",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 96,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "noteable-2025-01-01",
+    "name": "Noteable",
+    "slug": "noteable",
+    "officialUrl": "https://noteable.io/",
+    "description": "Jupyter-like notebooks in browser with LLM help for data exploration & teaching.",
+    "categories": [
+      "writing",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 76,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "marketmuse-2025-01-01",
+    "name": "MarketMuse",
+    "slug": "marketmuse",
+    "officialUrl": "https://www.marketmuse.com/",
+    "description": "AI-driven content briefs & topic modeling for SEO strategies.",
+    "categories": [
+      "writing",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 78,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "postwise-2025-01-01",
+    "name": "Postwise",
+    "slug": "postwise",
+    "officialUrl": "https://postwise.ai/",
+    "description": "AI for writing engaging Twitter/X posts and scheduling them.",
+    "categories": [
+      "writing",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 97,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "ocoya-2025-01-01",
+    "name": "Ocoya",
+    "slug": "ocoya",
+    "officialUrl": "https://www.ocoya.com/",
+    "description": "Social media content generator & scheduler with AI copy & designs.",
+    "categories": [
+      "writing",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 89,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "clickable-2025-01-01",
+    "name": "Clickable",
+    "slug": "clickable",
+    "officialUrl": "https://clickable.so/",
+    "description": "Creates ads & visuals for campaigns in seconds with brand alignment.",
+    "categories": [
+      "writing",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 94,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "adcreative-ai-2025-01-01",
+    "name": "AdCreative.ai",
+    "slug": "adcreative-ai",
+    "officialUrl": "https://www.adcreative.ai/",
+    "description": "AI generates high-converting ad creatives & banners with data-driven insights.",
+    "categories": [
+      "writing",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 69,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "seventh-sense-2025-01-01",
+    "name": "Seventh Sense",
+    "slug": "seventh-sense",
+    "officialUrl": "https://www.theseventhsense.com/",
+    "description": "AI email deliverability & timing for HubSpot & Marketo campaigns.",
+    "categories": [
+      "writing",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 84,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "morpher-ai-2025-01-01",
+    "name": "Morpher AI",
+    "slug": "morpher-ai",
+    "officialUrl": "https://morpher.ai/",
+    "description": "Real-time AI insights & analytics for marketing metrics, content performance.",
+    "categories": [
+      "writing",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 79,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "phind-2025-01-01",
+    "name": "Phind",
+    "slug": "phind",
+    "officialUrl": "https://www.phind.com/",
+    "description": "Developer-focused search with AI explanations and code references.",
+    "categories": [
+      "data",
+      "writing"
+    ],
+    "tags": [
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 写作",
+      "内容创作",
+      "文案/润色"
+    ],
+    "pricing": "free",
+    "hotScore": 51,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "metaphor-2025-01-01",
+    "name": "Metaphor",
+    "slug": "metaphor",
+    "officialUrl": "https://metaphor.systems/",
+    "description": "LLM-based search for discovering websites, articles, documents by examples.",
+    "categories": [
+      "data",
+      "writing"
+    ],
+    "tags": [
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 写作",
+      "内容创作",
+      "文案/润色"
+    ],
+    "pricing": "free",
+    "hotScore": 74,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "you-com-2025-01-01",
+    "name": "You.com",
+    "slug": "you-com",
+    "officialUrl": "https://you.com/",
+    "description": "Private search with AI summarizer, code assistant, and apps platform.",
+    "categories": [
+      "data",
+      "writing"
+    ],
+    "tags": [
+      "AI 数据",
+      "检索/问答",
+      "分析洞察",
+      "AI 写作",
+      "内容创作",
+      "文案/润色"
+    ],
+    "pricing": "free",
+    "hotScore": 74,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "make-com-2025-01-01",
+    "name": "Make.com",
+    "slug": "make-com",
+    "officialUrl": "https://www.make.com/",
+    "description": "No-code automation platform with AI modules for integrated workflows.",
+    "categories": [
+      "coding",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 58,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "tray-io-2025-01-01",
+    "name": "Tray.io",
+    "slug": "tray-io",
+    "officialUrl": "https://tray.io/",
+    "description": "Low-code platform for building data pipelines & connecting SaaS apps.",
+    "categories": [
+      "coding",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 65,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "bubble-ai-2025-01-01",
+    "name": "Bubble AI",
+    "slug": "bubble-ai",
+    "officialUrl": "https://bubble.io/",
+    "description": "Visual web app builder with new AI features to auto-generate workflows.",
+    "categories": [
+      "coding",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 63,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "adalo-ai-2025-01-01",
+    "name": "Adalo AI",
+    "slug": "adalo-ai",
+    "officialUrl": "https://www.adalo.com/ai",
+    "description": "No-code mobile app creator adding AI components for text/image generation.",
+    "categories": [
+      "coding",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 84,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "retool-ai-2025-01-01",
+    "name": "Retool AI",
+    "slug": "retool-ai",
+    "officialUrl": "https://retool.com/ai/",
+    "description": "Quickly build internal tools with integrated GPT-based text analysis.",
+    "categories": [
+      "coding",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 55,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "landbot-ai-2025-01-01",
+    "name": "Landbot AI",
+    "slug": "landbot-ai",
+    "officialUrl": "https://landbot.io/",
+    "description": "No-code chatbot builder with GPT-based natural language flows.",
+    "categories": [
+      "coding",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 99,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "glide-ai-2025-01-01",
+    "name": "Glide AI",
+    "slug": "glide-ai",
+    "officialUrl": "https://www.glideapps.com/ai",
+    "description": "Turn spreadsheets into apps with AI-generated formulas & logic.",
+    "categories": [
+      "coding",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 54,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "ui-bakery-2025-01-01",
+    "name": "UI Bakery",
+    "slug": "ui-bakery",
+    "officialUrl": "https://uibakery.io/",
+    "description": "Low-code internal tools platform with AI suggestions for data modeling.",
+    "categories": [
+      "coding",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 59,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "appsheet-2025-01-01",
+    "name": "AppSheet",
+    "slug": "appsheet",
+    "officialUrl": "https://apps.google.com/products/appsheet/",
+    "description": "Google's no-code app creator now featuring Duet AI for config suggestions.",
+    "categories": [
+      "coding",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 62,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "power-apps-copilot-2025-01-01",
+    "name": "Power Apps Copilot",
+    "slug": "power-apps-copilot",
+    "officialUrl": "https://powerapps.microsoft.com/",
+    "description": "Microsoft's low-code environment with AI for building data-driven business apps.",
+    "categories": [
+      "coding",
+      "office",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "paid",
+    "hotScore": 83,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "langchain-2025-01-01",
+    "name": "LangChain",
+    "slug": "langchain",
+    "officialUrl": "https://github.com/hwchase17/langchain",
+    "description": "Framework for connecting language models to data sources, tools & memory.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "free",
+    "hotScore": 54,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "llamaindex-2025-01-01",
+    "name": "LlamaIndex",
+    "slug": "llamaindex",
+    "officialUrl": "https://github.com/jerryjliu/llama_index",
+    "description": "Data framework for building LLM apps over private data.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "free",
+    "hotScore": 68,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "promptperfect-2025-01-01",
+    "name": "PromptPerfect",
+    "slug": "promptperfect",
+    "officialUrl": "https://promptperfect.jina.ai/",
+    "description": "Tool for optimizing, debugging, and evaluating prompts for LLMs.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 54,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "openai-cookbook-2025-01-01",
+    "name": "OpenAI Cookbook",
+    "slug": "openai-cookbook",
+    "officialUrl": "https://github.com/openai/openai-cookbook",
+    "description": "Examples & best practices for prompt engineering with OpenAI models.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "free",
+    "hotScore": 100,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "haystack-2025-01-01",
+    "name": "Haystack",
+    "slug": "haystack",
+    "officialUrl": "https://github.com/deepset-ai/haystack",
+    "description": "NLP framework for building QA systems, RAG pipelines, chatbots.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "free",
+    "hotScore": 83,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "mlflow-ai-gateway-2025-01-01",
+    "name": "MLflow AI Gateway",
+    "slug": "mlflow-ai-gateway",
+    "officialUrl": "https://mlflow.org/docs/latest/ai-gateway/index.html",
+    "description": "Manage & route LLM queries, track usage, unify multiple model endpoints.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "free",
+    "hotScore": 95,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "promptable-2025-01-01",
+    "name": "Promptable",
+    "slug": "promptable",
+    "officialUrl": "https://promptable.ai/",
+    "description": "Prompt versioning, testing, and collaboration platform.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 54,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "helicone-2025-01-01",
+    "name": "Helicone",
+    "slug": "helicone",
+    "officialUrl": "https://www.helicone.ai/",
+    "description": "Observability & analytics for LLM calls with logging dashboards.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 63,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "openrouter-2025-01-01",
+    "name": "OpenRouter",
+    "slug": "openrouter",
+    "officialUrl": "https://openrouter.ai/",
+    "description": "Unified interface for LLMs across different providers & open models.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "free",
+    "hotScore": 59,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "cotrans-2025-01-01",
+    "name": "Cotrans",
+    "slug": "cotrans",
+    "officialUrl": "https://cotrans.ai/",
+    "description": "Prompt-chaining & advanced orchestrations for GPT-based apps.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 67,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "evalplus-2025-01-01",
+    "name": "EvalPlus",
+    "slug": "evalplus",
+    "officialUrl": "https://evalplus.ai/",
+    "description": "Automated framework for testing/evaluating prompt outputs at scale.",
+    "categories": [
+      "coding",
+      "data"
+    ],
+    "tags": [
+      "AI 代码",
+      "编程辅助",
+      "开发效率",
+      "AI 数据",
+      "检索/问答",
+      "分析洞察"
+    ],
+    "pricing": "freemium",
+    "hotScore": 89,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "scenario-2025-01-01",
+    "name": "Scenario",
+    "slug": "scenario",
+    "officialUrl": "https://scenario.gg/",
+    "description": "Generate 2D game assets using custom-trained diffusion models.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "paid",
+    "hotScore": 99,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "teleprompter-ai-2025-01-01",
+    "name": "Teleprompter AI",
+    "slug": "teleprompter-ai",
+    "officialUrl": "https://teleprompter.ai/",
+    "description": "AI-based teleprompting solution that suggests quotes & talking points.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 71,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "chatpdf-2025-01-01",
+    "name": "ChatPDF",
+    "slug": "chatpdf",
+    "officialUrl": "https://www.chatpdf.com/",
+    "description": "Upload PDFs and ask questions about the content in chat form.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 86,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "genei-2025-01-01",
+    "name": "Genei",
+    "slug": "genei",
+    "officialUrl": "https://www.genei.io/",
+    "description": "AI summarizer & note-taking tool for academic research and articles.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 58,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "explaindev-2025-01-01",
+    "name": "ExplainDev",
+    "slug": "explaindev",
+    "officialUrl": "https://www.explain.dev/",
+    "description": "Chrome extension that explains code snippets inline on sites like Stack Overflow.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 66,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "acrylic-2025-01-01",
+    "name": "Acrylic",
+    "slug": "acrylic",
+    "officialUrl": "https://acrylic.ai/",
+    "description": "AI-based personal memory database that indexes your local notes & files.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 99,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "orchest-ai-2025-01-01",
+    "name": "Orchest AI",
+    "slug": "orchest-ai",
+    "officialUrl": "https://orchest.io/",
+    "description": "Visual pipeline tool with AI nodes for data science & ML flows.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 74,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "open-interpreter-2025-01-01",
+    "name": "Open Interpreter",
+    "slug": "open-interpreter",
+    "officialUrl": "https://github.com/KillianLucas/open-interpreter",
+    "description": "Local code interpreter using GPT-based reasoning for file manipulation.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 55,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "phoenix-2025-01-01",
+    "name": "Phoenix",
+    "slug": "phoenix",
+    "officialUrl": "https://github.com/Arize-ai/phoenix",
+    "description": "ML observability in notebooks for LLM, tabular, or CV models by Arize.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 71,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "prankgpt-2025-01-01",
+    "name": "PrankGPT",
+    "slug": "prankgpt",
+    "officialUrl": "https://prankgpt.xyz/",
+    "description": "Entertaining chatbot that roleplays comedic scenarios & jokes.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 56,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "genmo-ai-2025-01-01",
+    "name": "Genmo AI",
+    "slug": "genmo-ai",
+    "officialUrl": "https://genmo.ai/",
+    "description": "Multimodal generative tool for animations, short clips, images.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 78,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "berriai-2025-01-01",
+    "name": "BerriAI",
+    "slug": "berriai",
+    "officialUrl": "https://www.berri.ai/",
+    "description": "Build & deploy custom GPT-based web apps with data upload & prompt design.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 71,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "personal-ai-2025-01-01",
+    "name": "Personal.ai",
+    "slug": "personal-ai",
+    "officialUrl": "https://www.personal.ai/",
+    "description": "Train an AI on your personal notes & memory; ask it questions anytime.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 66,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "mindshow-2025-01-01",
+    "name": "Mindshow",
+    "slug": "mindshow",
+    "officialUrl": "https://www.mindshow.com/",
+    "description": "3D animation creation using AI to animate characters & scenes.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "paid",
+    "hotScore": 58,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "sora-2025-01-01",
+    "name": "Sora",
+    "slug": "sora",
+    "officialUrl": "https://openai.com/sora",
+    "description": "OpenAI's large video generation model (announced for 2024).",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 59,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "savvy-2025-01-01",
+    "name": "Savvy",
+    "slug": "savvy",
+    "officialUrl": "https://savvy-ai.com/",
+    "description": "AI that observes your browsing & tasks, proactively suggests next steps.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 53,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "toucan-2025-01-01",
+    "name": "Toucan",
+    "slug": "toucan",
+    "officialUrl": "https://toucan.ai/",
+    "description": "AI-based digital persona creation for 24/7 brand or support chat.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "freemium",
+    "hotScore": 86,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "modelscope-2025-01-01",
+    "name": "Modelscope",
+    "slug": "modelscope",
+    "officialUrl": "https://modelscope.cn/",
+    "description": "Open-source platform by Alibaba for large multi-modal models & demos.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 84,
+    "createdAt": "2025-01-01"
+  },
+  {
+    "id": "civitai-2025-01-01",
+    "name": "Civitai",
+    "slug": "civitai",
+    "officialUrl": "https://civitai.com/",
+    "description": "Community site for sharing Stable Diffusion models, embeddings, & LoRAs.",
+    "categories": [
+      "writing",
+      "office"
+    ],
+    "tags": [
+      "AI 写作",
+      "内容创作",
+      "文案/润色",
+      "AI 办公",
+      "文档/笔记",
+      "效率提升"
+    ],
+    "pricing": "free",
+    "hotScore": 56,
+    "createdAt": "2025-01-01"
+  }
+]

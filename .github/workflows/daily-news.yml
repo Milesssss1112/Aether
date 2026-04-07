@@ -1,0 +1,28 @@
+# 每日同步 RSS 新闻到 Supabase（需先在仓库 Secrets 中配置）
+# Settings → Secrets and variables → Actions 添加：
+#   SUPABASE_URL
+#   SUPABASE_SERVICE_ROLE_KEY
+name: Daily news sync
+
+on:
+  schedule:
+    # UTC 每天 01:00（约北京时间 09:00，可按需改 cron）
+    - cron: "0 1 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - name: Sync RSS → Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          NEWS_RSS_URLS: ${{ secrets.NEWS_RSS_URLS }}
+        run: node scripts/fetch-daily-news.mjs

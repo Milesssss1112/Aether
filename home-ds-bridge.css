@@ -1,0 +1,73 @@
+/**
+ * home.html 专用：把布局组件接到 aether-tokens 语义色与阴影上
+ */
+body.home-ds {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+.home-ds .font-bricolage,
+.home-ds .aether-heading {
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+}
+
+.home-ds .aether-heading-gradient {
+  background-image: linear-gradient(to bottom, var(--ink-900), var(--ink-500));
+}
+
+@media (prefers-color-scheme: dark) {
+  .home-ds .aether-heading-gradient {
+    background-image: linear-gradient(to bottom, var(--white), var(--ink-400));
+  }
+}
+
+.home-ds .cloud-card {
+  border-color: var(--border-default);
+  background: color-mix(in oklch, var(--white) 92%, var(--surface-300));
+  box-shadow: var(--shadow-default);
+}
+
+@supports not (background: color-mix(in oklch, white, white)) {
+  .home-ds .cloud-card {
+    background: rgba(255, 255, 255, 0.94);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .home-ds .cloud-card {
+    border-color: var(--border-strong);
+    background: color-mix(in oklch, var(--ink-900) 88%, transparent);
+    box-shadow: var(--shadow-overlay);
+  }
+
+  @supports not (background: color-mix(in oklch, white, white)) {
+    .home-ds .cloud-card {
+      background: rgba(10, 10, 12, 0.88);
+    }
+  }
+}
+
+.home-ds .tools-card-shell {
+  border-color: var(--border-default);
+  background: color-mix(in oklch, var(--white) 92%, var(--surface-300));
+  box-shadow: var(--shadow-default);
+}
+
+@supports not (background: color-mix(in oklch, white, white)) {
+  .home-ds .tools-card-shell {
+    background: rgba(255, 255, 255, 0.94);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .home-ds .tools-card-shell {
+    border-color: var(--border-strong);
+    background: color-mix(in oklch, var(--ink-900) 90%, transparent);
+    box-shadow: var(--shadow-overlay);
+  }
+
+  @supports not (background: color-mix(in oklch, white, white)) {
+    .home-ds .tools-card-shell {
+      background: rgba(12, 12, 14, 0.92);
+    }
+  }
+}

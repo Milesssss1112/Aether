@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis home-ds-root">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+    <link rel="stylesheet" href="./aether-tokens.css" />
+    <link rel="stylesheet" href="./aether-theme.css" />
+    <link rel="stylesheet" href="./home-ds-bridge.css" />
+    <style>
+      @keyframes drop {
+        0% { transform: translateY(-20vh); opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { transform: translateY(100vh); opacity: 0; }
+      }
+      @keyframes beamMove {
+        0% { background-position: 0% 50%; opacity: 0.25; }
+        45% { opacity: 0.9; }
+        100% { background-position: 220% 50%; opacity: 0.25; }
+      }
+      .beam-line { background-size: 220% 100%; animation: beamMove 3.6s ease-in-out infinite; filter: drop-shadow(0 0 14px rgba(99,102,241,0.12)); }
+      .font-bricolage { font-family: "Bricolage Grotesque", sans-serif !important; }
+      .tool-card { transform: translateZ(0); }
+      .tool-card:hover { transform: scale(1.03); }
+      .tool-img-a { opacity: 1; }
+      .tool-img-b { opacity: 0; }
+      .tool-card:hover .tool-img-a { opacity: 0; transform: scale(1.05) rotate(-0.25deg); }
+      .tool-card:hover .tool-img-b { opacity: 1; transform: scale(1.05) rotate(0.25deg); }
+      .tool-img-layer { transition: opacity 260ms ease, transform 420ms ease; }
+      .section-wide {
+        width: 100%;
+        max-width: min(88rem, calc(100vw - 2rem));
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .news-masonry {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 0.75rem;
+        grid-auto-rows: minmax(120px, auto);
+        grid-auto-flow: dense;
+      }
+      @media (min-width: 768px) {
+        .news-masonry { gap: 1rem; }
+      }
+      .news-card-img {
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+      }
+      /* AI 浮窗 */
+      @keyframes ai-bubble-in {
+        from { opacity: 0; transform: translateY(10px) scale(0.98); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      @keyframes ai-dots {
+        0%, 80%, 100% { opacity: 0.35; transform: scale(0.85); }
+        40% { opacity: 1; transform: scale(1); }
+      }
+      .ai-chat-bubble-in { animation: ai-bubble-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both; }
+      .ai-typing-dot { animation: ai-dots 1s ease-in-out infinite; }
+      .ai-typing-dot:nth-child(2) { animation-delay: 0.15s; }
+      .ai-typing-dot:nth-child(3) { animation-delay: 0.3s; }
+    </style>
+    <title>Aether · AIGC Tools</title>
+  </head>
+  <body class="home-ds dark:bg-neutral-950 dark:text-neutral-50 font-nunito antialiased selection:bg-[var(--ink-200)] dark:selection:bg-neutral-800 relative min-h-screen overflow-x-hidden bg-[var(--bg-page)] text-[var(--text-primary)]">
+    <!-- 主视觉区（保持不变） -->
+    <div class="aura-background-component top-0 w-full h-screen -z-10 fixed" data-alpha-mask="80" style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent);">
+      <div class="absolute w-full h-full left-0 top-0 -z-10" data-us-project="aH0ZsntZ1TcKHIyweEA8"></div>
+      <script type="text/javascript">
+        !function(){var u=window.UnicornStudio;if(u&&u.init){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){u.init()})}else{u.init()}}else{window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.1.1/dist/unicornStudio.umd.js",i.onload=function(){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){UnicornStudio.init()})}else{UnicornStudio.init()}},(document.head||document.body).appendChild(i)}}();
+      </script>
+    </div>
+
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-[radial-gradient(circle_at_top_center,rgba(0,0,0,0.03)_0%,transparent_60%)] dark:bg-[radial-gradient(circle_at_top_center,rgba(255,255,255,0.03)_0%,transparent_60%)] pointer-events-none z-0"></div>
+
+    <!-- 竖线与下落光束 -->
+    <div class="fixed inset-0 pointer-events-none flex justify-center z-0 [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]">
+      <div class="w-full section-wide flex justify-between h-full px-4 sm:px-6 lg:px-8 relative">
+        <div class="w-px h-full dark:bg-neutral-800/60 relative bg-neutral-200/60">
+          <div class="absolute top-32 left-4 text-xs dark:text-neutral-600 font-mono tracking-widest font-sans text-neutral-400">01</div>
+          <div class="absolute top-0 left-0 w-full h-[20vh] bg-gradient-to-b from-transparent dark:via-white/50 to-transparent opacity-0 via-neutral-400" style="animation: drop 7s ease-in-out infinite; animation-delay: 0s;"></div>
+        </div>
+        <div class="hidden sm:block w-px h-full dark:bg-neutral-800/60 relative bg-neutral-200/60">
+          <div class="absolute top-32 left-4 text-xs dark:text-neutral-600 font-mono tracking-widest font-sans text-neutral-400">02</div>
+          <div class="absolute top-0 left-0 w-full h-[20vh] bg-gradient-to-b from-transparent dark:via-white/50 to-transparent opacity-0 via-neutral-400" style="animation: drop 7s ease-in-out infinite; animation-delay: 3s;"></div>
+        </div>
+        <div class="hidden md:block w-px h-full dark:bg-neutral-800/60 relative bg-neutral-200/60">
+          <div class="absolute top-32 left-4 text-xs dark:text-neutral-600 font-mono tracking-widest font-sans text-neutral-400">03</div>
+          <div class="absolute top-0 left-0 w-full h-[20vh] bg-gradient-to-b from-transparent dark:via-white/50 to-transparent opacity-0 via-neutral-400" style="animation: drop 7s ease-in-out infinite; animation-delay: 1.5s;"></div>
+        </div>
+        <div class="w-px h-full dark:bg-neutral-800/60 relative bg-neutral-200/60">
+          <div class="absolute top-0 left-0 w-full h-[20vh] bg-gradient-to-b from-transparent dark:via-white/50 to-transparent opacity-0 via-neutral-400" style="animation: drop 7s ease-in-out infinite; animation-delay: 4.5s;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="relative z-10 section-wide px-4 sm:px-6 lg:px-8 py-8 flex items-center justify-between">
+      <div class="text-base font-semibold tracking-tighter dark:text-white uppercase font-bricolage text-black">Aether</div>
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+        <a href="#recommend" class="dark:hover:text-white transition-colors hover:text-black inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">dashboard</span>工作台
+        </a>
+        <a href="learn.html" class="dark:hover:text-white transition-colors hover:text-black inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">menu_book</span>教程与案例
+        </a>
+        <a href="#tools" class="dark:hover:text-white transition-colors hover:text-black inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">apps</span>Tools
+        </a>
+        <a href="#categories" class="dark:hover:text-white transition-colors hover:text-black inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">category</span>Categories
+        </a>
+        <a href="#ai-news" class="dark:hover:text-white transition-colors hover:text-black inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">newspaper</span>AI News
+        </a>
+        <a href="#forum" class="dark:hover:text-white transition-colors hover:text-black inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">forum</span>Forum
+        </a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button type="button" id="authOpenBtn" class="rounded-full px-5 py-2 text-sm font-medium border border-neutral-200/80 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">login</span>Sign in
+        </button>
+        <div id="authUserWrap" class="hidden items-center gap-2">
+          <span id="authUserLabel" class="text-xs max-w-[160px] truncate text-neutral-600 dark:text-neutral-300"></span>
+          <button type="button" id="authSignOutBtn" class="rounded-full px-3 py-1.5 text-xs font-medium border border-neutral-200/80 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-900">退出</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <main class="flex flex-col min-h-[75vh] text-center z-10 mt-4 pr-4 pl-4 relative items-center justify-center">
+      <a href="#tools" class="relative inline-flex overflow-hidden rounded-full p-[1px] group dark:bg-neutral-800 mb-8 bg-neutral-200">
+        <span class="absolute top-1/2 left-1/2 w-[300%] h-[300%] -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-[spin_3s_linear_infinite] z-0 bg-[conic-gradient(from_0deg,transparent_70%,#000_100%)] dark:bg-[conic-gradient(from_0deg,transparent_70%,#fff_100%)]"></span>
+        <span class="relative z-10 dark:bg-neutral-950 px-4 py-1.5 text-xs font-medium dark:text-neutral-300 rounded-full flex items-center gap-2 bg-white text-neutral-600">
+          <span class="flex h-1.5 w-1.5 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]"></span>
+          Aether Engine v2.4 is live
+          <span class="material-symbols-outlined text-base text-neutral-400 dark:text-neutral-500 group-hover:translate-x-0.5 transition-transform" aria-hidden="true">arrow_forward</span>
+        </span>
+      </a>
+      <h1 class="text-5xl sm:text-6xl md:text-7xl tracking-tight text-transparent bg-clip-text bg-gradient-to-b to-neutral-500 dark:from-white dark:to-neutral-500 max-w-4xl mx-auto leading-[1.1] pb-2 font-bricolage font-semibold from-neutral-900">
+        The Ultimate AI Tool Hub for<br />Creators, Developers & Innovators
+      </h1>
+      <p class="mt-6 text-base sm:text-lg font-medium text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed font-sans">
+        Discover and master the best AI tools to supercharge your workflow — no complex setup required.
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center">
+        <a href="#tools" class="relative inline-flex overflow-hidden rounded-full p-[1px] group dark:bg-neutral-800 bg-neutral-200">
+          <span class="absolute top-1/2 left-1/2 w-[300%] h-[300%] -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-[spin_2s_linear_infinite] z-0 bg-[conic-gradient(from_0deg,transparent_70%,#000_100%)] dark:bg-[conic-gradient(from_0deg,transparent_70%,#fff_100%)]"></span>
+          <span class="relative z-10 dark:bg-neutral-950 px-6 py-3 text-sm font-semibold dark:text-white rounded-full flex items-center gap-2 bg-white text-neutral-900">
+            Explore Tools
+            <span class="material-symbols-outlined text-lg text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors" aria-hidden="true">rocket_launch</span>
+          </span>
+        </a>
+        <a href="#forum" class="px-6 py-3 rounded-full border dark:border-neutral-800 dark:text-neutral-300 text-sm font-medium dark:hover:bg-neutral-900 transition-colors flex items-center gap-2 border-neutral-200 text-neutral-600 hover:bg-neutral-50">
+          <span class="material-symbols-outlined text-lg text-neutral-400 dark:text-neutral-500" aria-hidden="true">forum</span>
+          Join the forum
+        </a>
+        <a href="learn.html" class="px-6 py-3 rounded-full border dark:border-neutral-800 dark:text-neutral-300 text-sm font-medium dark:hover:bg-neutral-900 transition-colors flex items-center gap-2 border-neutral-200 text-neutral-600 hover:bg-neutral-50">
+          <span class="material-symbols-outlined text-lg text-neutral-400 dark:text-neutral-500" aria-hidden="true">menu_book</span>
+          教程与案例
+        </a>
+      </div>
+    </main>
+
+    <!-- 创作工作台：乌云遮罩 → 滚入视口后向两侧散开，露出云朵形卡片 -->
+    <section id="recommend" class="recommend-section relative z-10 border-t border-neutral-200/60 dark:border-neutral-800/80">
+      <div class="recommend-cloud-layer" aria-hidden="true">
+        <div class="recommend-cloud recommend-cloud--left"></div>
+        <div class="recommend-cloud recommend-cloud--right"></div>
+      </div>
+      <div class="recommend-section-inner section-wide px-4 sm:px-6 lg:px-8 py-16 sm:py-20 flex justify-center">
+        <div class="cloud-card w-full max-w-5xl backdrop-blur-md px-7 sm:px-14 py-12 sm:py-16 text-center dark:border-white/10">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl aether-heading aether-heading-gradient inline-flex flex-wrap items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-3xl sm:text-4xl text-indigo-500 dark:text-indigo-400 align-middle" aria-hidden="true">auto_awesome</span>
+            <span>创作工作台</span>
+          </h2>
+          <p class="mt-4 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">选择创作目标，获取演示用的工具组合推荐；也可一键把上下文发给右下角 AI 做细化。</p>
+          <form id="recommendForm" class="mt-10 w-full max-w-2xl mx-auto text-left grid gap-4 sm:grid-cols-2">
+            <label class="grid gap-1.5 sm:col-span-1 justify-items-center sm:justify-items-stretch">
+              <span class="text-xs font-medium text-neutral-500 dark:text-neutral-400 text-center w-full inline-flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-base" aria-hidden="true">flag</span>创作目标
+              </span>
+              <select id="recGoal" class="w-full max-w-md sm:max-w-none px-4 py-2.5 rounded-full text-sm border border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-neutral-950/80 outline-none focus:ring-2 focus:ring-indigo-500/30 text-neutral-900 dark:text-neutral-100">
+                <option value="poster_text">海报 / 主视觉（需画面内文字）</option>
+                <option value="image_art">艺术插画 / 概念图</option>
+                <option value="video_short">短视频 / 动态镜头</option>
+                <option value="writing_long">长文 / 报告 / 方案</option>
+                <option value="code_project">代码 / 原型 / Agent</option>
+                <option value="voice_audio">配音 / 播客</option>
+                <option value="music">音乐 / 歌曲</option>
+                <option value="research">检索 / 综述 / 资料整理</option>
+              </select>
+            </label>
+            <label class="grid gap-1.5 sm:col-span-1 justify-items-center sm:justify-items-stretch">
+              <span class="text-xs font-medium text-neutral-500 dark:text-neutral-400 text-center w-full inline-flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-base" aria-hidden="true">school</span>经验
+              </span>
+              <select id="recLevel" class="w-full max-w-md sm:max-w-none px-4 py-2.5 rounded-full text-sm border border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-neutral-950/80 outline-none focus:ring-2 focus:ring-indigo-500/30 text-neutral-900 dark:text-neutral-100">
+                <option value="beginner">入门 / 第一次尝试</option>
+                <option value="advanced">有经验 / 做过完整项目</option>
+              </select>
+            </label>
+            <label class="grid gap-1.5 sm:col-span-2 justify-items-center sm:justify-items-stretch">
+              <span class="text-xs font-medium text-neutral-500 dark:text-neutral-400 text-center w-full inline-flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-base" aria-hidden="true">edit_note</span>补充说明（可选）
+              </span>
+              <textarea id="recExtra" rows="2" class="w-full max-w-md sm:max-w-none px-4 py-3 rounded-2xl text-sm border border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-neutral-950/80 outline-none focus:ring-2 focus:ring-indigo-500/30 resize-y min-h-[72px] text-neutral-900 dark:text-neutral-100" placeholder="例如：中文小说、需要 API 部署、品牌蓝色主色…"></textarea>
+            </label>
+            <div class="sm:col-span-2 flex flex-col sm:flex-row gap-4 items-center justify-center pt-2">
+              <button type="submit" class="w-full sm:w-auto rounded-full px-6 py-3 bg-white text-neutral-900 border border-neutral-200/90 dark:border-neutral-600 text-sm font-semibold shadow-sm hover:bg-neutral-50 dark:bg-white dark:text-neutral-900 transition-colors inline-flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">recommend</span>生成推荐
+              </button>
+              <button type="button" id="recAskAi" class="w-full sm:w-auto rounded-full px-6 py-3 bg-white text-neutral-900 border border-neutral-200/90 dark:border-neutral-600 text-sm font-medium shadow-sm hover:bg-neutral-50 dark:bg-white dark:text-neutral-900 transition-colors inline-flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">smart_toy</span>用 AI 细化
+              </button>
+              <a href="learn.html" class="w-full sm:w-auto rounded-full px-6 py-3 bg-white text-neutral-900 border border-neutral-200/90 dark:border-neutral-600 text-sm font-medium shadow-sm hover:bg-neutral-50 dark:bg-white dark:text-neutral-900 transition-colors inline-flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-lg" aria-hidden="true">menu_book</span>打开教程区
+              </a>
+            </div>
+          </form>
+          <div id="recommendResults" class="mt-10 w-full max-w-2xl mx-auto text-left"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools：整块卡片容器 -->
+    <section id="tools" class="relative z-10">
+      <div class="pointer-events-none absolute left-1/2 -translate-x-1/2 top-0 w-full section-wide px-4 sm:px-6 lg:px-8">
+        <div class="relative h-16">
+          <div class="absolute left-0 top-8 w-full h-px beam-line" style="background-image: linear-gradient(90deg, transparent, rgba(99,102,241,0.55), rgba(34,197,94,0.38), transparent)"></div>
+          <div class="absolute left-0 top-12 w-[80%] h-px beam-line" style="animation-delay: .9s; background-image: linear-gradient(90deg, transparent, rgba(56,189,248,0.55), rgba(167,139,250,0.42), transparent)"></div>
+        </div>
+      </div>
+      <div class="section-wide px-4 sm:px-6 lg:px-8 pt-12 pb-10 sm:pb-14">
+        <div class="tools-card-shell">
+          <div class="px-4 sm:px-6 lg:px-8 pt-10 pb-6">
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+              <div>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl aether-heading aether-heading-gradient inline-flex flex-wrap items-center gap-2">
+                  <span class="material-symbols-outlined text-3xl text-indigo-500 dark:text-indigo-400" aria-hidden="true">apps</span>
+                  AIGC 工具导航
+                </h2>
+              </div>
+              <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+                <div class="relative w-full sm:w-[320px]">
+                  <div class="absolute inset-y-0 left-3 flex items-center text-neutral-400 pointer-events-none">
+                    <span class="material-symbols-outlined text-lg" aria-hidden="true">search</span>
+                  </div>
+                  <input id="search" type="search" class="w-full pl-10 pr-4 py-2.5 rounded-full border border-neutral-200/70 dark:border-neutral-700 bg-white/90 dark:bg-neutral-950/50 text-sm outline-none focus:ring-2 focus:ring-indigo-500/30" autocomplete="off" />
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <a href="browse.html" target="_blank" rel="noopener noreferrer" class="rounded-full px-5 py-2.5 bg-black text-white dark:bg-white dark:text-black text-sm font-semibold hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-1.5">
+                    <span class="material-symbols-outlined text-base" aria-hidden="true">open_in_new</span>Browse all
+                  </a>
+                  <button id="clearFilters" type="button" class="rounded-full px-5 py-2.5 border border-neutral-200/80 dark:border-neutral-700 text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-800/80 transition-colors bg-white/90 dark:bg-neutral-950/40 inline-flex items-center justify-center gap-1.5">
+                    <span class="material-symbols-outlined text-base" aria-hidden="true">filter_alt_off</span>清除筛选
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 sm:px-6 lg:px-8 pb-8 sm:pb-10 pt-2">
+            <div id="categories" class="flex flex-wrap gap-2"></div>
+            <div class="mt-6" id="grid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI 新闻（真实标题；配图来自 Unsplash 等公开图库） -->
+    <section id="ai-news" class="relative z-10">
+      <div class="section-wide px-4 sm:px-6 lg:px-8 pb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl aether-heading aether-heading-gradient inline-flex flex-wrap items-center gap-2">
+          <span class="material-symbols-outlined text-3xl text-indigo-500 dark:text-indigo-400" aria-hidden="true">newspaper</span>
+          AI 新闻
+        </h2>
+        <div id="newsMount" class="news-masonry mt-8">
+          <article class="col-span-12 md:col-span-5 md:row-span-2 flex flex-col rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-neutral-950/[0.03] dark:bg-white/[0.03] overflow-hidden min-h-[280px]">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop&auto=format" alt="" class="news-card-img w-full shrink-0" loading="lazy" width="800" height="500" />
+            <div class="p-5 sm:p-6 flex flex-col flex-1">
+              <span class="text-[10px] font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Funding</span>
+              <h3 class="mt-2 text-lg sm:text-xl font-semibold font-bricolage text-black dark:text-white leading-snug">OpenAI raises $40B at $300B post-money valuation</h3>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed flex-1">SoftBank-led round; part of the capital targets U.S. Stargate data-center build-out (reported March 2025).</p>
+              <p class="mt-4 text-[11px] text-neutral-500">TechCrunch · Mar 2025</p>
+            </div>
+          </article>
+          <article class="col-span-12 md:col-span-7 md:row-span-1 flex flex-col rounded-2xl border border-neutral-200/70 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-950/40">
+            <img src="https://images.unsplash.com/photo-1485827404703-e89b11e8d0f0?w=900&h=400&fit=crop&auto=format" alt="" class="news-card-img w-full max-h-[200px] object-cover" loading="lazy" width="900" height="400" />
+            <div class="p-4 sm:p-5">
+              <h3 class="text-base font-semibold font-bricolage text-black dark:text-white leading-snug">Google unveils Gemini 2.5 “thinking” model family</h3>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">Gemini 2.5 Pro Experimental emphasizes reasoning across logic, STEM, and coding workloads.</p>
+              <p class="mt-2 text-[11px] text-neutral-500">TechCrunch · Mar 2025</p>
+            </div>
+          </article>
+          <article class="col-span-12 md:col-span-7 md:row-span-1 flex flex-col rounded-2xl border border-neutral-200/70 dark:border-neutral-800 overflow-hidden bg-neutral-50/80 dark:bg-neutral-900/40">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&h=400&fit=crop&auto=format" alt="" class="news-card-img w-full max-h-[200px] object-cover" loading="lazy" width="900" height="400" />
+            <div class="p-4 sm:p-5">
+              <h3 class="text-base font-semibold font-bricolage text-black dark:text-white leading-snug">OpenAI ships Responses API tools for enterprise agents</h3>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">New API surfaces help developers wire search, files, and web navigation into agent flows.</p>
+              <p class="mt-2 text-[11px] text-neutral-500">TechCrunch · Mar 2025</p>
+            </div>
+          </article>
+          <article class="col-span-12 sm:col-span-6 md:col-span-4 md:row-span-1 rounded-2xl border border-neutral-200/70 dark:border-neutral-800 overflow-hidden flex flex-col bg-white/90 dark:bg-neutral-950/35">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=380&fit=crop&auto=format" alt="" class="news-card-img w-full" loading="lazy" width="600" height="380" />
+            <div class="p-4 flex flex-col flex-1">
+              <h3 class="text-sm font-semibold font-bricolage text-black dark:text-white leading-snug">ChatGPT native image generation sees massive demand</h3>
+              <p class="mt-2 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">OpenAI cited GPU capacity pressure as usage spiked after the GPT-4o image rollout.</p>
+              <p class="mt-3 text-[10px] text-neutral-500">Business Insider · 2025</p>
+            </div>
+          </article>
+          <article class="col-span-12 sm:col-span-6 md:col-span-4 md:row-span-1 rounded-2xl border border-neutral-200/70 dark:border-neutral-800 overflow-hidden flex flex-col bg-neutral-50 dark:bg-neutral-900/50">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=380&fit=crop&auto=format" alt="" class="news-card-img w-full" loading="lazy" width="600" height="380" />
+            <div class="p-4 flex flex-col flex-1">
+              <h3 class="text-sm font-semibold font-bricolage text-black dark:text-white leading-snug">Google’s Anthropic stake in filings draws attention</h3>
+              <p class="mt-2 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">Court filings renewed focus on Google’s cumulative investment in Anthropic.</p>
+              <p class="mt-3 text-[10px] text-neutral-500">TechCrunch · Mar 2025</p>
+            </div>
+          </article>
+          <article class="col-span-12 sm:col-span-6 md:col-span-4 md:row-span-1 rounded-2xl border border-neutral-200/70 dark:border-neutral-800 overflow-hidden flex flex-col">
+            <img src="https://images.unsplash.com/photo-1531746797555-798f2d0d6f53?w=600&h=380&fit=crop&auto=format" alt="" class="news-card-img w-full" loading="lazy" width="600" height="380" />
+            <div class="p-4 bg-gradient-to-b from-neutral-900/5 to-transparent dark:from-white/5">
+              <h3 class="text-sm font-semibold font-bricolage text-black dark:text-white leading-snug">AI agents move from demos to production roadmaps</h3>
+              <p class="mt-2 text-xs text-neutral-600 dark:text-neutral-400">Enterprises evaluate tool APIs, retrieval, and policy guardrails at scale.</p>
+            </div>
+          </article>
+          <article class="col-span-12 md:col-span-6 md:row-span-1 rounded-2xl border border-dashed border-neutral-300/70 dark:border-neutral-600/50 flex flex-col sm:flex-row overflow-hidden bg-neutral-50/80 dark:bg-neutral-900/30">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=640&h=400&fit=crop&auto=format" alt="" class="w-full sm:w-2/5 object-cover min-h-[140px]" loading="lazy" width="640" height="400" />
+            <div class="p-4 sm:p-5 flex flex-col justify-center flex-1">
+              <h3 class="text-sm font-semibold font-bricolage text-black dark:text-white">Regulators eye AI watermarking & metadata</h3>
+              <p class="mt-2 text-xs text-neutral-600 dark:text-neutral-400">Industry groups push interoperable provenance standards for synthetic media.</p>
+            </div>
+          </article>
+          <article class="col-span-12 md:col-span-6 md:row-span-1 rounded-2xl border border-neutral-200/70 dark:border-neutral-800 overflow-hidden flex flex-col">
+            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=640&h=400&fit=crop&auto=format" alt="" class="news-card-img w-full" loading="lazy" width="640" height="400" />
+            <div class="p-4">
+              <h3 class="text-sm font-semibold font-bricolage text-black dark:text-white leading-snug">Open-weight models keep downloads climbing</h3>
+              <p class="mt-2 text-xs text-neutral-600 dark:text-neutral-400">Hugging Face community traffic reflects sustained interest in local & fine-tuned stacks.</p>
+              <p class="mt-3 text-[10px] text-neutral-500">Industry trend · 2025</p>
+            </div>
+          </article>
+          <article class="col-span-12 md:col-span-12 md:row-span-1 rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-gradient-to-r from-indigo-950/20 via-violet-950/10 to-transparent dark:from-indigo-950/40 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=400&h=320&fit=crop&auto=format" alt="" class="rounded-xl w-full sm:w-40 shrink-0 object-cover aspect-[5/4]" loading="lazy" width="400" height="320" />
+            <div>
+              <h3 class="text-base font-semibold font-bricolage text-black dark:text-white">Developers split time between frontier APIs and on-device inference</h3>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">Latency, cost, and privacy trade-offs reshape hybrid AI architectures.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Forum -->
+    <section id="forum" class="relative z-10">
+      <div class="section-wide px-4 sm:px-6 lg:px-8 pb-16">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-neutral-200/70 dark:border-neutral-800 pb-6">
+          <h3 class="text-xl sm:text-2xl md:text-3xl aether-heading aether-heading-gradient inline-flex flex-wrap items-center gap-2">
+            <span class="material-symbols-outlined text-2xl sm:text-3xl text-indigo-500 dark:text-indigo-400" aria-hidden="true">forum</span>
+            论坛
+          </h3>
+          <button id="forumReset" type="button" class="rounded-full px-5 py-2.5 border border-neutral-200/80 dark:border-neutral-800 text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors self-start sm:self-auto bg-white/70 dark:bg-neutral-950/30 inline-flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-base" aria-hidden="true">delete_sweep</span>清空
+          </button>
+        </div>
+
+        <div class="mt-8 grid lg:grid-cols-12 gap-6 lg:gap-8">
+          <div class="lg:col-span-4 order-2 lg:order-1">
+            <div class="rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/75 dark:bg-neutral-950/35 p-6 h-full">
+              <div class="text-sm font-semibold font-bricolage text-black dark:text-white tracking-tight inline-flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-base" aria-hidden="true">edit_square</span>发布帖子
+              </div>
+              <form id="forumForm" class="mt-5 grid gap-3">
+                <input id="forumTitle" class="px-4 py-2.5 rounded-full text-sm border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 outline-none focus:ring-2 focus:ring-indigo-500/30" required />
+                <input id="forumTags" class="px-4 py-2.5 rounded-full text-sm border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 outline-none focus:ring-2 focus:ring-indigo-500/30" />
+                <textarea id="forumBody" rows="5" class="px-4 py-3 rounded-2xl text-sm border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 outline-none focus:ring-2 focus:ring-indigo-500/30 resize-y min-h-[120px]" required></textarea>
+                <button type="submit" class="rounded-full px-5 py-2.5 bg-black text-white dark:bg-white dark:text-black text-sm font-semibold font-bricolage hover:opacity-90 transition-opacity w-full sm:w-auto inline-flex items-center justify-center gap-1">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">send</span>发布
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="lg:col-span-8 order-1 lg:order-2">
+            <div class="rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/75 dark:bg-neutral-950/35 overflow-hidden flex flex-col min-h-[420px] lg:min-h-[520px]">
+              <div class="px-4 sm:px-5 py-4 border-b border-neutral-200/70 dark:border-neutral-800 flex flex-col sm:flex-row sm:items-center gap-3 sm:justify-between">
+                <div class="text-sm font-semibold font-bricolage text-black dark:text-white inline-flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">list</span>帖子列表
+                </div>
+                <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto sm:items-center">
+                  <input id="forumSearch" class="w-full sm:w-[220px] px-4 py-2 rounded-full text-sm border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 outline-none focus:ring-2 focus:ring-indigo-500/30" />
+                  <select id="forumSort" class="px-4 py-2 rounded-full text-sm border border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/40 outline-none focus:ring-2 focus:ring-indigo-500/30">
+                    <option value="new">最新</option>
+                    <option value="hot">最热</option>
+                  </select>
+                </div>
+              </div>
+              <div class="grid md:grid-cols-5 flex-1 min-h-0">
+                <div class="md:col-span-2 border-b md:border-b-0 md:border-r border-neutral-200/70 dark:border-neutral-800 flex flex-col min-h-[280px] md:min-h-0">
+                  <div id="forumList" class="flex-1 overflow-y-auto min-h-0"></div>
+                </div>
+                <div class="md:col-span-3 flex flex-col min-h-0">
+                  <div id="forumDetail" class="flex-1 overflow-y-auto p-5 sm:p-6"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="relative z-10">
+      <div class="section-wide px-4 sm:px-6 lg:px-8 pb-14">
+        <div class="mt-8 text-xs text-neutral-500 dark:text-neutral-500">© <span id="year"></span> Aether.</div>
+      </div>
+    </footer>
+
+    <!-- AI 浮窗 -->
+    <div
+      id="aiBackdrop"
+      class="fixed inset-0 z-[45] hidden bg-neutral-950/35 dark:bg-black/55 backdrop-blur-[3px] opacity-0 transition-opacity duration-300 ease-out"
+      aria-hidden="true"
+    ></div>
+    <div class="fixed right-4 bottom-4 z-[55]">
+      <button
+        id="aiFab"
+        type="button"
+        class="rounded-full px-6 py-2.5 text-sm font-semibold font-bricolage bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white shadow-[0_12px_40px_-12px_rgba(99,102,241,0.45)] dark:from-white dark:via-neutral-100 dark:to-white dark:text-neutral-950 dark:shadow-[0_12px_40px_-12px_rgba(255,255,255,0.12)] border border-white/15 dark:border-neutral-400/30 inline-flex items-center justify-center gap-1.5 hover:scale-[1.04] active:scale-[0.97] transition-transform duration-200"
+        aria-label="打开 AI 对话"
+        aria-expanded="false"
+        aria-controls="aiPanel"
+      >
+        <span class="material-symbols-outlined text-lg" aria-hidden="true">smart_toy</span>AI
+      </button>
+    </div>
+    <div
+      id="aiPanel"
+      class="fixed right-4 bottom-20 z-50 w-[min(100vw-2rem,400px)] hidden opacity-0 pointer-events-none translate-y-5 scale-[0.97] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="aiPanelTitle"
+    >
+      <div
+        class="rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/92 backdrop-blur-xl shadow-[0_28px_90px_-40px_rgba(0,0,0,0.5)] dark:shadow-[0_28px_90px_-40px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col max-h-[min(86vh,680px)] ring-1 ring-black/[0.04] dark:ring-white/[0.06]"
+      >
+        <div
+          class="shrink-0 px-4 py-3 flex items-center justify-between gap-3 border-b border-neutral-200/80 dark:border-neutral-800 bg-gradient-to-r from-indigo-500/[0.08] via-violet-500/[0.04] to-transparent dark:from-indigo-500/15 dark:via-violet-500/10"
+        >
+          <div class="min-w-0">
+            <div id="aiPanelTitle" class="text-sm font-semibold font-bricolage text-black dark:text-white inline-flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base text-indigo-600 dark:text-indigo-400" aria-hidden="true">smart_toy</span>Aether AI
+            </div>
+            <p class="text-[10px] text-neutral-500 dark:text-neutral-400 mt-0.5 truncate">工具推荐与对话</p>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button
+              id="aiSettingsBtn"
+              type="button"
+              class="rounded-full px-3 py-1.5 text-xs font-medium border border-neutral-200/90 dark:border-neutral-700 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-200"
+              aria-expanded="false"
+              aria-controls="aiSettings"
+            >
+              设置
+            </button>
+            <button
+              id="aiClose"
+              type="button"
+              class="h-9 w-9 rounded-full border border-neutral-200/90 dark:border-neutral-700 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:rotate-90 transition-all duration-200 flex items-center justify-center"
+              aria-label="关闭对话"
+            >
+              <span class="material-symbols-outlined text-lg" aria-hidden="true">close</span>
+            </button>
+          </div>
+        </div>
+        <div
+          id="aiSettings"
+          class="shrink-0 overflow-hidden transition-[max-height,opacity] duration-300 ease-out max-h-0 opacity-0 border-b border-transparent"
+        >
+          <div class="p-4 grid gap-3 max-h-[min(58vh,480px)] overflow-y-auto overscroll-contain">
+            <label class="grid gap-1">
+              <span class="text-xs text-neutral-500 dark:text-neutral-400">API 类型</span>
+              <select
+                id="aiApiMode"
+                class="px-3 py-2.5 rounded-xl text-sm border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/35"
+              >
+                <option value="openai">OpenAI 兼容（…/v1/chat/completions）</option>
+                <option value="anthropic">MiniMax / Anthropic 兼容（…/v1/messages）</option>
+              </select>
+            </label>
+            <p class="text-[11px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              MiniMax：Base URL 填
+              <code class="text-[10px] bg-neutral-100 dark:bg-neutral-900 px-1 rounded">https://api.minimaxi.com/anthropic</code>，模型
+              <code class="text-[10px] bg-neutral-100 dark:bg-neutral-900 px-1 rounded">MiniMax-M2.7</code>。跨域时运行
+              <code class="text-[10px] bg-neutral-100 dark:bg-neutral-900 px-1 rounded">node minimax-proxy.mjs</code>，Base URL 改为
+              <code class="text-[10px] bg-neutral-100 dark:bg-neutral-900 px-1 rounded">http://127.0.0.1:8788/anthropic</code>。
+            </p>
+            <button
+              type="button"
+              id="aiPresetMiniMax"
+              class="rounded-full px-4 py-2 text-xs font-medium border border-indigo-200 dark:border-indigo-900/50 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 w-fit transition-colors"
+            >
+              一键填入 MiniMax 默认
+            </button>
+            <label class="grid gap-1"
+              ><span class="text-xs text-neutral-500 dark:text-neutral-400">Base URL</span
+              ><input
+                id="aiBaseUrl"
+                class="px-3 py-2.5 rounded-xl text-sm border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/35"
+                autocomplete="off"
+                placeholder="OpenAI: …/v1　MiniMax: https://api.minimaxi.com/anthropic"
+            /></label>
+            <label class="grid gap-1"
+              ><span class="text-xs text-neutral-500 dark:text-neutral-400">模型</span
+              ><input
+                id="aiModel"
+                class="px-3 py-2.5 rounded-xl text-sm border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/35"
+                autocomplete="off"
+                placeholder="如 gpt-4o-mini 或 MiniMax-M2.7"
+            /></label>
+            <label class="grid gap-1"
+              ><span class="text-xs text-neutral-500 dark:text-neutral-400">Key</span
+              ><input
+                id="aiKey"
+                type="password"
+                class="px-3 py-2.5 rounded-xl text-sm border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/35"
+                autocomplete="off"
+                placeholder="在此粘贴 API Key"
+            /></label>
+            <div class="flex items-center gap-2 flex-wrap pt-1">
+              <button id="aiSave" type="button" class="rounded-full px-5 py-2 bg-black text-white dark:bg-white dark:text-black text-sm font-semibold hover:opacity-90 transition-opacity">保存</button>
+              <button id="aiClear" type="button" class="rounded-full px-5 py-2 border border-neutral-200 dark:border-neutral-800 text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">清空</button>
+              <button id="aiSettingsDone" type="button" class="rounded-full px-4 py-2 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline">收起设置</button>
+            </div>
+          </div>
+        </div>
+        <div
+          id="aiMessages"
+          class="flex-1 min-h-[132px] max-h-[min(42vh,340px)] overflow-y-auto p-4 space-y-3 bg-gradient-to-b from-neutral-50/90 to-white/80 dark:from-neutral-900/50 dark:to-neutral-950/40 overscroll-contain"
+        ></div>
+        <form id="aiForm" class="shrink-0 p-3 border-t border-neutral-200/80 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/90 flex gap-2 items-center">
+          <input
+            id="aiInput"
+            class="flex-1 min-w-0 px-4 py-2.5 rounded-full text-sm border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900/60 outline-none focus:ring-2 focus:ring-indigo-500/35 focus:border-indigo-300/50 dark:focus:border-indigo-600/40 transition-shadow"
+            autocomplete="off"
+            placeholder="输入问题…"
+            enterkeyhint="send"
+          />
+          <button
+            id="aiSend"
+            type="submit"
+            class="shrink-0 rounded-full px-4 py-2.5 bg-gradient-to-br from-neutral-900 to-neutral-700 text-white dark:from-white dark:to-neutral-200 dark:text-neutral-950 text-sm font-semibold font-bricolage hover:opacity-90 transition-all duration-200 inline-flex items-center gap-1 shadow-md disabled:opacity-45 disabled:pointer-events-none"
+          >
+            <span class="material-symbols-outlined text-base" aria-hidden="true">send</span>发送
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Auth modal（Supabase） -->
+    <div id="authModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="relative w-full max-w-md rounded-2xl border border-neutral-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-950 shadow-2xl p-6">
+        <button type="button" id="authCloseBtn" class="absolute top-4 right-4 h-9 w-9 rounded-full border border-neutral-200 dark:border-neutral-800 text-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-900" aria-label="关闭">✕</button>
+        <h2 class="text-lg font-semibold text-black dark:text-white font-bricolage">账号</h2>
+        <div class="mt-4 flex gap-2 border-b border-neutral-200/70 dark:border-neutral-800 pb-2">
+          <button type="button" id="authTabSignIn" class="flex-1 py-2 text-sm font-medium border-b-2 border-black dark:border-white">登录</button>
+          <button type="button" id="authTabSignUp" class="flex-1 py-2 text-sm font-medium border-b-2 border-transparent text-neutral-500">注册</button>
+        </div>
+        <p id="authError" class="mt-3 text-sm text-red-600 min-h-[1.25rem]"></p>
+        <div id="authPanelSignIn" class="mt-2">
+          <form id="authFormSignIn" class="grid gap-3">
+            <label class="grid gap-1 text-sm"><span class="text-neutral-500">邮箱</span><input name="email" type="email" required class="px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/30" autocomplete="email" /></label>
+            <label class="grid gap-1 text-sm"><span class="text-neutral-500">密码</span><input name="password" type="password" required minlength="6" class="px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/30" autocomplete="current-password" /></label>
+            <button type="submit" class="rounded-full py-2.5 bg-black text-white dark:bg-white dark:text-black text-sm font-semibold">登录</button>
+          </form>
+        </div>
+        <div id="authPanelSignUp" class="mt-2 hidden">
+          <form id="authFormSignUp" class="grid gap-3">
+            <label class="grid gap-1 text-sm"><span class="text-neutral-500">显示名</span><input name="display_name" type="text" class="px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/30" autocomplete="nickname" /></label>
+            <label class="grid gap-1 text-sm"><span class="text-neutral-500">邮箱</span><input name="email" type="email" required class="px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/30" autocomplete="email" /></label>
+            <label class="grid gap-1 text-sm"><span class="text-neutral-500">密码</span><input name="password" type="password" required minlength="6" class="px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/50 outline-none focus:ring-2 focus:ring-indigo-500/30" autocomplete="new-password" /></label>
+            <button type="submit" class="rounded-full py-2.5 bg-black text-white dark:bg-white dark:text-black text-sm font-semibold">注册</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>
+    <script src="./aether-supabase.js"></script>
+    <script src="./tools.js"></script>
+    <script src="./recommend.js"></script>
+    <script src="./site.js"></script>
+    <script src="./aether-app.js"></script>
+  </body>
+</html>
+

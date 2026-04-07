@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="./aether-theme.css" />
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+    .delay-100 { animation-delay: 0.1s; }
+    .font-bricolage { font-family: "Bricolage Grotesque", sans-serif !important; }
+  </style>
+  <title id="articleTitle">Article - Aether</title>
+</head>
+<body class="dark:bg-neutral-950 dark:text-neutral-50 font-nunito antialiased bg-white text-neutral-900">
+
+  <header class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex items-center justify-between animate-fade-in-up">
+    <a href="learn.html" class="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-2">
+      <span class="material-symbols-outlined text-base">arrow_back</span>Back to Learn
+    </a>
+    <a href="index.html" class="text-base font-semibold tracking-tighter dark:text-white uppercase font-bricolage text-black">Aether</a>
+  </header>
+
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-fade-in-up delay-100">
+    <div id="articleMount"></div>
+  </article>
+
+  <script src="./tools.js"></script>
+  <script src="./learn-content.js"></script>
+  <script src="./learn.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="./aether-theme.css" />
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .font-bricolage { font-family: "Bricolage Grotesque", sans-serif !important; }
+  </style>
+  <title>Midjourney Guide - Aether</title>
+</head>
+<body class="dark:bg-neutral-950 dark:text-neutral-50 font-nunito antialiased bg-white text-neutral-900">
+
+  <header class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex items-center justify-between animate-fade-in-up">
+    <a href="index.html" class="text-base font-semibold tracking-tighter dark:text-white uppercase font-bricolage text-black">Aether</a>
+    <nav class="hidden md:flex gap-6 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+      <a href="index.html#tools" class="dark:hover:text-white transition-colors hover:text-black">Tools</a>
+      <a href="workspace.html" class="dark:hover:text-white transition-colors hover:text-black">Workspace</a>
+      <a href="midjourney-guide.html" class="dark:hover:text-white transition-colors hover:text-black border-b-2 border-black dark:border-white">Midjourney Guide</a>
+      <a href="index.html#forum" class="dark:hover:text-white transition-colors hover:text-black">Forum</a>
+    </nav>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-4xl sm:text-5xl font-bold font-bricolage mb-4 animate-fade-in-up delay-100">Midjourney Image Generation Guide</h1>
+    <p class="text-neutral-600 dark:text-neutral-400 mb-12 animate-fade-in-up delay-200">Learn how to create high-quality AI images</p>
+
+    <div class="space-y-8">
+      <div class="rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/75 dark:bg-neutral-950/35 p-6 sm:p-8 animate-fade-in-up delay-300">
+        <h2 class="text-2xl font-semibold font-bricolage mb-6">Getting Started</h2>
+        <div class="space-y-4">
+          <div><h3 class="font-semibold mb-2">1. Join Midjourney</h3><p class="text-sm text-neutral-600 dark:text-neutral-400">Visit midjourney.com and sign up. You'll need a Discord account.</p></div>
+          <div><h3 class="font-semibold mb-2">2. Access the Bot</h3><p class="text-sm text-neutral-600 dark:text-neutral-400">Join the Midjourney Discord server or add the bot to your own server.</p></div>
+          <div><h3 class="font-semibold mb-2">3. Write Your First Prompt</h3><p class="text-sm text-neutral-600 dark:text-neutral-400">Type <code class="px-2 py-1 bg-neutral-100 dark:bg-neutral-900 rounded text-xs">/imagine prompt: your description here</code></p></div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/75 dark:bg-neutral-950/35 p-6 sm:p-8 animate-fade-in-up delay-300">
+        <h2 class="text-2xl font-semibold font-bricolage mb-6">Prompt Structure</h2>
+        <p class="text-neutral-600 dark:text-neutral-400 mb-4">Subject + Style + Details + Parameters</p>
+        <div class="space-y-3">
+          <div class="p-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg">
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 mb-2">Portrait:</p>
+            <code class="text-sm text-indigo-600 dark:text-indigo-400">portrait of a woman, natural lighting, 85mm lens --ar 2:3</code>
+          </div>
+          <div class="p-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg">
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 mb-2">Landscape:</p>
+            <code class="text-sm text-indigo-600 dark:text-indigo-400">mountain landscape at sunset, dramatic clouds --ar 16:9</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/75 dark:bg-neutral-950/35 p-6 sm:p-8 animate-fade-in-up delay-300">
+        <h2 class="text-2xl font-semibold font-bricolage mb-6">Key Parameters</h2>
+        <div class="space-y-3">
+          <div class="flex gap-4"><code class="px-3 py-1 bg-neutral-100 dark:bg-neutral-900 rounded text-indigo-600 dark:text-indigo-400">--ar</code><p class="text-sm text-neutral-600 dark:text-neutral-400">Aspect ratio (e.g., --ar 16:9)</p></div>
+          <div class="flex gap-4"><code class="px-3 py-1 bg-neutral-100 dark:bg-neutral-900 rounded text-indigo-600 dark:text-indigo-400">--v 6</code><p class="text-sm text-neutral-600 dark:text-neutral-400">Version 6 (latest model)</p></div>
+          <div class="flex gap-4"><code class="px-3 py-1 bg-neutral-100 dark:bg-neutral-900 rounded text-indigo-600 dark:text-indigo-400">--stylize</code><p class="text-sm text-neutral-600 dark:text-neutral-400">Artistic interpretation (0-1000)</p></div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/75 dark:bg-neutral-950/35 p-6 sm:p-8 animate-fade-in-up delay-300">
+        <h2 class="text-2xl font-semibold font-bricolage mb-6">Common Pitfalls</h2>
+        <div class="space-y-3">
+          <div><p class="text-neutral-600 dark:text-neutral-400">❌ Vague descriptions → ✅ Use clear, specific descriptions</p></div>
+          <div><p class="text-neutral-600 dark:text-neutral-400">❌ Too many details → ✅ Keep prompts focused</p></div>
+          <div><p class="text-neutral-600 dark:text-neutral-400">❌ Ignoring aspect ratios → ✅ Always specify --ar</p></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

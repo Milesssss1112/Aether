@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Test Tools</title>
+</head>
+<body class="bg-white text-neutral-900 p-8">
+  <h1 class="text-2xl font-bold mb-4">Tools Test</h1>
+  <div id="toolsGrid" class="grid md:grid-cols-3 gap-6"></div>
+
+  <script src="./tools.js"></script>
+  <script>
+    console.log('AIGC_TOOLS:', AIGC_TOOLS);
+    console.log('Total tools:', AIGC_TOOLS.length);
+
+    const grid = document.getElementById('toolsGrid');
+
+    AIGC_TOOLS.slice(0, 12).forEach(tool => {
+      const imgs = window.AIGC_ENSURE_TOOL_IMAGES(tool);
+      console.log(tool.name, imgs.a.substring(0, 50));
+
+      const card = document.createElement('div');
+      card.className = 'border rounded-lg overflow-hidden';
+      card.innerHTML = `
+        <img src="${imgs.a}" alt="${tool.name}" class="w-full h-40 object-cover" />
+        <div class="p-4">
+          <h3 class="font-bold">${tool.name}</h3>
+          <p class="text-sm text-gray-600">${tool.tagline}</p>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>

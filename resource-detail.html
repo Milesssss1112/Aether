@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="./aether-theme.css" />
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .font-bricolage { font-family: "Bricolage Grotesque", sans-serif !important; }
+    .material-symbols-outlined { line-height: 1; }
+
+    /* Code blocks */
+    .code-block {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      border-radius: 12px;
+      padding: 20px;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      overflow-x: auto;
+      white-space: pre;
+      position: relative;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #cdd6f4;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.2); }
+
+    /* Section cards */
+    .section-card {
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .dark .section-card { border-color: rgba(255,255,255,0.08); }
+
+    /* Steps */
+    .step-item { display: flex; gap: 16px; margin-bottom: 12px; }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: #000; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; flex-shrink: 0;
+    }
+    .dark .step-num { background: #fff; color: #000; }
+
+    /* Table */
+    .resource-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .resource-table td { padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); vertical-align: top; }
+    .dark .resource-table td { border-color: rgba(255,255,255,0.06); }
+    .resource-table tr:last-child td { border-bottom: none; }
+    .resource-table td:first-child { font-weight: 600; white-space: nowrap; }
+
+    /* Template block */
+    .template-block {
+      background: #f8f7ff;
+      border-left: 3px solid #6366f1;
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      font-size: 13px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      position: relative;
+    }
+    .dark .template-block {
+      background: rgba(99,102,241,0.08);
+      border-color: #818cf8;
+      color: #c7d2fe;
+    }
+
+    /* Sticky TOC */
+    .toc-link { display: block; padding: 6px 12px; border-radius: 8px; font-size: 13px; color: #6b7280; transition: all 0.15s; }
+    .toc-link:hover, .toc-link.active { background: #f3f4f6; color: #000; }
+    .dark .toc-link:hover, .dark .toc-link.active { background: rgba(255,255,255,0.05); color: #fff; }
+  </style>
+  <title>Resource Detail - Aether</title>
+</head>
+<body class="dark:bg-neutral-950 dark:text-neutral-50 font-nunito antialiased bg-white text-neutral-900">
+
+  <header class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex items-center justify-between animate-fade-in-up">
+    <a href="index.html" class="text-base font-semibold tracking-tighter dark:text-white uppercase font-bricolage text-black">Aether</a>
+    <nav class="hidden md:flex gap-6 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+      <a href="index.html#tools" class="dark:hover:text-white transition-colors hover:text-black">Tools</a>
+      <a href="workspace.html" class="dark:hover:text-white transition-colors hover:text-black">Workspace</a>
+      <a href="learn.html" class="dark:hover:text-white transition-colors hover:text-black">Learn</a>
+      <a href="resources.html" class="dark:hover:text-white transition-colors hover:text-black border-b-2 border-black dark:border-white">Resources</a>
+    </nav>
+  </header>
+
+  <div id="notFound" class="hidden max-w-xl mx-auto px-4 py-32 text-center">
+    <span class="material-symbols-outlined text-5xl text-neutral-300 dark:text-neutral-700">search_off</span>
+    <p class="mt-4 text-lg font-semibold">Resource not found</p>
+    <a href="resources.html" class="mt-6 inline-block px-6 py-2.5 rounded-full bg-black text-white dark:bg-white dark:text-black text-sm font-medium">Back to Resources</a>
+  </div>
+
+  <div id="articleMount" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 animate-fade-in-up delay-100">
+    <!-- Back link -->
+    <div class="mb-8">
+      <a href="resources.html" class="inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-colors">
+        <span class="material-symbols-outlined" style="font-size:16px">arrow_back</span>Back to Resources
+      </a>
+    </div>
+
+    <div class="flex gap-10">
+      <!-- Main content -->
+      <article class="flex-1 min-w-0">
+        <!-- Header card -->
+        <div class="rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white dark:bg-neutral-950 p-8 mb-8">
+          <div class="flex items-start gap-5">
+            <div id="iconWrap" class="w-14 h-14 rounded-2xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0">
+              <span id="headerIcon" class="material-symbols-outlined text-neutral-600 dark:text-neutral-300" style="font-size:26px">article</span>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span id="catBadge" class="text-xs px-2.5 py-1 rounded-full font-medium"></span>
+                <span id="diffBadge" class="text-xs px-2.5 py-1 rounded-full font-medium"></span>
+              </div>
+              <h1 id="articleTitle" class="text-2xl sm:text-3xl font-bold font-bricolage mb-3 leading-tight"></h1>
+              <p id="articleSummary" class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-4"></p>
+              <div class="flex flex-wrap gap-4 text-xs text-neutral-400 dark:text-neutral-500">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">build</span><span id="toolName"></span></span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">schedule</span><span id="readTime"></span></span>
+              </div>
+            </div>
+          </div>
+          <div id="tagsWrap" class="flex flex-wrap gap-1.5 mt-5 pt-5 border-t border-neutral-100 dark:border-neutral-800"></div>
+        </div>
+
+        <!-- Sections -->
+        <div id="sectionsMount" class="space-y-6"></div>
+      </article>
+
+      <!-- Sidebar TOC -->
+      <aside class="hidden xl:block w-56 flex-shrink-0">
+        <div class="sticky top-10">
+          <p class="text-xs font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-3">Contents</p>
+          <nav id="tocNav" class="space-y-0.5"></nav>
+
+          <div class="mt-8 p-4 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+            <p class="text-xs font-semibold mb-3 text-neutral-600 dark:text-neutral-400">More Resources</p>
+            <a href="resources.html" class="text-xs text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size:13px">library_books</span>Browse Resources
+            </a>
+            <a href="learn.html" class="mt-2 text-xs text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size:13px">school</span>View Tutorials
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="./resources-content.js"></script>
+  <script>
+    const CATEGORY_LABELS = { guide: 'Guide', template: 'Template', inspiration: 'Inspiration', api: 'API Docs' };
+    const DIFFICULTY_LABELS = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
+    const DIFFICULTY_COLORS = {
+      beginner: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
+      intermediate: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+      advanced: 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400'
+    };
+    const CAT_COLORS = {
+      guide: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400',
+      template: 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400',
+      inspiration: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+      api: 'bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-400'
+    };
+
+    function copyToClipboard(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+      });
+    }
+
+    function renderSection(sec, idx) {
+      const id = `section-${idx}`;
+      let bodyHtml = '';
+
+      if (sec.type === 'code') {
+        const escaped = sec.content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        bodyHtml = `<div class="code-block"><button class="copy-btn" onclick="copyToClipboard(${JSON.stringify(sec.content)}, this)">Copy</button>${escaped}</div>`;
+      } else if (sec.type === 'template') {
+        // Split by double newline for multiple templates
+        const parts = sec.content.split(/\n\n(?=【)/);
+        bodyHtml = parts.map(p => {
+          const escaped = p.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          return `<div class="template-block relative mb-3"><button class="copy-btn" style="top:8px;right:10px;background:rgba(99,102,241,0.15);color:#6366f1;" onclick="copyToClipboard(${JSON.stringify(p)}, this)">Copy</button>${escaped}</div>`;
+        }).join('');
+      } else if (sec.type === 'steps') {
+        const lines = sec.content.split('\n').filter(l => l.trim());
+        bodyHtml = `<div class="space-y-1 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300"><pre class="whitespace-pre-wrap font-nunito">${sec.content}</pre></div>`;
+      } else if (sec.type === 'table') {
+        const rows = sec.content.split('\n').filter(l => l.trim() && l.includes('|'));
+        bodyHtml = `<div class="overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-800"><table class="resource-table"><tbody>` +
+          rows.map(row => {
+            const cells = row.split('|').map(c => c.trim());
+            return `<tr>${cells.map((c, i) => `<td class="${i === 0 ? 'font-semibold bg-neutral-50 dark:bg-neutral-900/50 text-neutral-700 dark:text-neutral-300' : 'text-neutral-600 dark:text-neutral-400'}">${c}</td>`).join('')}</tr>`;
+          }).join('') +
+          `</tbody></table></div>`;
+      } else {
+        bodyHtml = `<p class="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300 whitespace-pre-wrap">${sec.content}</p>`;
+      }
+
+      return `
+        <section id="${id}" class="section-card bg-white dark:bg-neutral-950">
+          <div class="px-6 py-4 border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-3">
+            <h2 class="font-semibold text-base">${sec.title}</h2>
+            ${sec.type === 'code' ? '<span class="ml-auto text-xs px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-500">Code</span>' : ''}
+            ${sec.type === 'template' ? '<span class="ml-auto text-xs px-2 py-0.5 rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400">Template</span>' : ''}
+          </div>
+          <div class="p-6">${bodyHtml}</div>
+        </section>
+      `;
+    }
+
+    function init() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+
+      if (!window.AETHER_RESOURCES || !id) {
+        document.getElementById('notFound').classList.remove('hidden');
+        return;
+      }
+
+      const resource = window.AETHER_RESOURCES.resources.find(r => r.id === id);
+      if (!resource) {
+        document.getElementById('notFound').classList.remove('hidden');
+        return;
+      }
+
+      document.title = resource.title + ' - Aether Resources';
+      document.getElementById('articleMount').classList.remove('hidden');
+
+      // Header
+      document.getElementById('headerIcon').textContent = resource.icon || 'article';
+      document.getElementById('articleTitle').textContent = resource.title;
+      document.getElementById('articleSummary').textContent = resource.summary;
+      document.getElementById('toolName').textContent = resource.tool;
+      document.getElementById('readTime').textContent = resource.readTime;
+
+      const catBadge = document.getElementById('catBadge');
+      catBadge.textContent = CATEGORY_LABELS[resource.category] || resource.category;
+      catBadge.className = `text-xs px-2.5 py-1 rounded-full font-medium ${CAT_COLORS[resource.category] || ''}`;
+
+      const diffBadge = document.getElementById('diffBadge');
+      diffBadge.textContent = DIFFICULTY_LABELS[resource.difficulty] || resource.difficulty;
+      diffBadge.className = `text-xs px-2.5 py-1 rounded-full font-medium ${DIFFICULTY_COLORS[resource.difficulty] || ''}`;
+
+      // Tags
+      if (resource.tags && resource.tags.length) {
+        document.getElementById('tagsWrap').innerHTML = resource.tags
+          .map(t => `<span class="text-xs px-2.5 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400">${t}</span>`)
+          .join('');
+      }
+
+      // Sections
+      const sections = resource.sections || [];
+      document.getElementById('sectionsMount').innerHTML = sections.map(renderSection).join('');
+
+      // TOC
+      const tocNav = document.getElementById('tocNav');
+      tocNav.innerHTML = sections.map((sec, i) =>
+        `<a href="#section-${i}" class="toc-link">${sec.title}</a>`
+      ).join('');
+
+      // Highlight active TOC on scroll
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+            const id = entry.target.id;
+            const link = tocNav.querySelector(`a[href="#${id}"]`);
+            if (link) link.classList.add('active');
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('section[id^="section-"]').forEach(el => observer.observe(el));
+    }
+
+    init();
+  </script>
+</body>
+</html>

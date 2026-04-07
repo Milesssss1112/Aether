@@ -1,0 +1,33 @@
+{
+  "name": "content-service-website",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "sync-learn-content": "node -e \"const fs=require('fs');const d=JSON.parse(fs.readFileSync('data/learn-content.json','utf8'));fs.writeFileSync('learn-content.js','window.AETHER_LEARN_CONTENT = '+JSON.stringify(d)+';');console.log('learn-content.js updated');\"",
+    "sync-supabase-config": "node scripts/sync-supabase-config.mjs",
+    "sync-daily-news": "node scripts/fetch-daily-news.mjs",
+    "proxy-minimax": "node minimax-proxy.mjs",
+    "supabase": "supabase",
+    "invoke-fetch-news": "node scripts/invoke-fetch-ai-news.mjs"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.22.0",
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.1.0",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.35",
+    "autoprefixer": "^10.4.17",
+    "supabase": "^2.84.0"
+  }
+}

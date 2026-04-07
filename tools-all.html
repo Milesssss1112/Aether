@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="./aether-theme.css" />
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .font-bricolage { font-family: "Bricolage Grotesque", sans-serif !important; }
+  </style>
+  <title>All Tools - Aether</title>
+</head>
+<body class="dark:bg-neutral-950 dark:text-neutral-50 font-nunito antialiased bg-white text-neutral-900">
+
+  <header class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex items-center justify-between animate-fade-in-up">
+    <a href="index.html" class="text-base font-semibold tracking-tighter dark:text-white uppercase font-bricolage text-black">Aether</a>
+    <nav class="hidden md:flex gap-6 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+      <a href="index.html#tools" class="dark:hover:text-white transition-colors hover:text-black">Tools</a>
+      <a href="workspace.html" class="dark:hover:text-white transition-colors hover:text-black">Workspace</a>
+      <a href="midjourney-guide.html" class="dark:hover:text-white transition-colors hover:text-black">Midjourney Guide</a>
+    </nav>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-4xl font-bold font-bricolage mb-8 animate-fade-in-up delay-100">All AI Tools</h1>
+
+    <div class="mb-6">
+      <div id="categories" class="flex flex-wrap gap-2"></div>
+    </div>
+
+    <div id="toolsGrid" class="grid md:grid-cols-3 gap-6"></div>
+  </main>
+
+  <script src="./tools.js"></script>
+  <script>
+    const categoryColors = {
+      'chat-search': { bg: 'bg-green-600/20', text: 'text-green-600 dark:text-green-400', border: 'hover:border-green-500' },
+      'image': { bg: 'bg-indigo-600/20', text: 'text-indigo-600 dark:text-indigo-400', border: 'hover:border-indigo-500' },
+      'video': { bg: 'bg-purple-600/20', text: 'text-purple-600 dark:text-purple-400', border: 'hover:border-purple-500' },
+      'audio': { bg: 'bg-orange-600/20', text: 'text-orange-600 dark:text-orange-400', border: 'hover:border-orange-500' },
+      'dev-agent': { bg: 'bg-blue-600/20', text: 'text-blue-600 dark:text-blue-400', border: 'hover:border-blue-500' },
+      'models': { bg: 'bg-pink-600/20', text: 'text-pink-600 dark:text-pink-400', border: 'hover:border-pink-500' }
+    };
+
+    let selectedCategory = null;
+
+    function renderCategories() {
+      const container = document.getElementById('categories');
+      const buttons = [];
+
+      buttons.push(`
+        <button onclick="filterCategory(null)" class="px-4 py-2 rounded-full text-sm font-medium transition ${!selectedCategory ? 'bg-black text-white dark:bg-white dark:text-black' : 'border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-900'}">
+          All
+        </button>
+      `);
+
+      window.AIGC_CATEGORIES.forEach(cat => {
+        const active = selectedCategory === cat.id;
+        buttons.push(`
+          <button onclick="filterCategory('${cat.id}')" class="px-4 py-2 rounded-full text-sm font-medium transition ${active ? 'bg-black text-white dark:bg-white dark:text-black' : 'border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-900'}">
+            ${cat.label}
+          </button>
+        `);
+      });
+
+      container.innerHTML = buttons.join('');
+    }
+
+    function renderTools() {
+      const grid = document.getElementById('toolsGrid');
+
+      // 确保 AIGC_TOOLS 已加载
+      if (!window.AIGC_TOOLS || !Array.isArray(window.AIGC_TOOLS)) {
+        console.error('AIGC_TOOLS not loaded');
+        return;
+      }
+
+      const tools = selectedCategory
+        ? window.AIGC_TOOLS.filter(t => t.category === selectedCategory)
+        : window.AIGC_TOOLS;
+
+      console.log('Rendering', tools.length, 'tools');
+
+      const cards = tools.map(tool => {
+        const colors = categoryColors[tool.category] || categoryColors['models'];
+        const categoryLabel = window.AIGC_CATEGORIES.find(c => c.id === tool.category)?.label || tool.category;
+        const hrefFn = window.AETHER_TOOL_PAGE_HREF || ((tid) => `tool.html?id=${encodeURIComponent(tid)}`);
+        const href = hrefFn(tool.id);
+        const imgs = window.AIGC_ENSURE_TOOL_IMAGES(tool);
+
+        return `
+          <a href="${href}" class="block rounded-2xl border border-neutral-200/70 dark:border-neutral-800 bg-white/75 dark:bg-neutral-950/35 overflow-hidden ${colors.border} transition">
+            <img src="${imgs.a}" alt="${tool.name}" class="w-full h-40 object-cover" />
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 font-bricolage">${tool.name}</h3>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-3">${tool.tagline}</p>
+              <span class="text-xs px-2 py-1 ${colors.bg} ${colors.text} rounded">${categoryLabel}</span>
+            </div>
+          </a>
+        `;
+      });
+
+      grid.innerHTML = cards.join('');
+    }
+
+    window.filterCategory = function(catId) {
+      selectedCategory = catId;
+      renderCategories();
+      renderTools();
+    };
+
+    // 等待 tools.js 加载完成
+    function init() {
+      if (window.AIGC_TOOLS && window.AIGC_CATEGORIES) {
+        renderCategories();
+        renderTools();
+      } else {
+        console.log('Waiting for tools.js to load...');
+        setTimeout(init, 100);
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
