@@ -22,7 +22,7 @@ jobs:
       - run: npm ci
       - name: Sync RSS → Supabase
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_URL: ${{ https://qddlhzhgcquamwuwggnw.supabase.co }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFkZGxoemhnY3F1YW13dXdnZ253Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDk0OTE1MiwiZXhwIjoyMDkwNTI1MTUyfQ.8AnS-D7mAAMeu0XHqMAixrM6KeYCrA3CBsPq8ZTQmpY }}
           NEWS_RSS_URLS: ${{ secrets.NEWS_RSS_URLS }}
         run: node scripts/fetch-daily-news.mjs
